@@ -1,7 +1,6 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import CoffeePage from '../screen/coffeeScreen';
-import ProfileScreen from '../screen/profileScreen';
 import FilterScreen from '../screen/filterScreen';
+import DataScreen from '../screen/dataScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -12,7 +11,7 @@ export default function MyTabs() {
         headerShown: false
       }}>
       <Tab.Screen name="Filter" component={FilterScreen} />
-      <Tab.Screen name="Coffee" component={CoffeePage} />
+      <Tab.Screen name="Data" component={DataScreen} />
     </Tab.Navigator>
   );
 }

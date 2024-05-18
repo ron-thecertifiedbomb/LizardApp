@@ -55,7 +55,7 @@ const FilterScreen: React.FC = () => {
         <Text>Error: {error.message || 'Unknown error'}</Text>
       ) : (
         <>
-          <FilterTabs onPress={handlePress} />
+          <FilterTabs onPress={handlePress} data={[]} />
           <FlatList
             data={data}
             keyExtractor={(item) => item._id}

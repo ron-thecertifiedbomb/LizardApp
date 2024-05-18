@@ -4,6 +4,9 @@ import { useForm, Controller } from 'react-hook-form';
 import { useNavigation } from '@react-navigation/native';
 import { TextInput, Button as PaperButton } from 'react-native-paper';
 import { useMutation } from 'react-query';
+import { useDispatch } from 'react-redux'; // Import useDispatch
+import { setUserId } from '../redux/reducers/userIdReducer';
+import { setIsLoggedIn } from '../redux/reducers/isLoggedInReducer';
 
 type FormData = {
   username: string;
@@ -13,8 +16,7 @@ type FormData = {
 const LogInForm = () => {
   const navigation = useNavigation();
   const { control, handleSubmit, reset, formState: { errors } } = useForm<FormData>();
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [profileId, setProfileId] = useState('');
+  const dispatch = useDispatch(); // Initialize useDispatch
   const [error, setError] = useState('');
 
   const mutation = useMutation(
@@ -37,11 +39,10 @@ const LogInForm = () => {
       onSuccess: (data) => {
         const userId = data.userId;
         console.log("UserID", userId)
-        setIsLoggedIn(true);
-        setProfileId(userId);
+        dispatch(setIsLoggedIn(true));
+        dispatch(setUserId(userId));
         Alert.alert("Success", "Authentication successful", [
           { text: "OK", onPress: () => {
-          
             navigation.navigate('DrawerNavigator' as never);
           }},
         ]);
