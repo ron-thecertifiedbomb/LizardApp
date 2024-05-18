@@ -19,7 +19,7 @@ const Card: React.FC<Props> = ({ item }) => {
       <Image source={{ uri: item.imagelink_square }} style={styles.profilePicture} />
       <View style={styles.cardBody}>
       <Text style={styles.titleText}>{item.name}</Text>
-      <Text style={styles.descriptionText}>Description: {item.description}</Text>
+      <Text style={styles.descriptionText}>{item.description}</Text>
     
       </View>
     </View>
@@ -30,7 +30,6 @@ const styles = StyleSheet.create({
   card: {
     backgroundColor: '#fff',
     borderRadius: 8,
-
     padding: 16,
     flexDirection: 'column',
 

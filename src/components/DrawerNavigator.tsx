@@ -1,5 +1,4 @@
 import * as React from 'react';
-
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import MyTabs from './MyTabs';
 import SettingsScreen from '../screen/settings';

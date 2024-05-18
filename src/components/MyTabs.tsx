@@ -11,9 +11,9 @@ export default function MyTabs() {
       screenOptions={{
         headerShown: false
       }}>
+      <Tab.Screen name="Home" component={HomeScreen} />
       <Tab.Screen name="Filter" component={FilterScreen} />
       <Tab.Screen name="Data" component={DataScreen} />
-      <Tab.Screen name="Home" component={HomeScreen} />
     </Tab.Navigator>
   );
 }

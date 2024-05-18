@@ -5,9 +5,9 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 interface DataState {
   isLoading: boolean;
   isError: boolean;
-  data: any[] | null; // Adjust the type as per your fetched data structure
+  data: any[] | null; 
   error: string | null;
-  filteredData: any[] | null; // New state for filtered data
+  filteredData: any[] | null; 
 }
 
 const initialState: DataState = {
@@ -15,7 +15,7 @@ const initialState: DataState = {
   isError: false,
   data: null,
   error: null,
-  filteredData: null, // Initialize filteredData as null
+  filteredData: null, 
 };
 
 const dataSlice = createSlice({
@@ -43,9 +43,9 @@ const dataSlice = createSlice({
       const category = action.payload;
       if (state.data) {
         if (category === 'All') {
-          state.filteredData = state.data; // If category is 'All', set filteredData as all data
+          state.filteredData = state.data; 
         } else {
-          state.filteredData = state.data.filter((item) => item.category === category); // Filter data based on category
+          state.filteredData = state.data.filter((item) => item.name === category); 
         }
       }
     },
