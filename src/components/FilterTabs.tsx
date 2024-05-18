@@ -1,39 +1,29 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 
-interface FilterTabsProps {
-  onPress: (name: string) => void;
-}
-
-const FilterTabs: React.FC<FilterTabsProps> = ({ onPress }) => {
-  const tabs = ['All', 'Espresso', 'Latte', 'Macchiato', 'Black Coffee'];
-
+const FilterTabs: React.FC<{ data: string[]; onPress: (name: string) => void }> = ({ data, onPress }) => {
   return (
-    <View style={styles.container}>
-      {tabs.map((item: string, index: number) => (
-        <TouchableOpacity
-          key={index}
-          style={styles.navigationWrapper}
-          onPress={() => onPress(item)}>
+    <ScrollView contentContainerStyle={styles.scrollContainer} showsVerticalScrollIndicator={false}>
+      {data.map((item: string, index: number) => (
+        <TouchableOpacity key={index} style={styles.navigationWrapper} onPress={() => onPress(item)}>
           <Text>{item}</Text>
         </TouchableOpacity>
       ))}
-    </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    width: '100%',
-    marginBottom: 20,
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    gap: 10,
+  scrollContainer: {
+    flexGrow: 1,
+    alignItems: 'center',
+    paddingBottom: 20, // Adjust as needed
   },
   navigationWrapper: {
+    width: '100%',
+    marginBottom: 20,
     alignItems: 'center',
-    padding: 10,
+    padding: 16,
     backgroundColor: '#fff',
     borderRadius: 8,
     shadowColor: '#000',
@@ -41,7 +31,6 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     shadowOffset: { width: 0, height: 2 },
     elevation: 2,
-    marginBottom: 10,
   },
 });
 
