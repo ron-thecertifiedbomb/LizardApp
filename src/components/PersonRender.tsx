@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, FlatList, StyleSheet } from 'react-native';
-import Card from './PersonCard';
+import Card from './Card';
 import { useQuery } from 'react-query';
 
 const PersonRender: React.FC = () => {
