@@ -6,25 +6,20 @@ import {
   ScrollView,
   TouchableOpacity,
 } from 'react-native';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import {selectisActiveLink} from '../redux/selectors/selectors';
-const tabs = [
-  'All',
-  'Espresso',
-  'Latte',
-  'Cappuccino',
-  'Black Coffee',
-  'Macchiato',
-];
+import {filterData} from '../redux/reducers/dataReducer';
+import {setIsActiveLink} from '../redux/reducers/isAtiveLinkReducer';
+import {tabs} from '../utilities/lib';
 
-interface ClientSideFilterTabsProps {
-  onPress: (category: string) => void;
-}
-
-const ClientSideFilterTabs: React.FC<ClientSideFilterTabsProps> = ({
-  onPress,
-}) => {
+const ClientSideFilterTabs: React.FC = () => {
   const activeLink = useSelector(selectisActiveLink);
+  const dispatch = useDispatch();
+
+  const handleTabPress = (category: string) => {
+    dispatch(filterData(category));
+    dispatch(setIsActiveLink(category));
+  };
 
   return (
     <ScrollView
@@ -39,7 +34,7 @@ const ClientSideFilterTabs: React.FC<ClientSideFilterTabsProps> = ({
               ? styles.activeNavigationWrapper
               : styles.navigationWrapper
           }
-          onPress={() => onPress(item)}>
+          onPress={() => handleTabPress(item)}>
           <Text
             style={
               item === activeLink ? styles.activeTextStyle : styles.textStyle
@@ -59,10 +54,9 @@ const styles = StyleSheet.create({
     height: 40,
     justifyContent: 'space-evenly',
     marginBottom: 15,
-
   },
   navigationWrapper: {
-    marginRight: 10, // Add some margin to separate the tabs
+    marginRight: 10,
     alignItems: 'center',
     padding: 10,
     backgroundColor: '#fff',
@@ -73,9 +67,8 @@ const styles = StyleSheet.create({
     shadowOffset: {width: 0, height: 2},
     elevation: 2,
   },
-
   activeNavigationWrapper: {
-    marginRight: 10, // Add some margin to separate the tabs
+    marginRight: 10,
     alignItems: 'center',
     padding: 10,
     backgroundColor: 'grey',
