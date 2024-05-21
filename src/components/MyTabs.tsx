@@ -1,7 +1,7 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import FilterScreen from '../screen/filterScreen';
-import DataScreen from '../screen/dataScreen';
 import HomeScreen from '../screen/homeScreen';
+import ProfileScreen from '../screen/AllProductsScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -11,9 +11,10 @@ export default function MyTabs() {
       screenOptions={{
         headerShown: false
       }}>
-      <Tab.Screen name="Profile" component={HomeScreen} />
+      <Tab.Screen name="All Products" component={ProfileScreen} />
       <Tab.Screen name="Filter" component={FilterScreen} />
-      <Tab.Screen name="Data" component={DataScreen} />
+      
+     
     </Tab.Navigator>
   );
 }

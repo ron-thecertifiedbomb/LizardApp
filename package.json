@@ -10,6 +10,8 @@
     "test": "jest"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
     "@expo/vector-icons": "^14.0.2",
     "@fortawesome/fontawesome-svg-core": "^6.5.2",
     "@fortawesome/free-solid-svg-icons": "^6.5.2",
@@ -23,6 +25,7 @@
     "@react-navigation/native-stack": "^6.9.26",
     "@reduxjs/toolkit": "^2.2.5",
     "expo-font": "^12.0.5",
+    "mongoose": "^8.4.0",
     "react": "18.2.0",
     "react-hook-form": "^7.51.4",
     "react-native": "0.74.1",

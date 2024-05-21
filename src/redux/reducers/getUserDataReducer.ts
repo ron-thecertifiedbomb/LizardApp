@@ -1,31 +1,24 @@
-// dataSlice.ts
-
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 
 interface DataState {
-  isLoading: boolean;
-  isError: boolean;
   data: any[] | null;
-  error: string | null;
   filteredData: any[] | null;
 }
 
 const initialState: DataState = {
-  isLoading: false,
-  isError: false,
   data: null,
-  error: null,
+
   filteredData: null,
 };
 
-const dataSlice = createSlice({
-  name: 'data',
+const getUserData = createSlice({
+  name: 'users',
   initialState,
   reducers: {
-    storeData(state, action: PayloadAction<any[]>) {
+    usersData(state, action: PayloadAction<any[]>) {
       state.data = action.payload;
     },
-    filterData(state, action: PayloadAction<string>) {
+    filterUsersData(state, action: PayloadAction<string>) {
       const category = action.payload;
       if (state.data) {
         if (category === 'All') {
@@ -40,6 +33,6 @@ const dataSlice = createSlice({
   },
 });
 
-export const {storeData, filterData} = dataSlice.actions;
+export const {usersData, filterUsersData} = getUserData.actions;
 
-export default dataSlice.reducer;
+export default getUserData.reducer;

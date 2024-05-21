@@ -25,3 +25,8 @@ export const coffeeDataShorten = {
   ],
 
 };
+
+
+const productId: string = '';
+
+export const url = `https://nextjs-server-rho.vercel.app/api/products/getProduct/route?_id=${productId}`

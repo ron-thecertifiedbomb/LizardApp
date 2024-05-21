@@ -1,13 +1,14 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { NativeStackScreenProps, createNativeStackNavigator } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../type';
 import RegistrationScreen from '../screen/registrationScreem';
 import LogInScreen from '../screen/LogInScreen';
 import DrawerNavigator from './DrawerNavigator';
-import DetailsScreen from '../screen/detailsScreen';
 import SettingsScreen from '../screen/settings';
+import SingleProductScreen from '../screen/SingleProductScreen';
 
+export type Props = NativeStackScreenProps<RootStackParamList>;
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -22,7 +23,7 @@ const AppNavigator: React.FC = () => {
           component={DrawerNavigator}
           options={{ headerShown: false }}
         />
-        <Stack.Screen name="Details" component={DetailsScreen} />
+        <Stack.Screen name="ProductPage" component={SingleProductScreen} />
         <Stack.Screen name="Settings" component={SettingsScreen} />
       </Stack.Navigator>
     </NavigationContainer>

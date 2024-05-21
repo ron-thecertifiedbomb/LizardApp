@@ -1,18 +1,21 @@
-// rootReducer.ts
-import { Reducer, combineReducers } from '@reduxjs/toolkit';
+
+import { combineReducers } from '@reduxjs/toolkit';
 import isLoggedInReducer from './isLoggedInReducer'; 
-import dataReducer from './dataReducer'; 
+import getUserDataReducer from './getUserDataReducer'; 
 import userIdReducer from './userIdReducer';
 import isActiveLinkReducer from './isAtiveLinkReducer'; 
 import updateProductReducer from './updateProductReducer';
-import { UpdateProductFieldAction, UpdateProductState } from '../../../type';
+import getProductsReducer from './getProductsReducer';
+
 
 const rootReducer = combineReducers({
   userId: userIdReducer,
   isLoggedIn: isLoggedInReducer,
-  data: dataReducer, 
+  users: getUserDataReducer, 
+  allProducts: getProductsReducer,
+  singleProductData: getProductsReducer,
   isActiveLink: isActiveLinkReducer, 
-  updateProduct: updateProductReducer as Reducer<UpdateProductState, UpdateProductFieldAction>, 
+  updateProduct: updateProductReducer
 });
 
 export default rootReducer;
