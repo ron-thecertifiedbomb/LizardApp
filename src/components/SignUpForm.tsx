@@ -36,7 +36,6 @@ const SignUpForm = () => {
       },
       onError: (error) => {
         console.error(error);
-        // Handle error
       },
     }
   );

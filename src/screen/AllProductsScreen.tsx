@@ -3,9 +3,7 @@ import React, {useEffect} from 'react';
 import {Text, View} from 'react-native';
 import AllProductsRender from '../components/AllProductsRender';
 import useGetAllProductsHooks from '../hooks/useGetAllProductsHook';
-import {useDispatch, useSelector} from 'react-redux';
-import {allProductsData} from '../redux/reducers/getProductsReducer';
-import {AllProductData} from '../redux/selectors/selectors';
+
 
 export default function AllProductsScreen() {
 
@@ -13,8 +11,9 @@ export default function AllProductsScreen() {
 
   // const dispatch = useDispatch();
 
-
-    refetch()
+  useEffect(() => {
+    refetch();
+  }, [refetch]);
 
   // useEffect(() => {
   //   if (data) dispatch(allProductsData(data));
@@ -29,7 +28,7 @@ export default function AllProductsScreen() {
       ) : isError ? (
         <Text>Error: {(error as Error).message}</Text>
       ) : (
-        <AllProductsRender item={data} />
+        <AllProductsRender item={data ?? null} />
       )}
     </View>
   );
