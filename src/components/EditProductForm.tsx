@@ -20,7 +20,6 @@ type RootStackParamList = {
 type EditProductScreenRouteProp = RouteProp<RootStackParamList>;
 
 
-
 const ProductForm: React.FC = () => {
   const product = useSelector(SingleProductData);
 
