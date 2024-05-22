@@ -1,17 +1,19 @@
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 export type RootStackParamList = {
-    navigate(arg0: string, arg1: { productId: string; }): void;
+    navigate(arg0: string, arg1: { productId: any; }): void;
     Home: undefined;
     ProductPage:  { productId: string};
+    EditProductPage: { productId: string };
     Settings: undefined;
     CoffeePage: undefined;
     DrawerNavigator: undefined;
     Registration: undefined;
     Login: undefined;
+    Edit: undefined
   };
 
-  export type Props = NativeStackScreenProps<RootStackParamList, 'ProductPage'>;
+  export type Props = NativeStackScreenProps<RootStackParamList, 'ProductPage', 'EditProductList'>;
 
   export interface UpdateProductFieldAction {
     type: string;
@@ -24,7 +26,6 @@ export type RootStackParamList = {
   
   // Define state interface
   export interface Product {
-    _id: string;
     name: string;
     brand: string;
     price: number;

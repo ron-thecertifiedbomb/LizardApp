@@ -1,23 +1,29 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-import {useDispatch} from 'react-redux';
-import useGetSingleProduct from '../hooks/useGetSingleProduct';
 import LoadingScreen from './LoadingScreen';
 import {RouteProp, useRoute} from '@react-navigation/native';
 import Card from '../components/Card';
+import useEditProduct from '../hooks/useEditProductHooks';
+import { isError } from 'react-query';
+import { useSelector } from 'react-redux';
+import { SingleProductData } from '../redux/selectors/selectors';
+import useGetSingleProduct from '../hooks/useGetSingleProduct';
+import ProductForm from '../components/EditProductForm';
 
 type RootStackParamList = {
-  ProductPage: {productId: string};
+  EditProductPage: {productId: string};
+
 };
 
-type SingleProductScreenRouteProp = RouteProp<RootStackParamList>;
+type EditProductScreenRouteProp = RouteProp<RootStackParamList>;
 
-const SingleProductScreen: React.FC = () => {
+const EditProductScreen = () => {
 
-  const route = useRoute<SingleProductScreenRouteProp>();
+  const route = useRoute<EditProductScreenRouteProp>();
   const {productId} = route.params;
 
   const { isLoading, isError, error } = useGetSingleProduct(productId);
+
 
   if (isLoading) {
     return <LoadingScreen />;
@@ -31,7 +37,7 @@ const SingleProductScreen: React.FC = () => {
 
   return (
     <View style={styles.container}>
-    <Card />
+    <ProductForm  />
     </View>
   );
 };
@@ -42,8 +48,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 20,
+    width: '100%'
   }
 });
 
-export default SingleProductScreen;
+export default EditProductScreen;

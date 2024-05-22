@@ -6,6 +6,7 @@ import userIdReducer from './userIdReducer';
 import isActiveLinkReducer from './isAtiveLinkReducer'; 
 import updateProductReducer from './updateProductReducer';
 import getProductsReducer from './getProductsReducer';
+import modalReducer from './modalReducer'; 
 
 
 const rootReducer = combineReducers({
@@ -13,9 +14,9 @@ const rootReducer = combineReducers({
   isLoggedIn: isLoggedInReducer,
   users: getUserDataReducer, 
   allProducts: getProductsReducer,
-  singleProductData: getProductsReducer,
+  singleProductData: getProductsReducer, 
   isActiveLink: isActiveLinkReducer, 
-  updateProduct: updateProductReducer
+  updateProduct: updateProductReducer,
+  modal: modalReducer, 
 });
-
 export default rootReducer;

@@ -1,9 +1,15 @@
-import * as React from 'react';
-import {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import SplashScreen from 'react-native-splash-screen';
 import Entry from './Entry';
+import logger from './src/utilities/logger/logger';
 
-function App(): React.JSX.Element {
+
+if(__DEV__) {
+  import('./ReactotronConfig').then(() => console.log('Reactotron Configured'))
+}
+
+
+function App(): React.ReactElement {
   useEffect(() => {
     SplashScreen.hide();
   }, []);
@@ -12,3 +18,4 @@ function App(): React.JSX.Element {
 }
 
 export default App;
+

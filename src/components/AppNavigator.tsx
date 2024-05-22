@@ -7,6 +7,7 @@ import LogInScreen from '../screen/LogInScreen';
 import DrawerNavigator from './DrawerNavigator';
 import SettingsScreen from '../screen/settings';
 import SingleProductScreen from '../screen/SingleProductScreen';
+import EditProductScreen from '../screen/EditProductScreen';
 
 export type Props = NativeStackScreenProps<RootStackParamList>;
 
@@ -25,6 +26,7 @@ const AppNavigator: React.FC = () => {
         />
         <Stack.Screen name="ProductPage" component={SingleProductScreen} />
         <Stack.Screen name="Settings" component={SettingsScreen} />
+        <Stack.Screen name="Edit" component={EditProductScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

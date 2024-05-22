@@ -6,6 +6,8 @@ import { SingleProductData } from '../redux/selectors/selectors';
 const Card: React.FC = () => {
   const product = useSelector(SingleProductData);
 
+   console.log(product)
+
   return (
     
       <View style={styles.card}>

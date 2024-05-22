@@ -12,3 +12,4 @@ export const selectisActiveLink = (state: RootState) =>
 export const AllProductsData = (state: RootState) => state.allProducts.data;
 export const SingleProductData = (state: RootState) =>
   state.singleProductData.singleProduct;
+export const selectModalState = (state: RootState) => state.modal;
