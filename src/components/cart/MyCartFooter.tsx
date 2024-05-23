@@ -1,21 +1,20 @@
 import React from 'react';
 import {useSelector} from 'react-redux';
-import {selectCartData} from '../redux/selectors/selectors';
+
 import {StyleSheet, Text, View} from 'react-native';
+import { selectCartTotalPrice } from '../../redux/selectors/selectors';
+import logger from '../../utilities/logger/logger';
 
 const MyCartFooter: React.FC = () => {
 
-  const cartData = useSelector(selectCartData);
-  
-  let totalPrice = 0;
-  cartData.forEach(item => {
-    totalPrice += item.price * item.quantity;
-  });
+  const totalPrice = useSelector(selectCartTotalPrice);
 
+  logger('Total Price',totalPrice )
+  
   return (
     <View style={styles.container}>
       <Text style={styles.totalPriceText}>
-        Total Price: $ {totalPrice.toFixed(2)}
+        Total Price: PhP {totalPrice}
       </Text>
     </View>
   );

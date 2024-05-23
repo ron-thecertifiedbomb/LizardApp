@@ -1,15 +1,17 @@
-import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {CartData} from '../../../type';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { CartData } from '../../components/cart/type';
 
 interface CartState {
   cart: CartData[];
+  totalPrice: number; // Add total price to the state
 }
 
 const initialState: CartState = {
   cart: [],
+  totalPrice: 0,
 };
 
-const getCartData = createSlice({
+const cartSlice = createSlice({
   name: 'mycart',
   initialState,
   reducers: {
@@ -23,10 +25,12 @@ const getCartData = createSlice({
         state.cart.push(cartInfo);
       }
     },
-
-    
+    myCartTotalPrice(state, action: PayloadAction<number>) {
+      state.totalPrice = action.payload;
+    },
   },
 });
 
-export const {myCartData} = getCartData.actions;
-export default getCartData.reducer;
+export const { myCartData, myCartTotalPrice } = cartSlice.actions;
+
+export default cartSlice.reducer;

@@ -1,7 +1,8 @@
 import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
-import {CartData} from '../../type';
-
+import {CartData} from './type';
+import CartQuantity from './CartQuantity';
+import {formatPrice} from '../../utilities/helpers/lib';
 
 interface Props {
   item: CartData;
@@ -13,8 +14,13 @@ const CartCard: React.FC<Props> = ({item}) => {
       <View style={styles.card}>
         <View style={styles.cardBody}>
           <Text style={styles.titleText}> {item.name}</Text>
-          <Text style={styles.priceText}>Price {item.price}</Text>
-          <Text style={styles.quantityText}>Stocks: {item.quantity}</Text>
+          <View style={styles.secondRow}>
+            <Text style={styles.priceText}>
+              Price: {formatPrice(item.price)}
+            </Text>
+            <Text style={styles.quantityText}>Stocks: {item.quantity}</Text>
+          </View>
+          <CartQuantity item={item} />
         </View>
       </View>
     </TouchableOpacity>
@@ -23,6 +29,7 @@ const CartCard: React.FC<Props> = ({item}) => {
 
 const styles = StyleSheet.create({
   card: {
+    flex: 1,
     backgroundColor: 'white',
     borderRadius: 8,
     flexDirection: 'column',
@@ -32,29 +39,36 @@ const styles = StyleSheet.create({
     shadowRadius: 8,
     elevation: 3,
     marginBottom: 16,
-    width: 180,
-    height: 120,
+    width: '100%',
+    height: 160,
     padding: 10,
   },
 
   cardBody: {
     flex: 1,
   },
+  secondRow: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignContent: 'center',
+    alignItems: 'center',
+    padding: 10,
+  },
 
   titleText: {
-    fontSize: 12,
+    fontSize: 20,
     fontWeight: 'bold',
     color: 'black',
   },
 
   priceText: {
     fontSize: 16,
-    fontWeight: 'bold',
+
     color: 'black',
-    marginTop: 10,
   },
   quantityText: {
-    fontSize: 16,
+    fontSize: 12,
     color: 'gray',
   },
 

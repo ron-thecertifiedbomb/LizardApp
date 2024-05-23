@@ -1,3 +1,4 @@
+import { createSelector } from '@reduxjs/toolkit';
 import {RootState} from '../store/store';
 
 export const selectIsLoggedIn = (state: RootState) =>
@@ -14,5 +15,5 @@ export const SingleProductData = (state: RootState) =>
 export const ProductId = (state: RootState) => state.allProducts._id;
 export const selectModalState = (state: RootState) => state.modal;
 export const selectCartData = (state: RootState) => state.mycart.cart;
-
+export const selectCartTotalPrice = (state: RootState) => state.mycart.totalPrice;
 
