@@ -1,6 +1,6 @@
-import React, {useState} from 'react';
+import React  from 'react';
 import {View, Text, StyleSheet, TouchableOpacity, Button} from 'react-native';
-import {CartData, IProduct, Product, RootStackParamList} from '../../type';
+import {CartData} from '../../type';
 import {RouteProp, useNavigation} from '@react-navigation/native';
 import logger from '../utilities/logger/logger';
 import {useDispatch} from 'react-redux';
@@ -13,6 +13,7 @@ interface Props {
 const AllProductsCard: React.FC<Props> = ({item}) => {
 
   const dispatch = useDispatch();
+  
   const handleAddToCart = () => {
     const newItem = {
       _id: item._id,

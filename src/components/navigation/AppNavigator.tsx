@@ -8,6 +8,7 @@ import DrawerNavigator from './DrawerNavigator';
 import SettingsScreen from '../../screen/StoreScreen';
 import SingleProductScreen from '../../screen/SingleProductScreen';
 import EditProductScreen from '../../screen/EditProductScreen';
+import SplashScreen from '../../screen/SplashScreen';
 
 export type Props = NativeStackScreenProps<RootStackParamList>;
 
@@ -16,7 +17,8 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 const AppNavigator: React.FC = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="DrawerNavigator">
+      <Stack.Navigator initialRouteName="Splash">
+      <Stack.Screen name="Splash"  component={SplashScreen} options={{ headerShown: false }}/>
         <Stack.Screen name="Registration" component={RegistrationScreen} />
         <Stack.Screen name="Login" component={LogInScreen} />
         <Stack.Screen

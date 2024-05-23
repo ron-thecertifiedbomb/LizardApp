@@ -1,10 +1,5 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-
-interface CartData {
-  _id: string;
-  price: number;
-  quantity: number;
-}
+import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+import {CartData} from '../../../type';
 
 interface CartState {
   cart: CartData[];
@@ -21,18 +16,17 @@ const getCartData = createSlice({
     myCartData(state, action: PayloadAction<CartData>) {
       const cartInfo = action.payload;
       const existingItem = state.cart.find(item => item._id === cartInfo._id);
-      
       if (existingItem) {
-       
         existingItem.quantity += cartInfo.quantity;
         existingItem.price += cartInfo.price * cartInfo.quantity;
       } else {
-       
         state.cart.push(cartInfo);
       }
     },
+
+    
   },
 });
 
-export const { myCartData } = getCartData.actions;
+export const {myCartData} = getCartData.actions;
 export default getCartData.reducer;

@@ -15,6 +15,7 @@ export type RootStackParamList = {
   Model: undefined;
   Login: undefined;
   Edit: undefined;
+  Splash: undefined;
 };
 
 export type StackParamList = {
