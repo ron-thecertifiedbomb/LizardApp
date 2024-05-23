@@ -8,7 +8,6 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import {CartData} from './type';
-import {myCartTotalPrice} from '../../redux/reducers/cartReducer';
 import {useDispatch, useSelector} from 'react-redux';
 import {calculateTotalPrice} from '../../utilities/helpers/lib';
 import logger from '../../utilities/logger/logger';
@@ -24,8 +23,19 @@ const CartQuantity: React.FC<Props> = ({item}) => {
 
   logger('My Cart Order Product Details from CartQuantity ', cartData);
 
+  // const totalQuantity =  cartData[0]?.quantityOrdered
+  // const totalOrderPrice =  cartData[0]?.totalOrderPrice
+  // const itemPrice = cartData[0]?.price
 
-  const dispatch = useDispatch();
+
+  // logger('Item Price',itemPrice )
+
+  // logger('Total No of Orders',totalQuantity )
+  // logger('Total Order Price',totalOrderPrice )
+
+
+
+  // const dispatch = useDispatch();
 
   const [quantity, setQuantity] = useState(1);
 
@@ -48,21 +58,21 @@ const CartQuantity: React.FC<Props> = ({item}) => {
     }
   };
 
-  const totalPrice = calculateTotalPrice(item.price, quantity);
+  // const totalPrice = calculateTotalPrice(item.price, quantity);
 
-  logger('Product ID ', item._id);
+  // logger('Product ID ', item._id);
 
-  logger('State Stocks from API ', item.quantity);
-  // logger('State Price ', item.price);
-  logger('State TotalPrice ', totalPrice);
-
-
+  // logger('State Stocks from API ', item.quantity);
+  // // logger('State Price ', item.price);
+  // logger('State TotalPrice ', totalPrice);
 
 
 
-  useEffect(() => {
-    dispatch(myCartTotalPrice(totalPrice));
-  }, [totalPrice]);
+
+
+  // useEffect(() => {
+  //   dispatch(myCartTotalPrice(totalPrice));
+  // }, [totalPrice]);
 
   return (
     <View style={styles.container}>
@@ -73,7 +83,7 @@ const CartQuantity: React.FC<Props> = ({item}) => {
           <Text style={styles.buttonText}>-</Text>
         </TouchableOpacity>
         <TextInput
-          value={quantity.toString()}
+          value={item.quantityOrdered.toString()}
           onChangeText={handleQuantityChange}
           keyboardType="numeric"
           style={styles.quantityInput}
@@ -84,7 +94,7 @@ const CartQuantity: React.FC<Props> = ({item}) => {
           <Text style={styles.buttonText}>+</Text>
         </TouchableOpacity>
       </View>
-      <Text style={styles.totalPrice}>Total Price: PhP {totalPrice}</Text>
+      <Text style={styles.totalPrice}>Total Price: PhP {item.totalOrderPrice}</Text>
     </View>
   );
 };
