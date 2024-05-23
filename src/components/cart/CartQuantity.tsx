@@ -9,14 +9,22 @@ import {
 } from 'react-native';
 import {CartData} from './type';
 import {myCartTotalPrice} from '../../redux/reducers/cartReducer';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {calculateTotalPrice} from '../../utilities/helpers/lib';
+import logger from '../../utilities/logger/logger';
+import { selectCartData } from '../../redux/selectors/selectors';
 
 interface Props {
   item: CartData;
 }
 
 const CartQuantity: React.FC<Props> = ({item}) => {
+
+  const cartData = useSelector(selectCartData);
+
+  logger('My Cart Order Product Details from CartQuantity ', cartData);
+
+
   const dispatch = useDispatch();
 
   const [quantity, setQuantity] = useState(1);
@@ -41,6 +49,16 @@ const CartQuantity: React.FC<Props> = ({item}) => {
   };
 
   const totalPrice = calculateTotalPrice(item.price, quantity);
+
+  logger('Product ID ', item._id);
+
+  logger('State Stocks from API ', item.quantity);
+  // logger('State Price ', item.price);
+  logger('State TotalPrice ', totalPrice);
+
+
+
+
 
   useEffect(() => {
     dispatch(myCartTotalPrice(totalPrice));
@@ -116,6 +134,4 @@ const styles = StyleSheet.create({
 });
 
 export default CartQuantity;
-function dispatch(arg0: {payload: CartData; type: 'mycart/myCartData'}) {
-  throw new Error('Function not implemented.');
-}
+

@@ -3,12 +3,20 @@ import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import {CartData} from './type';
 import CartQuantity from './CartQuantity';
 import {formatPrice} from '../../utilities/helpers/lib';
+import logger from '../../utilities/logger/logger';
 
 interface Props {
   item: CartData;
 }
 
 const CartCard: React.FC<Props> = ({item}) => {
+
+
+  // logger('Product ID from the card component', item._id )
+  // logger('Product quantity order  from the card component',  item.quantity )
+
+
+  
   return (
     <TouchableOpacity>
       <View style={styles.card}>

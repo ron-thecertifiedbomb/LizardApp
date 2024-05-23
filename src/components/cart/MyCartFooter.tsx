@@ -9,7 +9,7 @@ const MyCartFooter: React.FC = () => {
 
   const totalPrice = useSelector(selectCartTotalPrice);
 
-  logger('Total Price',totalPrice )
+  // logger('Total Price',totalPrice )
   
   return (
     <View style={styles.container}>

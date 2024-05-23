@@ -14,10 +14,18 @@ interface Props {
 const CartScreen: React.FC<Props> = () => {
   const cartData = useSelector(selectCartData);
 
-  const totalPrice = useSelector(selectCartTotalPrice)
+  logger('My Cart Order Product Details from CartScreen ', cartData);
 
-  // logger('My Cart Data List', cartData);
-   logger('Cart Total Price on Cart Screen', totalPrice);
+
+  const quantity = cartData[0]?.quantity;
+  const price = cartData[0]?.price;
+  
+  // logger('State Stocks ', quantity);
+  // logger('State Price ', price);
+
+
+
+
   return (
     <View style={styles.container}>
       <AllCartRender item={cartData ?? null} />
