@@ -1,43 +1,47 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-import LoadingScreen from './LoadingScreen';
-import {RouteProp, useRoute} from '@react-navigation/native';
-import Card from '../components/Card';
-import useEditProduct from '../hooks/useEditProductHooks';
-import { isError } from 'react-query';
-import { useSelector } from 'react-redux';
-import { SingleProductData } from '../redux/selectors/selectors';
-import useGetSingleProduct from '../hooks/useGetSingleProduct';
 import ProductForm from '../components/EditProductForm';
+import CustomModal from '../components/Modal';
+import { useDispatch } from 'react-redux';
+import { singleProductData } from '../redux/reducers/getProductsReducer';
+import { RouteProp, useRoute } from '@react-navigation/native';
+
 
 type RootStackParamList = {
-  EditProductPage: {productId: string};
-
+  EditProductForm: {productId: string};
 };
 
-type EditProductScreenRouteProp = RouteProp<RootStackParamList>;
+type SingleProductScreenRouteProp = RouteProp<RootStackParamList>;
 
 const EditProductScreen = () => {
-
-  const route = useRoute<EditProductScreenRouteProp>();
+  
+  const route = useRoute<SingleProductScreenRouteProp>();
   const {productId} = route.params;
 
-  const { isLoading, isError, error } = useGetSingleProduct(productId);
+  const dispatch = useDispatch();
+  
+  useEffect(() => {
+    dispatch(singleProductData(productId));
+  }, [dispatch]); 
 
 
-  if (isLoading) {
-    return <LoadingScreen />;
-  }
+  // const { isLoading, isError, error } = useGetSingleProduct(productId);
 
-  if (isError) {
-    const errorMessage =
-      error instanceof Error ? error.message : 'An unknown error occurred';
-    return <Text >Error: {errorMessage}</Text>;
-  }
+
+  // if (isLoading) {
+  //   return <LoadingScreen />;
+  // }
+
+  // if (isError) {
+  //   const errorMessage =
+  //     error instanceof Error ? error.message : 'An unknown error occurred';
+  //   return <Text >Error: {errorMessage}</Text>;
+  // }
 
   return (
     <View style={styles.container}>
     <ProductForm  />
+    <CustomModal />
     </View>
   );
 };

@@ -1,9 +1,9 @@
 import * as React from 'react';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import MyTabs from './MyTabs';
-import SettingsScreen from '../screen/settings';
-import DetailsScreen from '../screen/SingleProductScreen';
-import Header from './Header';
+import Header from '../Header';
+import CartScreen from '../../screen/CartScreen';
+import OrdersScreen from '../../screen/OrdersScreen';
 
 const DrawerNavigator = () => {
   const Drawer = createDrawerNavigator();
@@ -14,9 +14,9 @@ const DrawerNavigator = () => {
         header: () => <Header />,
         headerShown: true,
       }}>
-      <Drawer.Screen name={'Home'} component={MyTabs} />
-      <Drawer.Screen name={'Settings'} component={SettingsScreen} />
-      <Drawer.Screen name={'Details'} component={DetailsScreen} />
+      <Drawer.Screen name={'My Store'} component={MyTabs} />
+      <Drawer.Screen name={'My Cart'} component={CartScreen} />
+      <Drawer.Screen name={'My Orders'} component={OrdersScreen} />
     </Drawer.Navigator>
   );
 };

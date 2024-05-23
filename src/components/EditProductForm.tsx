@@ -7,40 +7,67 @@ import {
   StyleSheet,
   ScrollView,
 } from 'react-native';
-import {useSelector} from 'react-redux';
-import {SingleProductData} from '../redux/selectors/selectors';
-import {IProduct, Product} from '../../type';
+import {useSelector, useDispatch} from 'react-redux';
+import {ProductID, SingleProductData} from '../redux/selectors/selectors';
+
 import {RouteProp, useRoute} from '@react-navigation/native';
-import { setToOpen } from '../redux/reducers/modalReducer';
+import {setToOpen} from '../redux/reducers/modalReducer';
+import logger from '../utilities/logger/logger';
+import { RootState } from '../redux/store/store';
 
-type RootStackParamList = {
-  ProductPage: {productId: string};
-};
-
-type EditProductScreenRouteProp = RouteProp<RootStackParamList>;
-
+interface Product {
+  name: string;
+  brand: string;
+  price: number;
+  quantity: number;
+  category: string;
+  specifications: {
+    processor: string;
+    graphics: string;
+    storage: string;
+    resolution: string;
+    maxFrameRate: string;
+  };
+  includedItems: string[];
+  availableColors: string[];
+}
 
 const ProductForm: React.FC = () => {
-  const product = useSelector(SingleProductData);
 
-  const [formState, setFormState] = useState<Product>({
-    name: product?.name || '',
-    brand: product?.brand || '',
-    price: product?.price || 0,
-    quantity: product?.quantity || 0,
-    category: product?.category || '',
+  type RootStackParamList = {
+    ProductForm: {productId: string};
+  };
+  
+  type SingleProductScreenRouteProp = RouteProp<RootStackParamList>;
+  
+  const productData = useSelector((state: RootState) => state.allProducts.singleProduct);
+
+  const route = useRoute<SingleProductScreenRouteProp>();
+  const {productId} = route.params;
+  const productID = productId
+
+  console.log('Single Product Data from Redux',productData )
+  const dispatch = useDispatch()
+
+  const initialProductState: Product = {
+    name: productData?.name || '',
+    brand: productData?.brand || '',
+    price: productData?.price || 0,
+    quantity: productData?.quantity || 0,
+    category: productData?.category || '',
     specifications: {
-      processor: product?.specifications.processor || '',
-      graphics: product?.specifications.graphics || '',
-      storage: product?.specifications.storage || '',
-      resolution: product?.specifications.resolution || '',
-      maxFrameRate: product?.specifications.maxFrameRate || '',
+      processor: productData?.specifications?.processor || '',
+      graphics: productData?.specifications?.graphics || '',
+      storage: productData?.specifications?.storage || '',
+      resolution: productData?.specifications?.resolution || '',
+      maxFrameRate: productData?.specifications?.maxFrameRate || '',
     },
-    includedItems: product?.includedItems || [],
-    availableColors: product?.availableColors || [],
-  });
+    includedItems: productData?.includedItems || [],
+    availableColors: productData?.availableColors || [],
+  };
+  const [formState, setFormState] = useState<Product>(initialProductState);
 
-  const handleInputChange = (field: keyof IProduct, value: string | number) => {
+  const handleInputChange = (field: keyof Product, value: string | number) => {
     setFormState({...formState, [field]: value});
   };
 
@@ -59,7 +86,7 @@ const ProductForm: React.FC = () => {
   };
 
   const handleSpecificationChange = (
-    key: keyof IProduct['specifications'],
+    key: keyof Product['specifications'],
     value: string,
   ) => {
     setFormState(prevState => ({
@@ -98,7 +125,11 @@ const ProductForm: React.FC = () => {
     }));
   };
 
+
+
+
   const handleUpdateProduct = async () => {
+    
     const productData = {
       name: formState.name,
       brand: formState.brand,
@@ -118,12 +149,9 @@ const ProductForm: React.FC = () => {
 
     const updatedData = JSON.stringify(productData);
 
-    const route = useRoute<EditProductScreenRouteProp>();
-    const {productId} = route.params;
-
     try {
       const response = await fetch(
-        `https://nextjs-server-rho.vercel.app/api/products/updateProduct/route?_id=${productId}`,
+        `https://nextjs-server-rho.vercel.app/api/products/updateProduct/route?_id=${productID}`,
         {
           method: 'PUT',
           headers: {
@@ -136,20 +164,20 @@ const ProductForm: React.FC = () => {
       if (!response.ok) {
         let errorMessage: string;
         try {
-          const errorResponse = await response.json(); 
+          const errorResponse = await response.json();
           if (typeof errorResponse === 'object') {
-            errorMessage = JSON.stringify(errorResponse); 
+            errorMessage = JSON.stringify(errorResponse);
           } else {
             errorMessage = errorResponse;
           }
         } catch (error) {
-          errorMessage = await response.text(); 
+          errorMessage = await response.text();
         }
         throw new Error(`Failed to update product: ${errorMessage}`);
       }
 
-      dispatch(setToOpen());
-
+      dispatch(setToOpen())
+    
       console.log('Product updated successfully');
     } catch (error: unknown) {
       if (error instanceof Error) {
@@ -229,8 +257,9 @@ const ProductForm: React.FC = () => {
           />
         ))}
         <View style={styles.buttonWrapper}>
-        <Button title="Add Color" onPress={handleAddAvailableColor} />
-        <Button title="Update Product" onPress={handleUpdateProduct} />
+          <Button title="Add Color" onPress={handleAddAvailableColor} />
+          <Button title="Update Product" onPress={handleUpdateProduct} />
+          <Button title="Open Modal" onPress={()=> dispatch(setToOpen())} />
         </View>
       </View>
     </ScrollView>
@@ -239,11 +268,10 @@ const ProductForm: React.FC = () => {
 
 const styles = StyleSheet.create({
   mainContainer: {
-  width: '100%'
+    width: '100%',
   },
   formContainer: {
     padding: 20,
-  
   },
   sectionTitle: {
     fontSize: 20,
@@ -260,7 +288,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     fontSize: 16,
   },
-  buttonWrapper:{
+  buttonWrapper: {
     display: 'flex',
     gap: 10,
   },
@@ -279,7 +307,6 @@ const styles = StyleSheet.create({
 });
 
 export default ProductForm;
-function dispatch(arg0: { payload: undefined; type: "modalProvider/setToOpen"; }) {
+function dispatch(arg0: {payload: undefined; type: 'modalProvider/setToOpen'}) {
   throw new Error('Function not implemented.');
 }
-

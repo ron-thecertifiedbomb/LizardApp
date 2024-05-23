@@ -2,8 +2,11 @@ import {useQuery} from 'react-query';
 
 import {IProduct} from '../../type';
 
+import {allProductsData} from '../redux/reducers/getProductsReducer';
+import {useDispatch} from 'react-redux';
+
 const useGetAllProductsHooks = () => {
-    
+  const dispatch = useDispatch();
   const fetchData = async () => {
     const response = await fetch(
       'https://nextjs-server-rho.vercel.app/api/products/getAllProducts/route',
@@ -17,7 +20,11 @@ const useGetAllProductsHooks = () => {
   const {isLoading, isError, data, error, refetch} = useQuery<
     IProduct[],
     Error
-  >('data', fetchData);
+  >('data', fetchData, {
+    onSuccess: data => {
+      dispatch(allProductsData(data));
+    },
+  });
 
   return {isLoading, isError, data, error, refetch};
 };

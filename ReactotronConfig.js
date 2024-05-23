@@ -1,10 +1,10 @@
 import Reactotron from 'reactotron-react-native';
+import {name} from './app.json'
 
 
 Reactotron
-  .configure({ name: 'Lizard App' })
+  .configure({ name: name })
   .useReactNative()
-
   .connect();
 
 console.tron = Reactotron; // Make it globally available

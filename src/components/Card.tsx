@@ -1,19 +1,18 @@
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { useSelector } from 'react-redux';
-import { SingleProductData } from '../redux/selectors/selectors';
+import { RootState } from '../redux/store/store';
 
 const Card: React.FC = () => {
-  const product = useSelector(SingleProductData);
 
-   console.log(product)
+  const product = useSelector((state: RootState) => state.allProducts.singleProduct);
 
   return (
     
       <View style={styles.card}>
         <View style={styles.cardBody}>
-          <Text style={styles.titleText}>{product?.brand}</Text>
-          <Text style={styles.categoryText}>Category: {product?.category}</Text>
+          <Text style={styles.titleText}>{product?.name}</Text>
+          <Text style={styles.categoryText}>{product?.brand}</Text>
           <Text style={styles.priceText}>Price: ${product?.price}</Text>
           <Text style={styles.quantityText}>Quantity: {product?.quantity}</Text>
           <Text style={styles.specificationsTitle}>Specifications:</Text>

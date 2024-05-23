@@ -1,4 +1,3 @@
-
 import {RootState} from '../store/store';
 
 export const selectIsLoggedIn = (state: RootState) =>
@@ -11,5 +10,9 @@ export const selectisActiveLink = (state: RootState) =>
   state.isActiveLink.isActiveLink;
 export const AllProductsData = (state: RootState) => state.allProducts.data;
 export const SingleProductData = (state: RootState) =>
-  state.singleProductData.singleProduct;
+  state.allProducts.singleProduct;
+export const ProductId = (state: RootState) => state.allProducts._id;
 export const selectModalState = (state: RootState) => state.modal;
+export const selectCartData = (state: RootState) => state.mycart.cart;
+
+

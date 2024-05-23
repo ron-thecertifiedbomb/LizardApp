@@ -4,6 +4,8 @@
   "private": true,
   "scripts": {
     "android": "react-native run-android",
+    "clean": "cd android && ./gradlew clean",
+    "start:clean": "react-native start && npm cache clean --force",
     "ios": "react-native run-ios",
     "lint": "eslint .",
     "start": "react-native start",
@@ -23,6 +25,7 @@
     "@react-navigation/drawer": "^6.6.15",
     "@react-navigation/native": "^6.1.17",
     "@react-navigation/native-stack": "^6.9.26",
+    "@react-navigation/stack": "^6.3.29",
     "@reduxjs/toolkit": "^2.2.5",
     "expo-font": "^12.0.5",
     "mongoose": "^8.4.0",

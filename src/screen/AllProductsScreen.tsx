@@ -1,35 +1,45 @@
-// DetailsScreen.tsx
-import React, {useEffect} from 'react';
-import {Text, View} from 'react-native';
+import React from 'react';
+import { Text, View, ActivityIndicator, Button } from 'react-native';
 import AllProductsRender from '../components/AllProductsRender';
 import useGetAllProductsHooks from '../hooks/useGetAllProductsHook';
-
+import { useSelector } from 'react-redux';
+import { AllProductsData } from '../redux/selectors/selectors';
 
 export default function AllProductsScreen() {
+  const { isLoading, isError, data, error, refetch } = useGetAllProductsHooks();
 
-  const {isLoading, isError, data, error, refetch} = useGetAllProductsHooks();
 
-  // const dispatch = useDispatch();
+  console.log('First Fetch fo All Products from the Server', data)
 
-  useEffect(() => {
-    refetch();
-  }, [refetch]);
+  const handleRefresh = async () => {
+    try {
+      await refetch();
+    } catch (error) {
+      console.error('Error while refreshing:', error);
+    }
+  };
 
-  // useEffect(() => {
-  //   if (data) dispatch(allProductsData(data));
-  // }, []);
+  if (isLoading) {
+    return (
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <ActivityIndicator size="large" color="#0000ff" />
+        <Text>Loading...</Text>
+      </View>
+    );
+  }
 
-  // const products = useSelector(AllProductData);
+  if (isError) {
+    return (
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <Text>Error: {error?.message}</Text>
+        <Button title="Retry" onPress={handleRefresh} />
+      </View>
+    );
+  }
 
   return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      {isLoading ? (
-        <Text>Loading...</Text>
-      ) : isError ? (
-        <Text>Error: {(error as Error).message}</Text>
-      ) : (
-        <AllProductsRender item={data ?? null} />
-      )}
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <AllProductsRender item={data ?? null} />
     </View>
   );
 }

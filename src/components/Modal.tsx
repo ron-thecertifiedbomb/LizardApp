@@ -1,20 +1,34 @@
 import React from 'react';
-import { Modal, View, Text, Button, StyleSheet } from 'react-native';
+import { Modal, View, Button, StyleSheet } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectModalState } from '../redux/selectors/selectors';
-import { setToOpen, setToClose } from '../redux/reducers/modalReducer'; // Assuming the action creators are defined here
+import {  setToClose } from '../redux/reducers/modalReducer'; // Assuming the action creators are defined here
+import logger from '../utilities/logger/logger';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
+import useGetAllProductsHooks from '../hooks/useGetAllProductsHook';
 
-interface Props {
-  children: React.ReactNode;
-}
 
-const CustomModal: React.FC<Props> = ({ children }) => {
+
+
+export type RootTabParamList = {
+  AllProducts: undefined;
+  
+};
+const CustomModal: React.FC = () => {
+  
+  const {isLoading, isError, data, error, refetch} = useGetAllProductsHooks();
+  const navigation = useNavigation<NavigationProp<RootTabParamList>>();
+
   const dispatch = useDispatch();
   const modalState = useSelector(selectModalState);
 
   const closeModal = () => {
-    dispatch(setToClose()); // Dispatch action to close the modal
+    refetch()
+    navigation.goBack();
+    dispatch(setToClose());
   };
+
+  logger('modalState')
 
   return (
     <Modal
@@ -24,7 +38,7 @@ const CustomModal: React.FC<Props> = ({ children }) => {
       onRequestClose={closeModal}>
       <View style={styles.modalContainer}>
         <View style={styles.modalContent}>
-          {children}
+         
           <Button title="Close" onPress={closeModal} />
         </View>
       </View>
