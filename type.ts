@@ -63,6 +63,8 @@
     brand: string;
     price: number;
     quantity: number;
+    quantityOrdered: number;
+    totalOrderPrice: number;
     category: string;
     specifications: {
       processor: string;

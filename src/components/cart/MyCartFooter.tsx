@@ -1,9 +1,8 @@
 import React from 'react';
 import {useSelector} from 'react-redux';
-
 import {StyleSheet, Text, View} from 'react-native';
-import { selectCartData, selectCartTotalPrice } from '../../redux/selectors/selectors';
-import logger from '../../utilities/logger/logger';
+import { selectCartData } from '../../redux/selectors/selectors';
+
 
 const MyCartFooter: React.FC = () => {
 
@@ -13,7 +12,7 @@ const MyCartFooter: React.FC = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.totalPriceText}>
-        Total Price: PhP {totalPrice}
+        Total Price: PhP {totalPrice.toFixed(2)}
       </Text>
     </View>
   );

@@ -3,7 +3,7 @@ export interface CartData {
   name: string;
   price: number;
   quantity: number;
-
   quantityOrdered: number;
   totalOrderPrice: number;
+  // totalPrice: number;
 }

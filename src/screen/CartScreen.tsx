@@ -1,6 +1,8 @@
 import {View, Text, StyleSheet} from 'react-native';
 import {useSelector} from 'react-redux';
-import {selectCartData, selectCartTotalPrice} from '../redux/selectors/selectors';
+import {
+  selectCartData,
+} from '../redux/selectors/selectors';
 import logger from '../utilities/logger/logger';
 
 import MyCartFooter from '../components/cart/MyCartFooter';
@@ -15,16 +17,6 @@ const CartScreen: React.FC<Props> = () => {
   const cartData = useSelector(selectCartData);
 
   logger('My Cart Order Product Details from CartScreen ', cartData);
-
-
-  const quantity = cartData[0]?.quantity;
-  const price = cartData[0]?.price;
-  
-  // logger('State Stocks ', quantity);
-  // logger('State Price ', price);
-
-
-
 
   return (
     <View style={styles.container}>
