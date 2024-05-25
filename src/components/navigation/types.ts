@@ -1,6 +1,6 @@
 import { DrawerNavigationProp } from '@react-navigation/drawer';
 import { CompositeNavigationProp, RouteProp } from '@react-navigation/native';
-import { NativeStackScreenProps, NativeStackNavigationProp } from '@react-navigation/native-stack';
+import {  NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 export type RootStackParamList = {
   Home: undefined;

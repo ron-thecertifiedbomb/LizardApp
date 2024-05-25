@@ -9,6 +9,7 @@ import { RootStackParamList } from './navigation/types';
 
 
 const Header = () => {
+    
     const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
     const openDrawer = () => {

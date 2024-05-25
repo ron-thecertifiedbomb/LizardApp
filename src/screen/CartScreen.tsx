@@ -1,17 +1,23 @@
-import {View, StyleSheet} from 'react-native';
-import {useSelector} from 'react-redux';
-import {selectCartData} from '../redux/selectors/selectors';
+import { View, StyleSheet } from 'react-native';
+import { useSelector } from 'react-redux';
+import { selectCartData } from '../redux/selectors/selectors';
 import MyCartFooter from '../components/cart/MyCartFooter';
 import AllCartRender from '../components/cart/AllCartRender';
-
+import EmptyList from '../components/cart/EmptyList';
 
 const CartScreen: React.FC = () => {
   const cartData = useSelector(selectCartData);
 
   return (
     <View style={styles.container}>
-      <AllCartRender item={cartData ?? null} />
-      <MyCartFooter />
+      {cartData && cartData.length === 0 ? (
+        <EmptyList />
+      ) : (
+        <>
+          <AllCartRender item={cartData ?? null} />
+          <MyCartFooter />
+        </>
+      )}
     </View>
   );
 };
@@ -22,4 +28,5 @@ const styles = StyleSheet.create({
     padding: 10,
   },
 });
+
 export default CartScreen;
