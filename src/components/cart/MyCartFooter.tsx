@@ -2,7 +2,6 @@ import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {StyleSheet, Text, View} from 'react-native';
 import {selectCartData} from '../../redux/selectors/selectors';
-import {CartData} from './type';
 import {setAllItemsSelected} from '../../redux/reducers/cartReducer';
 import CheckBox from '@react-native-community/checkbox';
 
