@@ -1,25 +1,27 @@
-import React  from 'react';
-import {View, Text, StyleSheet, TouchableOpacity, Button} from 'react-native';
-import {CartData} from '../../type';
-import {RouteProp, useNavigation} from '@react-navigation/native';
-import logger from '../utilities/logger/logger';
+import React from 'react';
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import {useDispatch} from 'react-redux';
 import {myCartData} from '../redux/reducers/cartReducer';
+import {CartData} from './cart/type';
+import {date} from '../utilities/helpers/lib';
 
 interface Props {
   item: CartData;
 }
 
 const AllProductsCard: React.FC<Props> = ({item}) => {
-
   const dispatch = useDispatch();
-  
+
   const handleAddToCart = () => {
     const newItem = {
       _id: item._id,
       name: item.name,
       price: item.price,
       quantity: item.quantity,
+      totalOrderPrice: item.price,
+      quantityOrdered: 1,
+      dateAdded: date(),
+      isSelected: false,
     };
 
     dispatch(myCartData(newItem));

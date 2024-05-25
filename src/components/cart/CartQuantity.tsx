@@ -8,61 +8,38 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import {CartData} from './type';
-import {myCartTotalPrice} from '../../redux/reducers/cartReducer';
 import {useDispatch, useSelector} from 'react-redux';
-import {calculateTotalPrice} from '../../utilities/helpers/lib';
-import logger from '../../utilities/logger/logger';
-import { selectCartData } from '../../redux/selectors/selectors';
+import {
+  decrementQuantity,
+  incrementQuantity,
+} from '../../redux/reducers/cartReducer';
+import {selectCartData} from '../../redux/selectors/selectors';
 
 interface Props {
   item: CartData;
 }
+// const cartData = useSelector(selectCartData);
 
 const CartQuantity: React.FC<Props> = ({item}) => {
-
-  const cartData = useSelector(selectCartData);
-
-  logger('My Cart Order Product Details from CartQuantity ', cartData);
-
-
   const dispatch = useDispatch();
 
-  const [quantity, setQuantity] = useState(1);
-
   const handleIncrement = () => {
-    if (quantity < item.quantity) {
-      setQuantity(prevQuantity => prevQuantity + 1);
+    if (item.quantityOrdered < item.quantity) {
+      dispatch(incrementQuantity(item._id));
     }
   };
 
   const handleDecrement = () => {
-    if (quantity > 1) {
-      setQuantity(prevQuantity => prevQuantity - 1);
+    if (item.quantityOrdered > 1) {
+      dispatch(decrementQuantity(item._id));
     }
   };
 
   const handleQuantityChange = (text: string) => {
     const value = parseInt(text);
-    if (!isNaN(value) && value >= 1) {
-      setQuantity(value);
+    if (!isNaN(value) && value >= 1 && value <= item.quantity) {
     }
   };
-
-  const totalPrice = calculateTotalPrice(item.price, quantity);
-
-  logger('Product ID ', item._id);
-
-  logger('State Stocks from API ', item.quantity);
-  // logger('State Price ', item.price);
-  logger('State TotalPrice ', totalPrice);
-
-
-
-
-
-  useEffect(() => {
-    dispatch(myCartTotalPrice(totalPrice));
-  }, [totalPrice]);
 
   return (
     <View style={styles.container}>
@@ -73,7 +50,7 @@ const CartQuantity: React.FC<Props> = ({item}) => {
           <Text style={styles.buttonText}>-</Text>
         </TouchableOpacity>
         <TextInput
-          value={quantity.toString()}
+          value={item.quantityOrdered.toString()}
           onChangeText={handleQuantityChange}
           keyboardType="numeric"
           style={styles.quantityInput}
@@ -84,7 +61,9 @@ const CartQuantity: React.FC<Props> = ({item}) => {
           <Text style={styles.buttonText}>+</Text>
         </TouchableOpacity>
       </View>
-      <Text style={styles.totalPrice}>Total Price: PhP {totalPrice}</Text>
+      <Text style={styles.totalPrice}>
+        Total Price: PhP {item.totalOrderPrice}
+      </Text>
     </View>
   );
 };
@@ -135,3 +114,6 @@ const styles = StyleSheet.create({
 
 export default CartQuantity;
 
+function dispatch(arg0: {payload: string; type: 'mycart/incrementQuantity'}) {
+  throw new Error('Function not implemented.');
+}

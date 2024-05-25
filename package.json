@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "android": "react-native run-android",
-    "clean": "cd android && ./gradlew clean",
+    "clean": "cd android &&./gradlew clean",
     "start:clean": "react-native start && npm cache clean --force",
     "ios": "react-native run-ios",
     "lint": "eslint .",

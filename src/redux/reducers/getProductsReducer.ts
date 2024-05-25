@@ -1,5 +1,6 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { IProduct } from '../../../type';
+import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+import {IProduct} from '../../types/Products/type';
+
 
 interface ProductDataState {
   data: IProduct[] | null;
@@ -27,16 +28,17 @@ const getProducts = createSlice({
         const product = state.data.find(product => product._id === productId);
         state.singleProduct = product || null;
       } else {
-        state.singleProduct = null; // If state.data is null or undefined
+        state.singleProduct = null;
       }
     },
-    
+
     setProductId(state, action: PayloadAction<string>) {
       state._id = action.payload;
     },
   },
 });
 
-export const { allProductsData, singleProductData, setProductId } = getProducts.actions;
+export const {allProductsData, singleProductData, setProductId} =
+  getProducts.actions;
 
 export default getProducts.reducer;
