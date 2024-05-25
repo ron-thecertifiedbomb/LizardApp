@@ -13,6 +13,8 @@ export default function StoreScreen() {
 
   logger('All Products from Redux', products);
 
+  
+
   return (
     <View style={{flex: 1}}>
       <AllProductsRender item={products ?? null} />
