@@ -2,7 +2,6 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { CartData } from '../../components/cart/type';
 
 interface CartState {
-  isSelected: boolean;
   cart: CartData[];
   totalPrice: number; 
 }
@@ -10,7 +9,6 @@ interface CartState {
 const initialState: CartState = {
   cart: [],
   totalPrice: 0,
-  isSelected: false,
 };
 
 const cartSlice = createSlice({
@@ -50,16 +48,15 @@ const cartSlice = createSlice({
         existingItem.isSelected = isSelected;
       }
     },
-    // setAllIsSelected(state, action: PayloadAction<{ itemId: string; isSelected: boolean }>) {
-    //   const { itemId, isSelected } = action.payload;
-    //   const existingItem = state.cart.find(item => item._id === itemId);
-    //   if (existingItem) {
-    //     existingItem.isSelected = isSelected;
-    //   }
-    // },
+    setAllItemsSelected(state, action: PayloadAction<boolean>) {
+      const isSelected = action.payload;
+      state.cart.forEach(item => {
+        item.isSelected = isSelected;
+      });
+    },
   },
 });
 
-export const { myCartData, incrementQuantity, decrementQuantity, setIsSelected } = cartSlice.actions;
+export const { myCartData, incrementQuantity, decrementQuantity, setIsSelected, setAllItemsSelected } = cartSlice.actions;
 
 export default cartSlice.reducer;
