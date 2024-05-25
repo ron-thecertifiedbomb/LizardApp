@@ -12,8 +12,7 @@ interface Props {
 }
 
 const CartCard: React.FC<Props> = ({item}) => {
-
-
+  
   const dispatch = useDispatch();
 
   const handleCheckboxChange = (newValue: boolean) => {

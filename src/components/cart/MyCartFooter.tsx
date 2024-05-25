@@ -9,9 +9,9 @@ const MyCartFooter: React.FC = () => {
 
   const dispatch = useDispatch();
 
-  const products = useSelector(selectCartData);
+  const cartItems = useSelector(selectCartData);
 
-  const totalPrice = products.reduce((total, product) => {
+  const totalPrice = cartItems.reduce((total, product) => {
     if (product.isSelected) {
       return total + product.totalOrderPrice;
     }
@@ -19,7 +19,7 @@ const MyCartFooter: React.FC = () => {
   }, 0);
 
   const handleSelectAllChange = () => {
-    const allChecked = products.every(item => item.isSelected);
+    const allChecked = cartItems.every(item => item.isSelected);
     dispatch(setAllItemsSelected(!allChecked));
   };
 
@@ -27,8 +27,8 @@ const MyCartFooter: React.FC = () => {
     <View style={styles.container}>
       <CheckBox
         value={
-          products
-            ? products.length > 0 && products.every(item => item.isSelected)
+          cartItems
+            ? cartItems.length > 0 && cartItems.every(item => item.isSelected)
             : false
         }
         onValueChange={handleSelectAllChange}

@@ -8,17 +8,15 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import {CartData} from './type';
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import {
   decrementQuantity,
   incrementQuantity,
 } from '../../redux/reducers/cartReducer';
-import {selectCartData} from '../../redux/selectors/selectors';
 
 interface Props {
   item: CartData;
 }
-// const cartData = useSelector(selectCartData);
 
 const CartQuantity: React.FC<Props> = ({item}) => {
   const dispatch = useDispatch();
