@@ -3,7 +3,7 @@ import {View, Text, StyleSheet} from 'react-native';
 import ProductForm from '../components/EditProductForm';
 import CustomModal from '../components/Modal';
 import { useDispatch } from 'react-redux';
-import { singleProductData } from '../redux/reducers/getProductsReducer';
+import { singleProductData } from '../redux/reducers/getAllProductsReducer';
 import { RouteProp, useRoute } from '@react-navigation/native';
 
 

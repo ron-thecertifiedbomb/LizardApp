@@ -1,5 +1,5 @@
 import {useQuery} from 'react-query';
-import {allProductsData} from '../redux/reducers/getProductsReducer';
+import {allProductsData} from '../redux/reducers/getAllProductsReducer';
 import {useDispatch} from 'react-redux';
 import {IProduct} from '../types/Products/type';
 

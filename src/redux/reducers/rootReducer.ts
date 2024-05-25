@@ -5,7 +5,7 @@ import getUserDataReducer from './getUserDataReducer';
 import userIdReducer from './userIdReducer';
 import isActiveLinkReducer from './isAtiveLinkReducer'; 
 import updateProductReducer from './updateProductReducer';
-import getProductsReducer from './getProductsReducer';
+import getProductsReducer from './getAllProductsReducer';
 import modalReducer from './modalReducer'; 
 import myCartReducer from './cartReducer'
 

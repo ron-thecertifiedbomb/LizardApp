@@ -5,7 +5,7 @@ import useGetSingleProduct from '../hooks/useGetSingleProduct';
 import LoadingScreen from './LoadingScreen';
 import {RouteProp, useRoute} from '@react-navigation/native';
 import Card from '../components/Card';
-import { singleProductData } from '../redux/reducers/getProductsReducer';
+import { singleProductData } from '../redux/reducers/getAllProductsReducer';
 import { RootState } from '../redux/store/store';
 
 type RootStackParamList = {

@@ -1,6 +1,6 @@
 import { useQuery } from "react-query";
 import { useDispatch } from 'react-redux';
-import { singleProductData } from '../redux/reducers/getProductsReducer'; 
+import { singleProductData } from '../redux/reducers/getAllProductsReducer'; 
 
 const useEditProduct = (productId: string) => {
   const dispatch = useDispatch();
