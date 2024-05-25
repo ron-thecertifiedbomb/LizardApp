@@ -30,4 +30,6 @@ export interface IProduct {
   specifications: specifications;
   includedItems: string[];
   availableColors: string[];
+  imagelink_portrait: string;
+  imagelink_square: string;
 }

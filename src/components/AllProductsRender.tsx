@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Text, FlatList, StyleSheet} from 'react-native';
-import AllProductsCard from './AllProductsCards';
+import MyStoreCard from './MyStoreCard';
 import {IProduct} from '../types/Products/type';
 
 interface Props {
@@ -14,12 +14,15 @@ const AllProductsRender: React.FC<Props> = ({item}) => {
         <FlatList
           data={item}
           keyExtractor={item => item._id}
-          renderItem={({item}) => <AllProductsCard item={item} />}
+          renderItem={({item}) => <MyStoreCard item={item} />}
           numColumns={2}
           ItemSeparatorComponent={() => <View style={{height: 1, width: 10}} />}
           columnWrapperStyle={{
             justifyContent: 'space-between',
+            
           }}
+          showsVerticalScrollIndicator={false}
+          showsHorizontalScrollIndicator={false}
         />
       ) : (
         <Text>No items available</Text>
@@ -30,10 +33,10 @@ const AllProductsRender: React.FC<Props> = ({item}) => {
 const styles = StyleSheet.create({
   container: {
     width: '100%',
+    padding: 15,
     justifyContent: 'center',
-    alignItems: 'center',
+
     alignContent: 'center',
-    gap: 5,
     display: 'flex',
   },
 });
