@@ -1,17 +1,14 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {IProduct} from '../../types/Products/type';
 
-
 interface ProductDataState {
   data: IProduct[] | null;
   singleProduct: IProduct | null;
-  _id: string;
 }
 
 const initialState: ProductDataState = {
   data: null,
   singleProduct: null,
-  _id: '',
 };
 
 const getProducts = createSlice({
@@ -21,7 +18,6 @@ const getProducts = createSlice({
     allProductsData(state, action: PayloadAction<IProduct[]>) {
       state.data = action.payload;
     },
-
     singleProductData(state, action: PayloadAction<string>) {
       const productId = action.payload;
       if (state.data) {
@@ -31,14 +27,10 @@ const getProducts = createSlice({
         state.singleProduct = null;
       }
     },
-
-    setProductId(state, action: PayloadAction<string>) {
-      state._id = action.payload;
-    },
   },
 });
 
-export const {allProductsData, singleProductData, setProductId} =
+export const {allProductsData, singleProductData} =
   getProducts.actions;
 
 export default getProducts.reducer;

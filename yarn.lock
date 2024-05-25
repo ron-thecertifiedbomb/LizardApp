@@ -3502,6 +3502,7 @@ __metadata:
     reactotron-react-js: ^3.3.14
     reactotron-react-native: ^5.1.7
     redux: ^5.0.1
+    redux-thunk: ^3.1.0
     typescript: 5.0.4
   languageName: unknown
   linkType: soft
