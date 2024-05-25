@@ -6,7 +6,7 @@ import RegistrationScreen from '../../screen/RegistrationScreem';
 import LogInScreen from '../../screen/LogInScreen';
 import DrawerNavigator from './DrawerNavigator';
 import SettingsScreen from '../../screen/StoreScreen';
-import SingleProductScreen from '../../screen/SingleProductScreen';
+import ProductDetailsScreen from '../../screen/ProductDetailsScreen';
 import EditProductScreen from '../../screen/EditProductScreen';
 import SplashScreen from '../../screen/SplashScreen';
 
@@ -26,7 +26,7 @@ const AppNavigator: React.FC = () => {
           component={DrawerNavigator}
           options={{ headerShown: false }}
         />
-        <Stack.Screen name="ProductPage" component={SingleProductScreen} />
+        <Stack.Screen name="ProductPage" component={ProductDetailsScreen}  />
         <Stack.Screen name="Settings" component={SettingsScreen} />
         <Stack.Screen name="Edit" component={EditProductScreen} />
     

@@ -6,21 +6,35 @@ import {formatPrice} from '../../utilities/helpers/lib';
 import {useDispatch} from 'react-redux';
 import {setIsSelected} from '../../redux/reducers/cartReducer';
 import CheckBox from '@react-native-community/checkbox';
-
+import {RootStackParamList} from '../navigation/types';
+import {NavigationProp, useNavigation} from '@react-navigation/native';
+import {faDeleteLeft} from '@fortawesome/free-solid-svg-icons';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import Icon from 'react-native-vector-icons/FontAwesome';
 interface Props {
   item: CartData;
 }
 
 const CartCard: React.FC<Props> = ({item}) => {
-  
   const dispatch = useDispatch();
 
   const handleCheckboxChange = (newValue: boolean) => {
     dispatch(setIsSelected({itemId: item._id, isSelected: newValue}));
   };
 
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+
+  const handleViewProduct = (productId: string) => {
+    navigation.navigate('ProductPage', {productId: productId});
+  };
+
+  const dateAdded = item.dateAdded
+   const timeAdded = item.timeAdded
+
+  console.log(timeAdded)
+
   return (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={() => handleViewProduct(item._id)}>
       <View style={styles.card}>
         <View style={styles.cardBody}>
           <Text style={styles.titleText}> {item.name}</Text>
@@ -31,10 +45,14 @@ const CartCard: React.FC<Props> = ({item}) => {
             <Text style={styles.quantityText}>Stocks: {item.quantity}</Text>
           </View>
           <CartQuantity item={item} />
-          <CheckBox
-            value={item.isSelected}
-            onValueChange={handleCheckboxChange}
-          />
+          <View style={styles.cardBottom}>
+            <CheckBox
+              value={item.isSelected}
+              onValueChange={handleCheckboxChange}
+            />
+            <FontAwesomeIcon icon={faDeleteLeft} size={20} color="grey" />
+            
+          </View>
         </View>
       </View>
     </TouchableOpacity>
@@ -54,7 +72,6 @@ const styles = StyleSheet.create({
     elevation: 3,
     marginBottom: 16,
     width: '100%',
-    height: 160,
     padding: 10,
   },
 
@@ -89,6 +106,15 @@ const styles = StyleSheet.create({
   colorText: {
     fontSize: 14,
     color: 'gray',
+  },
+  cardBottom: {
+    fontSize: 14,
+    display: 'flex',
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+    alignContent: 'center',
+    alignItems: 'center',
+    padding: 5,
   },
 });
 

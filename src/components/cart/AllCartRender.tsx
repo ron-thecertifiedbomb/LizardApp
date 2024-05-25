@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text, FlatList, StyleSheet} from 'react-native';
 import CartCard from './CartCard';
-import { CartData } from './type';
+import {CartData} from './type';
 
 interface Props {
   item: CartData[] | null;
@@ -15,7 +15,6 @@ const AllCartRender: React.FC<Props> = ({item}) => {
           data={item}
           keyExtractor={item => item._id}
           renderItem={({item}) => <CartCard item={item} />}
-       
         />
       ) : (
         <Text>No items available</Text>

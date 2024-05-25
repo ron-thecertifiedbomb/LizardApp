@@ -3,7 +3,6 @@ import { CompositeNavigationProp, RouteProp } from '@react-navigation/native';
 import { NativeStackScreenProps, NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 export type RootStackParamList = {
-  navigate(arg0: string, arg1: { productId: any; }): void;
   Home: undefined;
   AllProducts: undefined;
   ProductPage: { productId: string };
