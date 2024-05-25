@@ -46,7 +46,7 @@ const CartScreen: React.FC<Props> = () => {
   return (
     <View style={styles.container}>
       <AllCartRender item={cartData ?? null} />
-      <MyCartFooter item = {cartData ?? null}/>
+      <MyCartFooter />
     </View>
   );
 };
