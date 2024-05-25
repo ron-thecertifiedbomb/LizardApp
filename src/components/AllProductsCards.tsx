@@ -1,11 +1,9 @@
 import React from 'react';
-import {View, Text, StyleSheet, TouchableOpacity, Button} from 'react-native';
-
-import {RouteProp, useNavigation} from '@react-navigation/native';
-import logger from '../utilities/logger/logger';
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import {useDispatch} from 'react-redux';
 import {myCartData} from '../redux/reducers/cartReducer';
 import {CartData} from './cart/type';
+import {date} from '../utilities/helpers/lib';
 
 interface Props {
   item: CartData;
@@ -19,9 +17,11 @@ const AllProductsCard: React.FC<Props> = ({item}) => {
       _id: item._id,
       name: item.name,
       price: item.price,
-      quantity: item.quantity, // Keep quantity unchanged
-      totalOrderPrice: item.price, // Initial total order price is just the item price
-      quantityOrdered: 1, // Set the initial number of times ordered to
+      quantity: item.quantity,
+      totalOrderPrice: item.price,
+      quantityOrdered: 1,
+      dateAdded: date(),
+      isSelected: false,
     };
 
     dispatch(myCartData(newItem));

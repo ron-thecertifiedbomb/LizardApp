@@ -3,7 +3,9 @@ import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import {CartData} from './type';
 import CartQuantity from './CartQuantity';
 import {formatPrice} from '../../utilities/helpers/lib';
-import logger from '../../utilities/logger/logger';
+import {useDispatch} from 'react-redux';
+import {setIsSelected} from '../../redux/reducers/cartReducer';
+import CheckBox from '@react-native-community/checkbox';
 
 interface Props {
   item: CartData;
@@ -12,11 +14,12 @@ interface Props {
 const CartCard: React.FC<Props> = ({item}) => {
 
 
-  // logger('Product ID from the card component', item._id )
-  // logger('Product quantity order  from the card component',  item.quantity )
+  const dispatch = useDispatch();
 
+  const handleCheckboxChange = (newValue: boolean) => {
+    dispatch(setIsSelected({itemId: item._id, isSelected: newValue}));
+  };
 
-  
   return (
     <TouchableOpacity>
       <View style={styles.card}>
@@ -29,6 +32,10 @@ const CartCard: React.FC<Props> = ({item}) => {
             <Text style={styles.quantityText}>Stocks: {item.quantity}</Text>
           </View>
           <CartQuantity item={item} />
+          <CheckBox
+            value={item.isSelected}
+            onValueChange={handleCheckboxChange}
+          />
         </View>
       </View>
     </TouchableOpacity>

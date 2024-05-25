@@ -5,5 +5,6 @@ export interface CartData {
   quantity: number;
   quantityOrdered: number;
   totalOrderPrice: number;
-  // totalPrice: number;
+  dateAdded: string; 
+  isSelected: boolean;
 }

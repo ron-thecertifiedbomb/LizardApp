@@ -8,6 +8,8 @@ const MyCartFooter: React.FC = () => {
 
   const product = useSelector(selectCartData);
   const totalPrice = product.reduce((total, item) => total + item.totalOrderPrice, 0);
+
+  
  
   return (
     <View style={styles.container}>

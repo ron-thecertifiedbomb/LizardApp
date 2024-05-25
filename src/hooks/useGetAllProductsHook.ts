@@ -1,9 +1,7 @@
 import {useQuery} from 'react-query';
-
-import {IProduct} from '../../type';
-
 import {allProductsData} from '../redux/reducers/getProductsReducer';
 import {useDispatch} from 'react-redux';
+import {IProduct} from '../types/Products/type';
 
 const useGetAllProductsHooks = () => {
   const dispatch = useDispatch();

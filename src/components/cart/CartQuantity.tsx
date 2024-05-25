@@ -18,9 +18,9 @@ import {selectCartData} from '../../redux/selectors/selectors';
 interface Props {
   item: CartData;
 }
+// const cartData = useSelector(selectCartData);
 
 const CartQuantity: React.FC<Props> = ({item}) => {
-  const cartData = useSelector(selectCartData);
   const dispatch = useDispatch();
 
   const handleIncrement = () => {

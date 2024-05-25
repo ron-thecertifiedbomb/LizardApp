@@ -16,6 +16,7 @@ export type RootStackParamList = {
   Login: undefined;
   Edit: undefined;
   Splash: undefined;
+  MyCart: undefined
 };
 
 export type StackParamList = {
