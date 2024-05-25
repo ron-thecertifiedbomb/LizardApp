@@ -1,6 +1,6 @@
 
 import {Text, View } from 'react-native';
-import SignUpForm from '../components/SignUpForm';
+import SignUpForm from '../components/RegistrationForm';
 
 export default function RegistrationScreen() {
 

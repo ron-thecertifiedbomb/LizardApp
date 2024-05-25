@@ -11,7 +11,7 @@ type FormData = {
   email: string;
 };
 
-const SignUpForm = () => {
+const RegistrationForm = () => {
   const navigation = useNavigation();
   const {
     control,
@@ -109,4 +109,4 @@ const SignUpForm = () => {
   );
 };
 
-export default SignUpForm;
+export default RegistrationForm;

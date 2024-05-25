@@ -2,7 +2,7 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { NativeStackScreenProps, createNativeStackNavigator } from '@react-navigation/native-stack';
 import { RootStackParamList } from './types';
-import RegistrationScreen from '../../screen/RegistrationScreem';
+import RegistrationScreen from '../../screen/RegistrationScreen';
 import LogInScreen from '../../screen/LogInScreen';
 import DrawerNavigator from './DrawerNavigator';
 import SettingsScreen from '../../screen/StoreScreen';

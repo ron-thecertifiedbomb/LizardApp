@@ -1,4 +1,8 @@
-// Define the interface for each specification item in the array
+
+// interface specificationItem {
+//   id: string;
+//   value: string;
+// }
 
 interface specifications {
   _id: string;
@@ -10,12 +14,6 @@ interface specifications {
   
 }
 
-interface specificationItem {
-  id: string;
-  value: string;
-}
-
-// Define the interface for the product
 export interface IProduct {
   _id: string;
   name: string;

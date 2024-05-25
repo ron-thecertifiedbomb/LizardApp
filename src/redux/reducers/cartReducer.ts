@@ -4,11 +4,13 @@ import { CartData } from '../../components/cart/type';
 interface CartState {
   cart: CartData[];
   totalPrice: number; 
+  isSelected: false,
 }
 
 const initialState: CartState = {
   cart: [],
   totalPrice: 0,
+  isSelected: false
 };
 
 const cartSlice = createSlice({

@@ -5,6 +5,7 @@ import { StackNavigationProp } from '@react-navigation/stack'; // Import StackNa
 import { RootStackParamList } from './navigation/types'; // Import types
 import LoadingIndicator from './LoadingIndicator';
 import useGetAllProductsHooks from '../hooks/useGetAllProductsHook';
+import Logo from './Logo/Logo';
 
 const FetchingComponent = () => {
   const navigation = useNavigation<StackNavigationProp<RootStackParamList, 'DrawerNavigator'>>(); // Use StackNavigationProp
@@ -24,6 +25,7 @@ const FetchingComponent = () => {
   }, [refetch]);
 
   useEffect(() => {
+    
     if (!isLoading && data) {
       navigation.replace('DrawerNavigator');
     }
@@ -38,7 +40,8 @@ const FetchingComponent = () => {
   };
 
   if (isLoading) {
-    return <LoadingIndicator />;
+    // return <LoadingIndicator />;
+    return <Logo />;
   }
 
   if (isError) {
