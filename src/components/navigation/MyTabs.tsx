@@ -12,6 +12,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 export default function MyTabs() {
+
   const Tab = createBottomTabNavigator();
 
   const cartScreenHeaderTitle = 'My Cart';
@@ -36,7 +37,7 @@ export default function MyTabs() {
           }
           return <FontAwesomeIcon icon={iconName} size={size} color={color} />;
         },
-        tabBarActiveTintColor: 'tomato',
+        tabBarActiveTintColor: 'black',
         tabBarInactiveTintColor: 'gray',
       })}>
       <Tab.Screen
