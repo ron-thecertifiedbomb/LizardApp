@@ -1,49 +1,28 @@
 import {Text, View} from 'react-native';
-
 import AllProductsRender from '../components/AllProductsRender';
 import {useSelector} from 'react-redux';
 import {AllProductsData} from '../redux/selectors/selectors';
-import logger from '../utilities/logger/logger';
+import {RouteProp, useRoute} from '@react-navigation/native';
+import Header from '../components/Header';
 
-export default function StoreScreen() {
+type RootStackParamList = {
+  StoreScreen: {userId: string; storeScreenHeaderTitle: string};
+};
+
+type StoreScreenRouteProp = RouteProp<RootStackParamList>;
+
+const StoreScreen: React.FC =() => {
   const products = useSelector(AllProductsData);
 
-  logger('All Products from Redux', products);
-
-  const categories = products?.map(product => product.category);
-
-  const uniqueCategories = [...new Set(categories)];
-  const productIDs = products?.map(product => product._id);
-
-  const specificationsArray = products?.[0]?.specifications
-    ? Object.keys(products[0].specifications).map(key => ({
-        id: key,
-        value: products[0].specifications,
-      }))
-    : [];
-
-  
-  const findProductById = (productId: string) => {
-    return products?.find(product => product._id === productId);
-  };
-
-  const productIdToSearch = '6650011ab3f82d2c9af555f3';
-  const product = findProductById(productIdToSearch);
-
-  if (product) {
-    const specifications = product.specifications;
-    // console.log('Specifications:', specifications);
-  } else {
-    // console.log('Product not found.');
-  }
-
-  // logger(' Product Sepcification', specificationsArray);
-  // logger('All Product Categories', uniqueCategories);
-  // logger('All Product IDs', productIDs);
+  const route = useRoute<StoreScreenRouteProp>();
+  const {userId, storeScreenHeaderTitle} = route.params;
 
   return (
     <View style={{flex: 1}}>
+      <Header title={storeScreenHeaderTitle} />
       <AllProductsRender item={products ?? null} />
     </View>
   );
 }
+
+export default StoreScreen
