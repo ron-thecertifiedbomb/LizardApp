@@ -29,7 +29,7 @@ const Header: React.FC<HeaderProps> = ({title}) => {
   return (
     <TouchableOpacity onPress={openDrawer} style={styles.headerMainWrapper}>
       <View style={styles.headerIconWrapper}>
-        <FontAwesomeIcon icon={faBars} size={20} color="black" />
+        {/* <FontAwesomeIcon icon={faBars} size={20} color="black" /> */}
         <Text style={styles.headerTitle}>{title}</Text>
       </View>
     </TouchableOpacity>

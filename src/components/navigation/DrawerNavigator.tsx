@@ -2,16 +2,15 @@ import * as React from 'react';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import {useSelector} from 'react-redux';
 import MyTabs from './MyTabs';
-import Header from '../Header';
 import CartScreen from '../../screen/CartScreen';
 import OrdersScreen from '../../screen/OrdersScreen';
 import {selectIsLoggedIn} from '../../redux/selectors/users/selector';
 
-// Initialize the Drawer navigator outside the component to avoid re-creating it on every render
+
 const Drawer = createDrawerNavigator();
 
 const DrawerNavigator = () => {
-  
+
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
   const cartScreenHeaderTitle = 'My Cart';
