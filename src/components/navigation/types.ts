@@ -15,7 +15,9 @@ export type RootStackParamList = {
   Login: undefined;
   Edit: undefined;
   Splash: undefined;
-  MyCart: undefined
+  OrderScreen: {userId: string; orderTitle: string};
+  MyStore:  { userId: string, storeTitle: string };
+  CartScreen: {userId: string; cartTitle: string};
 };
 
 export type StackParamList = {

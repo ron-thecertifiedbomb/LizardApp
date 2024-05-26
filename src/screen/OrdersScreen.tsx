@@ -1,29 +1,28 @@
 import {View, Text, StyleSheet} from 'react-native';
-import {useNavigation, NavigationProp} from '@react-navigation/native';
+import {useRoute, RouteProp} from '@react-navigation/native';
+import Header from '../components/Header';
 
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import { RootStackParamList } from '../components/navigation/types';
-import Logo from '../components/Logo/Logo';
+type RootStackParamList = {
+  OrderScreen: {userId: string; orderScreenHeaderTitle: string};
+};
 
-const Stack = createNativeStackNavigator<RootStackParamList>();
+type StoreScreenRouteProp = RouteProp<RootStackParamList>;
 
 export default function CartScreen() {
-    
-  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
-  
+  const route = useRoute<StoreScreenRouteProp>();
+  const {userId, orderScreenHeaderTitle} = route.params;
+
+  console.log(userId)
+
   return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <Logo />
+    <View style={styles.container}>
+      <Header title={orderScreenHeaderTitle} />
     </View>
   );
 }
 
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    padding: 16,
   },
 });
-
