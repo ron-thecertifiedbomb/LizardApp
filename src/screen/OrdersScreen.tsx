@@ -1,6 +1,8 @@
 import {View, Text, StyleSheet} from 'react-native';
 import {useRoute, RouteProp} from '@react-navigation/native';
 import Header from '../components/Header';
+import TextComponent from '../components/Text/Text';
+import Container from '../components/container/Container';
 
 type RootStackParamList = {
   OrderScreen: {userId: string; orderScreenHeaderTitle: string};
@@ -17,6 +19,10 @@ export default function CartScreen() {
   return (
     <View style={styles.container}>
       <Header title={orderScreenHeaderTitle} />
+      <Container>
+      <TextComponent text={'Welcome Home'}/>
+      </Container>
+      
     </View>
   );
 }

@@ -10,6 +10,7 @@ import {NavigationProp} from '@react-navigation/native';
 import {faBars} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 
+
 type RootStackParamList = {
   Store: {userId: string; headerTitle: string};
 };
@@ -31,6 +32,7 @@ const Header: React.FC<HeaderProps> = ({title}) => {
       <View style={styles.headerIconWrapper}>
         {/* <FontAwesomeIcon icon={faBars} size={20} color="black" /> */}
         <Text style={styles.headerTitle}>{title}</Text>
+      
       </View>
     </TouchableOpacity>
   );

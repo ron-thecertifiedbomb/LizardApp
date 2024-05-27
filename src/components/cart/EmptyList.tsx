@@ -1,10 +1,11 @@
 import {View, Text, StyleSheet} from 'react-native';
 import React from 'react';
+import TextComponent from '../Text/Text';
 
 const EmptyList = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.emptyListText}>Your Cart is empty</Text>
+     <TextComponent text={'Your Cart is empty'} fontSize={20}/>
     </View>
   );
 };

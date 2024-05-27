@@ -14,9 +14,10 @@ type FormData = {
 };
 
 const LogInForm = () => {
+
   const navigation = useNavigation();
   const { control, handleSubmit, reset, formState: { errors } } = useForm<FormData>();
-  const dispatch = useDispatch(); // Initialize useDispatch
+  const dispatch = useDispatch(); 
   const [error, setError] = useState('');
 
   const mutation = useMutation(

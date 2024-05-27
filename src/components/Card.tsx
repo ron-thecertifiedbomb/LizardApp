@@ -1,57 +1,57 @@
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
-import { useSelector } from 'react-redux';
-import { RootState } from '../redux/store/store';
+import {View, Text, StyleSheet, ScrollView} from 'react-native';
+import {useSelector} from 'react-redux';
+import {RootState} from '../redux/store/store';
 
 const Card: React.FC = () => {
-
-  const product = useSelector((state: RootState) => state.allProducts.singleProduct);
+  const product = useSelector(
+    (state: RootState) => state.allProducts.singleProduct,
+  );
 
   return (
-    
-      <View style={styles.card}>
-        <View style={styles.cardBody}>
-          <Text style={styles.titleText}>{product?.name}</Text>
-          <Text style={styles.categoryText}>{product?.brand}</Text>
-          <Text style={styles.priceText}>Price: ${product?.price}</Text>
-          <Text style={styles.quantityText}>Quantity: {product?.quantity}</Text>
-          <Text style={styles.specificationsTitle}>Specifications:</Text>
-          {product?.specifications ? (
-            Object.entries(product.specifications).map(([key, value]) => (
-              <Text key={key} style={styles.specificationText}>
-                {key.charAt(0).toUpperCase() + key.slice(1)}: {value}
-              </Text>
-            ))
-          ) : (
-            <Text>No specifications available</Text>
-          )} 
-          <Text style={styles.includedItemsTitle}>Included Items:</Text>
-          {product?.includedItems && product.includedItems.map((item, index) => (
+    <View style={styles.card}>
+      <View style={styles.cardBody}>
+        <Text style={styles.titleText}>{product?.name}</Text>
+        <Text style={styles.categoryText}>{product?.brand}</Text>
+        <Text style={styles.priceText}>Price: ${product?.price}</Text>
+        <Text style={styles.quantityText}>Quantity: {product?.quantity}</Text>
+        <Text style={styles.specificationsTitle}>Specifications:</Text>
+        {product?.specifications ? (
+          Object.entries(product.specifications).map(([key, value]) => (
+            <Text key={key} style={styles.specificationText}>
+              {key.charAt(0).toUpperCase() + key.slice(1)}: {value}
+            </Text>
+          ))
+        ) : (
+          <Text>No specifications available</Text>
+        )}
+        <Text style={styles.includedItemsTitle}>Included Items:</Text>
+        {product?.includedItems &&
+          product.includedItems.map((item, index) => (
             <Text key={index} style={styles.includedItemText}>
               {item}
             </Text>
-          ))} 
-          <Text style={styles.availableColorsTitle}>Available Colors:</Text>
-          {product?.availableColors && product.availableColors.map((color, index) => (
+          ))}
+        <Text style={styles.availableColorsTitle}>Available Colors:</Text>
+        {product?.availableColors &&
+          product.availableColors.map((color, index) => (
             <Text key={index} style={styles.colorText}>
               {color}
             </Text>
           ))}
-        </View>
       </View>
-
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-
   card: {
     backgroundColor: '#fff',
     borderRadius: 8,
     padding: 25,
     flexDirection: 'column',
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 5 },
+    shadowOffset: {width: 0, height: 5},
     shadowOpacity: 0.3,
     shadowRadius: 10,
     elevation: 5,
