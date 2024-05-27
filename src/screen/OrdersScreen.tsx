@@ -3,7 +3,6 @@ import {useRoute, RouteProp} from '@react-navigation/native';
 import Header from '../components/Header';
 import TextComponent from '../components/Text/Text';
 import Container from '../components/container/Container';
-import LogInForm from '../components/authentication/loginform/LogInForm';
 
 type RootStackParamList = {
   OrderScreen: {userId: string; orderScreenHeaderTitle: string};
@@ -21,8 +20,8 @@ export default function CartScreen() {
     <View style={styles.container}>
       <Header title={orderScreenHeaderTitle} />
       <Container>
-      {/* <TextComponent text={'Welcome Home'}/> */}
-      <LogInForm />
+      <TextComponent text={'Welcome Home'}/>
+   
       </Container>
       
     </View>
