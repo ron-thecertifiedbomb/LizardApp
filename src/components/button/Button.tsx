@@ -1,5 +1,6 @@
 import React from 'react';
 import { TouchableOpacity, Text, ActivityIndicator, StyleSheet, ViewStyle } from 'react-native';
+import TextComponent from '../Text/Text';
 
 interface CustomButtonProps {
   title: string;
@@ -14,6 +15,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({ title, onPress, loading = f
       {loading ? (
         <ActivityIndicator size="small" color="white" />
       ) : (
+        // <TextComponent  text={title}/>
         <Text style={styles.buttonText}>{title}</Text>
       )}
     </TouchableOpacity>
