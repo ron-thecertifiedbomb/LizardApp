@@ -11,14 +11,24 @@ import {
   faStore,
 } from '@fortawesome/free-solid-svg-icons';
 
-export default function MyTabs() {
+import {useSelector} from 'react-redux';
+import {
+  selectIsLoggedIn,
+  selectUserId,
+} from '../../redux/selectors/users/selector';
+import logger from '../../utilities/logger/logger';
 
+export default function MyTabs() {
   const Tab = createBottomTabNavigator();
+
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const userId = useSelector(selectUserId);
 
   const cartScreenHeaderTitle = 'My Cart';
   const storeScreenHeaderTitle = 'My Store';
   const orderScreenHeaderTitle = 'My Orders';
-  const userId = 'Ronan is a genius';
+
+  logger('isLoggedIn', isLoggedIn);
 
   return (
     <Tab.Navigator
@@ -51,7 +61,7 @@ export default function MyTabs() {
         initialParams={{userId, cartScreenHeaderTitle}}
         listeners={({navigation}) => ({
           tabPress: e => {
-            if (!userId) {
+            if (!isLoggedIn) {
               e.preventDefault();
               navigation.navigate('Login');
             }
@@ -64,7 +74,7 @@ export default function MyTabs() {
         initialParams={{userId, orderScreenHeaderTitle}}
         listeners={({navigation}) => ({
           tabPress: e => {
-            if (!userId) {
+            if (!isLoggedIn) {
               e.preventDefault();
               navigation.navigate('Login');
             }
