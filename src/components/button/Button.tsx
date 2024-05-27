@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 
 import fontStyles from '../../constants/fontStyle';
+import colors from '../../constants/color';
 
 interface CustomButtonProps {
   title: string;
@@ -36,7 +37,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: 'blue',
+    backgroundColor: colors.button,
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 10,
@@ -47,6 +48,7 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 18,
     fontFamily: fontStyles.Lato_Bold,
+    
   },
 });
 
