@@ -52,6 +52,7 @@ const LogInForm = () => {
     },
     {
       onSuccess: data => {
+
         const userId = data.userId;
         dispatch(setIsLoggedIn(true));
         dispatch(setUserId(userId));
@@ -74,7 +75,7 @@ const LogInForm = () => {
               text: 'OK',
               onPress: () => {
                 setError('An error occurred during login. Please try again.');
-                reset(); // Reset the form
+                reset();
               },
             },
           ],
@@ -133,7 +134,7 @@ const LogInForm = () => {
       {isLoading ? (
         <ActivityIndicator color="#000" />
       ) : (
-        <Button title={'Log In'} onPress={handleSubmit(onSubmit)} />
+        <Button title={'Log In'} onPress={handleSubmit(onSubmit)} loading={isLoading}/>
       )}
     </View>
   );

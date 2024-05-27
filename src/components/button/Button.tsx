@@ -1,6 +1,13 @@
 import React from 'react';
-import { TouchableOpacity, Text, ActivityIndicator, StyleSheet, ViewStyle } from 'react-native';
-import TextComponent from '../Text/Text';
+import {
+  TouchableOpacity,
+  Text,
+  ActivityIndicator,
+  StyleSheet,
+  ViewStyle,
+} from 'react-native';
+
+import fontStyles from '../../constants/fontStyle';
 
 interface CustomButtonProps {
   title: string;
@@ -9,15 +16,20 @@ interface CustomButtonProps {
   containerStyle?: ViewStyle;
 }
 
-const CustomButton: React.FC<CustomButtonProps> = ({ title, onPress, loading = false, containerStyle }) => {
+const CustomButton: React.FC<CustomButtonProps> = ({
+  title,
+  onPress,
+  loading = false,
+  containerStyle,
+}) => {
   return (
-    <TouchableOpacity style={[styles.button, containerStyle]} onPress={onPress} disabled={loading}>
-      {loading ? (
-        <ActivityIndicator size="small" color="white" />
-      ) : (
-        // <TextComponent  text={title}/>
-        <Text style={styles.buttonText}>{title}</Text>
-      )}
+    <TouchableOpacity
+      style={[styles.button, containerStyle]}
+      onPress={onPress}
+      disabled={loading}>
+      <Text style={styles.buttonText}>
+        {loading ? <ActivityIndicator size="small" color="white" /> : title}
+      </Text>
     </TouchableOpacity>
   );
 };
@@ -27,13 +39,14 @@ const styles = StyleSheet.create({
     backgroundColor: 'blue',
     paddingVertical: 10,
     paddingHorizontal: 20,
-    borderRadius: 5,
+    borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center',
   },
   buttonText: {
     color: 'white',
-    fontSize: 16,
+    fontSize: 18,
+    fontFamily: fontStyles.Lato_Bold,
   },
 });
 
