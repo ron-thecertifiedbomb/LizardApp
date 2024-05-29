@@ -11,3 +11,6 @@ export const selectModalState = (state: RootState) => state.modal;
 export const selectCartData = (state: RootState) => state.mycart.cart;
 export const selectCartTotalPrice = (state: RootState) => state.mycart.totalPrice;
 export const selectSetIsSelected = (state: RootState) => state.mycart.isSelected;
+
+
+export const selectUserId  = (state: RootState) => state.userId.userId
