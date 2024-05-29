@@ -8,6 +8,7 @@ import updateProductReducer from './updateProductReducer';
 import getProductsReducer from './getAllProductsReducer';
 import modalReducer from './modalReducer'; 
 import myCartReducer from './cartReducer'
+import dataReducer from './dataReducer';
 
 const rootReducer = combineReducers({
   userId: userIdReducer,
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   isActiveLink: isActiveLinkReducer, 
   updateProduct: updateProductReducer,
   modal: modalReducer, 
-  mycart: myCartReducer
+  mycart: myCartReducer,
+  data: dataReducer,
 });
 export default rootReducer;
