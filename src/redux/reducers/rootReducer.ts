@@ -6,7 +6,7 @@ import userIdReducer from './userIdReducer';
 import isActiveLinkReducer from './isAtiveLinkReducer'; 
 import updateProductReducer from './updateProductReducer';
 import getAllProductsReducer from './productslice/reducer/getAllProductsReducer';
-import modalReducer from './modalReducer'; 
+import modalReducer from './modalslice/reducer/modalReducer'; 
 import cartSliceReducer from './cartslice/reducer/cartReducer'
 
 

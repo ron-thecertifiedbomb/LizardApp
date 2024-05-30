@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Text, FlatList, StyleSheet} from 'react-native';
-import {IProduct} from '../types/Products/type';
+import {IProduct} from '../types/products/type';
 import StoreCard from './MyStoreCard';
 
 interface Props {

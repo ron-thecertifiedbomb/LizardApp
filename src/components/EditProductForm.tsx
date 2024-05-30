@@ -11,7 +11,7 @@ import {useSelector, useDispatch} from 'react-redux';
 import {ProductID, SingleProductData} from '../redux/selectors/selectors';
 
 import {RouteProp, useRoute} from '@react-navigation/native';
-import {setToOpen} from '../redux/reducers/modalReducer';
+import {setToOpen} from '../redux/reducers/modalslice/reducer/modalReducer';
 import logger from '../utilities/logger/logger';
 import { RootState } from '../redux/store/store';
 

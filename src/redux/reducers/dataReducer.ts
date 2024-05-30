@@ -1,7 +1,7 @@
 // reducers/dataReducer.ts
 import { createReducer, PayloadAction } from '@reduxjs/toolkit';
 import { fetchDataSuccess, fetchDataFailure, buttonClick } from '../actions/actionTypes';
-import { IProduct } from '../../types/Products/type';
+import { IProduct } from '../../types/products/type';
 
 interface DataState {
   data: IProduct[] | null;

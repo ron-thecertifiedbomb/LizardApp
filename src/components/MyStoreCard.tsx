@@ -3,7 +3,7 @@ import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {date, time} from '../utilities/helpers/lib';
 import {NavigationProp, RouteProp, useNavigation, useRoute} from '@react-navigation/native';
-import {IProduct} from '../types/Products/type';
+import {IProduct} from '../types/products/type';
 import {addedToCart} from '../redux/reducers/cartslice/reducer/cartReducer';
 
 import logger from '../utilities/logger/logger';
@@ -49,6 +49,9 @@ const StoreCard: React.FC<Props> = ({item}) => {
       dateAdded: date(),
       timeAdded: time(),
     };
+
+
+  
 logger('data', itemToCartList )
     dispatch(addedToCart(itemToCartList));
   };

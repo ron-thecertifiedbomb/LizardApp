@@ -1,4 +1,4 @@
-import { IProduct } from "../../types/Products/type";
+import { IProduct } from "../../types/products/type";
 
 export const fetchData = async () => {
 

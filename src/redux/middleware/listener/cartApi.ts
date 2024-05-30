@@ -2,9 +2,9 @@ import { createListenerMiddleware } from '@reduxjs/toolkit';
 import { addedToCart } from '../../reducers/cartslice/reducer/cartReducer';
 import { Alert } from 'react-native';
 
-export const cartListListenerMiddleware = createListenerMiddleware();
+export const cartListApiListenerMiddleware = createListenerMiddleware();
 
-cartListListenerMiddleware.startListening({
+cartListApiListenerMiddleware.startListening({
 
   actionCreator: addedToCart,
 
@@ -41,4 +41,4 @@ cartListListenerMiddleware.startListening({
   }
 });
 
-export default cartListListenerMiddleware;
+export default cartListApiListenerMiddleware;

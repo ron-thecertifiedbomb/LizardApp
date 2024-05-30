@@ -1,10 +1,5 @@
 import React, {useState} from 'react';
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  Alert,
-} from 'react-native';
+import {View, Text, TouchableOpacity, Alert} from 'react-native';
 import {useForm} from 'react-hook-form';
 import {useNavigation} from '@react-navigation/native';
 import {useMutation} from 'react-query';
@@ -15,9 +10,10 @@ import FormTextInput from '../../formtextinput/FormTextInput';
 import Button from '../../button/Button';
 import {FormData} from '../type';
 import LoadingIndicator from '../../LoadingIndicator';
+import {StyleSheet} from 'react-native';
+import colors from '../../../constants/color';
 
 const LogInForm = () => {
-  
   const navigation = useNavigation();
   const {
     control,
@@ -114,21 +110,26 @@ const LogInForm = () => {
 
       <TouchableOpacity
         onPress={handleNavigateToRegistration}
-        style={{marginTop: 10}}>
-        <Text style={{textAlign: 'center', color: 'blue'}}>Register</Text>
+        >
+        <Text style={styles.title}>Click here to register</Text>
       </TouchableOpacity>
 
-  
-       <LoadingIndicator visible={isLoading} />
-      
-        <Button
-          title={'Log In'}
-          onPress={handleSubmit(onSubmit)}
-          loading={isLoading}
-        />
-    
+      <LoadingIndicator visible={isLoading} />
+
+      <Button
+        title={'Log In'}
+        onPress={handleSubmit(onSubmit)}
+        loading={isLoading}
+      />
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  title: {
+    fontSize: 12,
+    color: colors.primaryColor,
+  },
+});
 
 export default LogInForm;
