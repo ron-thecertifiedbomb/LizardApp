@@ -8,11 +8,14 @@ import useGetAllProductsHooks from '../hooks/useGetAllProductsHook';
 import Logo from './Logo/Logo';
 
 const FetchingComponent = () => {
+
   const navigation = useNavigation<StackNavigationProp<RootStackParamList, 'DrawerNavigator'>>(); // Use StackNavigationProp
   
   const { isLoading, isError, data, error, refetch } = useGetAllProductsHooks();
+  
 
   useEffect(() => {
+
     const fetchData = async () => {
       try {
         await refetch();
@@ -23,6 +26,10 @@ const FetchingComponent = () => {
 
     fetchData();
   }, [refetch]);
+
+
+
+
 
   useEffect(() => {
     

@@ -4,8 +4,11 @@ import {useDispatch} from 'react-redux';
 import {IProduct} from '../types/Products/type';
 
 const useGetAllProductsHooks = () => {
+  
   const dispatch = useDispatch();
+
   const fetchData = async () => {
+
     const response = await fetch(
       'https://nextjs-server-rho.vercel.app/api/products/getAllProducts/route',
     );
@@ -14,6 +17,7 @@ const useGetAllProductsHooks = () => {
     }
     return response.json() as Promise<IProduct[]>;
   };
+  
 
   const {isLoading, isError, data, error, refetch} = useQuery<
     IProduct[],
