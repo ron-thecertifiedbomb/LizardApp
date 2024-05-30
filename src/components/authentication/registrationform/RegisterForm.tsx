@@ -76,7 +76,7 @@ const RegisterForm = () => {
   return (
     <View style={styles.container}>
       <View style={styles.titleWrapper}>
-        <Text style={styles.title}>Registration Form</Text>
+        <Text style={styles.title}>Registration</Text>
       </View>
 
       <FormTextInput
