@@ -4,11 +4,9 @@ import {
   Text,
   TouchableOpacity,
   Alert,
-  ActivityIndicator,
 } from 'react-native';
-import {useForm, Controller} from 'react-hook-form';
+import {useForm} from 'react-hook-form';
 import {useNavigation} from '@react-navigation/native';
-import {TextInput, Button as PaperButton} from 'react-native-paper';
 import {useMutation} from 'react-query';
 import {useDispatch} from 'react-redux';
 import {setIsLoggedIn} from '../../../redux/reducers/isLoggedInReducer';
@@ -19,6 +17,7 @@ import {FormData} from '../type';
 import LoadingIndicator from '../../LoadingIndicator';
 
 const LogInForm = () => {
+  
   const navigation = useNavigation();
   const {
     control,
