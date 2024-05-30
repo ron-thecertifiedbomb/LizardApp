@@ -5,7 +5,7 @@ import getUserDataReducer from './getUserDataReducer';
 import userIdReducer from './userIdReducer';
 import isActiveLinkReducer from './isAtiveLinkReducer'; 
 import updateProductReducer from './updateProductReducer';
-import getProductsReducer from './getAllProductsReducer';
+import getAllProductsReducer from './productslice/reducer/getAllProductsReducer';
 import modalReducer from './modalReducer'; 
 import cartSliceReducer from './cartslice/reducer/cartReducer'
 
@@ -15,7 +15,7 @@ const rootReducer = combineReducers({
   userId: userIdReducer,
   isLoggedIn: isLoggedInReducer,
   users: getUserDataReducer, 
-  getAllProducts: getProductsReducer,
+  products: getAllProductsReducer,
   isActiveLink: isActiveLinkReducer, 
   updateProduct: updateProductReducer,
   modal: modalReducer, 

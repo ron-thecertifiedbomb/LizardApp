@@ -3,7 +3,6 @@ import { View, Text, Button, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack'; // Import StackNavigationProp
 import { RootStackParamList } from './navigation/types'; // Import types
-import LoadingIndicator from './LoadingIndicator';
 import useGetAllProductsHooks from '../hooks/useGetAllProductsHook';
 import Logo from './Logo/Logo';
 

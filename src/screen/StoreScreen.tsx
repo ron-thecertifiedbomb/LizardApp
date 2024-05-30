@@ -1,9 +1,10 @@
 import {View} from 'react-native';
 import AllProductsRender from '../components/AllProductsRender';
 import {useSelector} from 'react-redux';
-import {getAllProducts} from '../redux/selectors/selectors';
+
 import {RouteProp, useRoute} from '@react-navigation/native';
 import Header from '../components/Header';
+import { allProducts } from '../redux/reducers/productslice/selectors/selector';
 
 type RootStackParamList = {
   StoreScreen: {userId: string; storeScreenHeaderTitle: string};
@@ -13,7 +14,7 @@ type StoreScreenRouteProp = RouteProp<RootStackParamList>;
 
 const StoreScreen: React.FC =() => {
   
-  const products = useSelector(getAllProducts);
+  const products = useSelector(allProducts);
 
   const route = useRoute<StoreScreenRouteProp>();
 
