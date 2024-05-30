@@ -26,14 +26,7 @@ const FormTextInput: React.FC<FormTextInputProps> = ({
         <>
           <TextInput
             onBlur={onBlur}
-            onChangeText={(text) => {
-              // Format the mobile number as "0991-3817033"
-              const formattedText = text
-                .replace(/\D/g, '')
-                .replace(/(\d{4})(\d{7})/, '$1-$2');
-
-              onChange(formattedText);
-            }}
+            onChangeText={onChange}
             value={value}
             style={styles.input}
             placeholder={label}

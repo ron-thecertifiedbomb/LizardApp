@@ -10,12 +10,15 @@ export const calculateTotalPrice = (price: number, quantity: number) => {
 };
 
 const getCurrentDate = () => {
+  
   const currentDate = new Date();
   const formattedDate = currentDate.toISOString().split('T')[0];
   return formattedDate;
 };
 
 export const date = getCurrentDate;
+
+
 
 const getFormattedDate = (date: Date = new Date()): string => {
   const options: Intl.DateTimeFormatOptions = {

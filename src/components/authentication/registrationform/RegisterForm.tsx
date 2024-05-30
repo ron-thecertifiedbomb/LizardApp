@@ -6,22 +6,11 @@ import {useNavigation} from '@react-navigation/native';
 import logger from '../../../utilities/logger/logger';
 import FormTextInput from '../../formtextinput/FormTextInput';
 import DatePicker from '../../datepicker/DatePicker';
-import {date, time} from '../../../utilities/helpers/lib';
 import Button from '../../button/Button';
 import DateDisplay from '../../datepicker/DateDisplay';
 import GenderPicker from '../../genderpicker/GenderPicker';
 import fontStyles from '../../../constants/fontStyle';
-
-type FormData = {
-  firstname: string;
-  lastname: string;
-  username: string;
-  mobile: number;
-  email: string;
-  password: string;
-  dob: string;
-  gender: 'male' | 'female';
-};
+import {FormData} from '../type';
 
 const RegisterForm = () => {
   const {
@@ -33,17 +22,34 @@ const RegisterForm = () => {
 
   const [dob, setDob] = useState(new Date());
   const [gender, setGender] = useState<FormData['gender']>('male');
-
   const navigation = useNavigation();
 
   const mutation = useMutation(
     async (data: FormData) => {
-      // Your mutation logic
+      const response = await fetch(
+        'https://nextjs-server-rho.vercel.app/api/users/signup/route',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        },
+      );
+
+      const responseData = await response.json();
+
+      if (!response.ok) {
+        throw new Error(responseData.error || 'Something went wrong');
+      }
+
+      return responseData;
     },
     {
-      onSuccess: () => {
+      onSuccess: (response) => {
         reset();
         navigation.navigate('Login' as never);
+        Alert.alert('Registration Success', response.message);
       },
       onError: (error: any) => {
         console.error(error);
@@ -53,24 +59,26 @@ const RegisterForm = () => {
   );
 
   const onSubmit: SubmitHandler<FormData> = data => {
-    const {firstname, lastname, mobile, username, password, email, gender} =
-      data;
+    const {firstname, lastname, mobile, username, password, email} = data;
 
-    const formData = {
-      firstname: firstname,
-      lastname: lastname,
-      username: username,
-      mobile: mobile,
-      gender: gender,
-      pasword: password,
-      email: email,
-      dateofbirth: dob,
-      dateCreated: date(),
-      timeCreated: time(),
+    const dateCreated = new Date().toISOString();
+    const timeCreated = new Date().toLocaleTimeString();
+
+    const formData: FormData = {
+
+      firstname,
+      lastname,
+      username,
+      mobile,
+      gender,
+      password,
+      email,
+      birthday: dob,
+      dateCreated,
+      timeCreated,
     };
-    logger('formData', formData);
 
-    // mutation.mutate(data);
+    mutation.mutate(formData);
   };
 
   return (
@@ -148,7 +156,7 @@ const styles = StyleSheet.create({
     alignContent: 'center',
     justifyContent: 'center',
   },
-  titleWrapper :{
+  titleWrapper: {
     display: 'flex',
     width: '100%',
     justifyContent: 'center',
@@ -156,9 +164,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 20,
   },
-  title :{
- fontSize: 22,
- fontFamily: fontStyles.Lato_Bold,
+  title: {
+    fontSize: 22,
+    fontFamily: fontStyles.Lato_Bold,
   },
   dateWrapper: {
     display: 'flex',
