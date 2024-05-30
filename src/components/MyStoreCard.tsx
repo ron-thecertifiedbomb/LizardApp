@@ -1,12 +1,11 @@
 import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
 import {useDispatch} from 'react-redux';
-import {addedToCart} from '../redux/reducers/cartReducer';
-import {CartData} from './cart/type';
 import {date, time} from '../utilities/helpers/lib';
 import {NavigationProp, useNavigation} from '@react-navigation/native';
 import {RootStackParamList} from './navigation/types';
 import {IProduct} from '../types/Products/type';
+import { addedToCart } from '../redux/reducers/cartslice/reducer/cartReducer';
 
 interface Props {
   item: IProduct;
@@ -14,11 +13,11 @@ interface Props {
 
 const StoreCard: React.FC<Props> = ({item}) => {
 
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   const dispatch = useDispatch();
 
-  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
-
   const handleAddToCart = () => {
+
     const newItem = {
       _id: item._id,
       name: item.name,
@@ -30,6 +29,7 @@ const StoreCard: React.FC<Props> = ({item}) => {
       dateAdded: date(),
       timeAdded: time(),
     };
+
     dispatch(addedToCart(newItem));
   };
 

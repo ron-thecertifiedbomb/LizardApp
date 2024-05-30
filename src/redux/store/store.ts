@@ -3,7 +3,6 @@ import rootReducer from '../reducers/rootReducer';
 import loggerMiddleware from '../middleware/logger';
 
 
-
 export const store = configureStore({
   reducer: rootReducer,
   

@@ -7,10 +7,11 @@ import isActiveLinkReducer from './isAtiveLinkReducer';
 import updateProductReducer from './updateProductReducer';
 import getProductsReducer from './getAllProductsReducer';
 import modalReducer from './modalReducer'; 
-import myCartReducer from './cartReducer'
-import dataReducer from './dataReducer';
+import cartSliceReducer from './cartslice/reducer/cartReducer'
+
 
 const rootReducer = combineReducers({
+
   userId: userIdReducer,
   isLoggedIn: isLoggedInReducer,
   users: getUserDataReducer, 
@@ -18,7 +19,8 @@ const rootReducer = combineReducers({
   isActiveLink: isActiveLinkReducer, 
   updateProduct: updateProductReducer,
   modal: modalReducer, 
-  mycart: myCartReducer,
-  data: dataReducer,
+  cart: cartSliceReducer,
+ 
+
 });
 export default rootReducer;

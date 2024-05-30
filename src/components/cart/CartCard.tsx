@@ -4,13 +4,13 @@ import {CartData} from './type';
 import CartQuantity from './CartQuantity';
 import {formatPrice} from '../../utilities/helpers/lib';
 import {useDispatch} from 'react-redux';
-import {setIsSelected} from '../../redux/reducers/cartReducer';
 import CheckBox from '@react-native-community/checkbox';
 import {RootStackParamList} from '../navigation/types';
 import {NavigationProp, useNavigation} from '@react-navigation/native';
 import {faDeleteLeft} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { setIsSelected } from '../../redux/reducers/cartslice/reducer/cartReducer';
 interface Props {
   item: CartData;
 }

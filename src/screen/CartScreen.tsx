@@ -1,11 +1,11 @@
-import {View, StyleSheet, Text} from 'react-native';
+import {View, StyleSheet } from 'react-native';
 import {useSelector} from 'react-redux';
-import {cartItems,} from '../redux/selectors/selectors';
 import MyCartFooter from '../components/cart/MyCartFooter';
 import AllCartRender from '../components/cart/AllCartRender';
 import EmptyList from '../components/cart/EmptyList';
 import {RouteProp, useRoute} from '@react-navigation/native';
 import Header from '../components/Header';
+import { cartItems } from '../redux/reducers/cartslice/selectors/cartSelector';
 
 type RootStackParamList = {
   CartScree: {userId: string; cartScreenHeaderTitle: string};

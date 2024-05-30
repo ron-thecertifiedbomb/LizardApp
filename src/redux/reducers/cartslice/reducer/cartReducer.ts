@@ -1,35 +1,41 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { CartData } from '../../components/cart/type';
+import { CartData } from '../../../../components/cart/type';
+
 
 interface CartState {
-  cart: CartData[];
+  cartItems: CartData[];
   totalPrice: number; 
   isSelected: false,
 }
 
 const initialState: CartState = {
-  cart: [],
+  cartItems: [],
   totalPrice: 0,
   isSelected: false
 };
 
 const cartSlice = createSlice({
-  name: 'mycart',
+  name: 'cart',
   initialState,
   reducers: {
+
     addedToCart(state, action: PayloadAction<CartData>) {
-      const cartInfo = action.payload;
-      const existingItem = state.cart.find(item => item._id === cartInfo._id);
+
+      const cartItem = action.payload;
+
+      const existingItem = state.cartItems.find(item => item._id === cartItem._id);
       if (existingItem) {
         existingItem.quantityOrdered += 1; 
-        existingItem.totalOrderPrice += cartInfo.price; 
+        existingItem.totalOrderPrice += cartItem.price; 
       } else {
-        state.cart.push({ ...cartInfo, quantityOrdered: 1, totalOrderPrice: cartInfo.price, isSelected: false });
+        state.cartItems.push({ ...cartItem, quantityOrdered: 1, totalOrderPrice: cartItem.price, isSelected: false });
       }
+
     },
+
     incrementQuantity(state, action: PayloadAction<string>) {
       const itemId = action.payload;
-      const existingItem = state.cart.find(item => item._id === itemId);
+      const existingItem = state.cartItems.find(item => item._id === itemId);
       if (existingItem) {
         existingItem.quantityOrdered += 1;
         existingItem.totalOrderPrice += existingItem.price;
@@ -37,7 +43,7 @@ const cartSlice = createSlice({
     },
     decrementQuantity(state, action: PayloadAction<string>) {
       const itemId = action.payload;
-      const existingItem = state.cart.find(item => item._id === itemId);
+      const existingItem = state.cartItems.find(item => item._id === itemId);
       if (existingItem && existingItem.quantityOrdered > 1) {
         existingItem.quantityOrdered -= 1;
         existingItem.totalOrderPrice -= existingItem.price;
@@ -45,14 +51,14 @@ const cartSlice = createSlice({
     },
     setIsSelected(state, action: PayloadAction<{ itemId: string; isSelected: boolean }>) {
       const { itemId, isSelected } = action.payload;
-      const existingItem = state.cart.find(item => item._id === itemId);
+      const existingItem = state.cartItems.find(item => item._id === itemId);
       if (existingItem) {
         existingItem.isSelected = isSelected;
       }
     },
     setAllItemsSelected(state, action: PayloadAction<boolean>) {
       const isSelected = action.payload;
-      state.cart.forEach(item => {
+      state.cartItems.forEach(item => {
         item.isSelected = isSelected;
       });
     },

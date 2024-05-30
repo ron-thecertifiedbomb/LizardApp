@@ -9,10 +9,8 @@ import {
 } from 'react-native';
 import {CartData} from './type';
 import {useDispatch} from 'react-redux';
-import {
-  decrementQuantity,
-  incrementQuantity,
-} from '../../redux/reducers/cartReducer';
+import { decrementQuantity, incrementQuantity } from '../../redux/reducers/cartslice/reducer/cartReducer';
+
 
 interface Props {
   item: CartData;

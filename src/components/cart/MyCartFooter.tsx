@@ -1,17 +1,18 @@
 import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {StyleSheet, Text, View} from 'react-native';
-import {selectCartData} from '../../redux/selectors/selectors';
-import {setAllItemsSelected} from '../../redux/reducers/cartReducer';
+import { cartItems } from '../../redux/reducers/cartslice/selectors/cartSelector';
+
 import CheckBox from '@react-native-community/checkbox';
+import { setAllItemsSelected } from '../../redux/reducers/cartslice/reducer/cartReducer';
 
 const MyCartFooter: React.FC = () => {
 
   const dispatch = useDispatch();
 
-  const cartItems = useSelector(selectCartData);
+  const cartData = useSelector(cartItems);
 
-  const totalPrice = cartItems.reduce((total, product) => {
+  const totalPrice = cartData.reduce((total, product) => {
     if (product.isSelected) {
       return total + product.totalOrderPrice;
     }
@@ -19,7 +20,7 @@ const MyCartFooter: React.FC = () => {
   }, 0);
 
   const handleSelectAllChange = () => {
-    const allChecked = cartItems.every(item => item.isSelected);
+    const allChecked = cartData.every(item => item.isSelected);
     dispatch(setAllItemsSelected(!allChecked));
   };
 
@@ -28,7 +29,7 @@ const MyCartFooter: React.FC = () => {
       <CheckBox
         value={
           cartItems
-            ? cartItems.length > 0 && cartItems.every(item => item.isSelected)
+            ? cartItems.length > 0 && cartData.every(item => item.isSelected)
             : false
         }
         onValueChange={handleSelectAllChange}
