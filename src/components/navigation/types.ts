@@ -11,6 +11,7 @@ export type RootStackParamList = {
   CoffeePage: undefined;
   DrawerNavigator: undefined;
   Registration: undefined;
+  RegistrationPage: undefined;
   Model: undefined;
   Login: undefined;
   Edit: undefined;

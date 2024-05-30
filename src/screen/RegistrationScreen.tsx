@@ -1,14 +1,11 @@
 
-import {Text, View } from 'react-native';
-import SignUpForm from '../components/RegistrationForm';
+import Container from '../components/container/Container';
+import RegisterForm from '../components/authentication/registrationform/RegisterForm';
 
 export default function RegistrationScreen() {
-
-
-
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-  <SignUpForm />
-  </View>
+    <Container>
+      <RegisterForm />
+    </Container>
   );
 }

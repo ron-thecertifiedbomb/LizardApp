@@ -93,7 +93,7 @@ const LogInForm = () => {
   };
 
   const handleNavigateToRegistration = () => {
-    navigation.navigate('Registration' as never);
+    navigation.navigate('RegistrationPage' as never);
   };
 
   return (

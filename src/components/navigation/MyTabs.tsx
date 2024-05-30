@@ -28,7 +28,7 @@ export default function MyTabs() {
   const storeScreenHeaderTitle = 'My Store';
   const orderScreenHeaderTitle = 'My Orders';
 
-  logger('isLoggedIn', isLoggedIn);
+  // logger('isLoggedIn', isLoggedIn);
 
   return (
     <Tab.Navigator
