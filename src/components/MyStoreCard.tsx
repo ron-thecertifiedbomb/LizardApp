@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
 import {useDispatch} from 'react-redux';
-import {myCartData} from '../redux/reducers/cartReducer';
+import {addedToCart} from '../redux/reducers/cartReducer';
 import {CartData} from './cart/type';
 import {date, time} from '../utilities/helpers/lib';
 import {NavigationProp, useNavigation} from '@react-navigation/native';
@@ -12,9 +12,10 @@ interface Props {
   item: IProduct;
 }
 
-const MyStoreCard: React.FC<Props> = ({item}) => {
+const StoreCard: React.FC<Props> = ({item}) => {
 
   const dispatch = useDispatch();
+
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
   const handleAddToCart = () => {
@@ -29,8 +30,7 @@ const MyStoreCard: React.FC<Props> = ({item}) => {
       dateAdded: date(),
       timeAdded: time(),
     };
-
-    dispatch(myCartData(newItem));
+    dispatch(addedToCart(newItem));
   };
 
   const handleViewProduct = (productId: string) => {
@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MyStoreCard;
+export default StoreCard;
 function getFormattedDate() {
   throw new Error('Function not implemented.');
 }

@@ -14,7 +14,7 @@ const rootReducer = combineReducers({
   userId: userIdReducer,
   isLoggedIn: isLoggedInReducer,
   users: getUserDataReducer, 
-  allProducts: getProductsReducer,
+  getAllProducts: getProductsReducer,
   isActiveLink: isActiveLinkReducer, 
   updateProduct: updateProductReducer,
   modal: modalReducer, 

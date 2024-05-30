@@ -1,6 +1,6 @@
 import {View, StyleSheet, Text} from 'react-native';
 import {useSelector} from 'react-redux';
-import {selectCartData} from '../redux/selectors/selectors';
+import {cartItems,} from '../redux/selectors/selectors';
 import MyCartFooter from '../components/cart/MyCartFooter';
 import AllCartRender from '../components/cart/AllCartRender';
 import EmptyList from '../components/cart/EmptyList';
@@ -14,9 +14,11 @@ type RootStackParamList = {
 type StoreScreenRouteProp = RouteProp<RootStackParamList>;
 
 const CartScreen: React.FC = () => {
-  const cartData = useSelector(selectCartData);
+
+  const cartData = useSelector(cartItems);
 
   const route = useRoute<StoreScreenRouteProp>();
+  
   const {userId, cartScreenHeaderTitle} = route.params;
 
   console.log(userId)

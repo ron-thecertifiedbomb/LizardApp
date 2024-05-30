@@ -1,5 +1,5 @@
 import {useQuery} from 'react-query';
-import {allProductsData} from '../redux/reducers/getAllProductsReducer';
+import {getAllProducts} from '../redux/reducers/getAllProductsReducer';
 import {useDispatch} from 'react-redux';
 import {IProduct} from '../types/Products/type';
 
@@ -20,11 +20,12 @@ const useGetAllProductsHooks = () => {
   
 
   const {isLoading, isError, data, error, refetch} = useQuery<
+  
     IProduct[],
     Error
   >('data', fetchData, {
     onSuccess: data => {
-      dispatch(allProductsData(data));
+      dispatch(getAllProducts(data));
     },
   });
 

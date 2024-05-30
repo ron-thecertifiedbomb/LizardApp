@@ -1,33 +1,37 @@
 
-// interface specificationItem {
-//   id: string;
-//   value: string;
-// }
-
-interface specifications {
-  _id: string;
-  processor: string;
-  graphics: string;
-  storage: string;
-  resolution: string;
-  maxFrameRate: string;
-  
-}
-
 export interface IProduct {
-  _id: string;
-  name: string;
-  brand: string;
-  price: number;
-  quantity: number;
-  quantityOrdered: number;
-  totalOrderPrice: number;
-  dateAdded: string;
-  isSelected: boolean;
-  category: string;
-  specifications: specifications;
-  includedItems: string[];
-  availableColors: string[];
-  imagelink_portrait: string;
-  imagelink_square: string;
+  _id:                 string;
+  availableColors:     string[];
+  brand:               string;
+  category:            string;
+  imagelink_portrait?: string;
+  imagelink_square?:   string;
+  includedItems:       string[];
+  name:                string;
+  price:               number;
+  quantity:            number;
+  recommended:         boolean;
+  specifications:      Specifications;
 }
+
+
+export interface Specifications {
+  archSupport?:       string;
+  cushioning?:        string;
+  displayTechnology?: string;
+  graphics?:          string;
+  lensMount?:         string;
+  material?:          string;
+  maxFrameRate?:      string;
+  maxISO?:            string;
+  ports?:             string;
+  processor?:         string;
+  resolution?:        string;
+  screenSize?:        string;
+  sensor?:            string;
+  smartTv?:           string;
+  sole?:              string;
+  storage?:           string;
+  videoResolution?:   string;
+  weight?:            string;
+ }

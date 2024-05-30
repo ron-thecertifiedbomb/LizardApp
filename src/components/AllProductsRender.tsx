@@ -1,20 +1,21 @@
 import React from 'react';
 import {View, Text, FlatList, StyleSheet} from 'react-native';
-import MyStoreCard from './MyStoreCard';
 import {IProduct} from '../types/Products/type';
+import StoreCard from './MyStoreCard';
 
 interface Props {
+
   item: IProduct[] | null;
 }
-
 const AllProductsRender: React.FC<Props> = ({item}) => {
+
   return (
     <View style={styles.container}>
       {item ? (
         <FlatList
           data={item}
           keyExtractor={item => item._id}
-          renderItem={({item}) => <MyStoreCard item={item} />}
+          renderItem={({item}) => <StoreCard item={item} />}
           numColumns={2}
           ItemSeparatorComponent={() => <View style={{height: 1, width: 10}} />}
           columnWrapperStyle={{
