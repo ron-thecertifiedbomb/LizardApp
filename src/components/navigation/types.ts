@@ -5,7 +5,7 @@ import {  NativeStackNavigationProp } from '@react-navigation/native-stack';
 export type RootStackParamList = {
   Home: undefined;
   AllProducts: undefined;
-  ProductPage: { productId: string };
+  ProductPage: { productId: string, userId: string};
   EditProductPage: { productId: string };
   Settings: undefined;
   CoffeePage: undefined;

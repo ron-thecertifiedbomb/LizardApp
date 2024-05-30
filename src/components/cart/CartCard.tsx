@@ -19,8 +19,10 @@ const CartCard: React.FC<Props> = ({item}) => {
   const dispatch = useDispatch();
 
   const handleCheckboxChange = (newValue: boolean) => {
-    dispatch(setIsSelected({itemId: item._id, isSelected: newValue}));
+    dispatch(setIsSelected({itemId: item.productId, isSelected: newValue}));
   };
+
+  
 
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 

@@ -13,7 +13,7 @@ const AllCartRender: React.FC<Props> = ({item}) => {
       {item ? (
         <FlatList
           data={item}
-          keyExtractor={item => item._id}
+          keyExtractor={item => item.productId}
           renderItem={({item}) => <CartCard item={item} />}
         />
       ) : (

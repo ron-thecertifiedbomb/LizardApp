@@ -1,5 +1,7 @@
-export interface CartData {
-  _id: string;
+export interface  CartData {
+  cartId: string;
+  ownerId: string | null;
+  productId: string;
   name: string;
   price: number;
   quantity: number;
@@ -9,3 +11,6 @@ export interface CartData {
   timeAdded: string;
   isSelected: boolean;
 }
+
+
+

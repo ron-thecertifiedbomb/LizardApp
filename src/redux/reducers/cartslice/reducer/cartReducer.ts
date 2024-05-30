@@ -2,13 +2,16 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { CartData } from '../../../../components/cart/type';
 
 
+
 interface CartState {
+
   cartItems: CartData[];
   totalPrice: number; 
   isSelected: false,
 }
 
 const initialState: CartState = {
+
   cartItems: [],
   totalPrice: 0,
   isSelected: false

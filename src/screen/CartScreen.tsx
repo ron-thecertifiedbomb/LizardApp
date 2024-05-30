@@ -21,7 +21,7 @@ const CartScreen: React.FC = () => {
   
   const {userId, cartScreenHeaderTitle} = route.params;
 
-  console.log(userId)
+  console.log(cartData)
 
   return (
     <View style={styles.container}>

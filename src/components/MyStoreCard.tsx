@@ -1,25 +1,45 @@
 import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {date, time} from '../utilities/helpers/lib';
-import {NavigationProp, useNavigation} from '@react-navigation/native';
-import {RootStackParamList} from './navigation/types';
+import {NavigationProp, RouteProp, useNavigation, useRoute} from '@react-navigation/native';
 import {IProduct} from '../types/Products/type';
-import { addedToCart } from '../redux/reducers/cartslice/reducer/cartReducer';
+import {addedToCart} from '../redux/reducers/cartslice/reducer/cartReducer';
+
+import logger from '../utilities/logger/logger';
+import { RootStackParamList } from './navigation/types';
+import { selectUserId } from '../redux/selectors/selectors';
 
 interface Props {
   item: IProduct;
 }
 
+
+
+type StoreScreenRouteProp = RouteProp<RootStackParamList>;
+
+
 const StoreCard: React.FC<Props> = ({item}) => {
 
+  const route = useRoute<StoreScreenRouteProp>();
+  
+  const userId = useSelector(selectUserId)
+
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+
   const dispatch = useDispatch();
+  
+
+
+  const id = userId;
+
 
   const handleAddToCart = () => {
 
-    const newItem = {
-      _id: item._id,
+    const itemToCartList = {
+      cartId:  id,
+      ownerId: id,
+      productId: item._id,
       name: item.name,
       price: item.price,
       quantity: item.quantity,
@@ -29,14 +49,13 @@ const StoreCard: React.FC<Props> = ({item}) => {
       dateAdded: date(),
       timeAdded: time(),
     };
-
-    dispatch(addedToCart(newItem));
+logger('data', itemToCartList )
+    dispatch(addedToCart(itemToCartList));
   };
 
   const handleViewProduct = (productId: string) => {
     navigation.navigate('ProductPage', {productId: productId});
   };
-
   return (
     <TouchableOpacity onPress={() => handleViewProduct(item._id)}>
       <View style={styles.card}>
@@ -109,11 +128,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#007BFF',
     padding: 2,
     borderRadius: 8,
-    width: '40%', 
+    width: '40%',
   },
 
   buttonText: {
-    color: '#fff', 
+    color: '#fff',
     fontWeight: 'bold',
     textAlign: 'center',
     fontSize: 8,
@@ -129,4 +148,3 @@ export default StoreCard;
 function getFormattedDate() {
   throw new Error('Function not implemented.');
 }
-

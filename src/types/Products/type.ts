@@ -1,6 +1,7 @@
 
 export interface IProduct {
   _id:                 string;
+  ownerId: string | null;
   availableColors:     string[];
   brand:               string;
   category:            string;
