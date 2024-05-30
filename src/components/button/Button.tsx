@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: 'white',
-    fontSize: 18,
+    fontSize: 14,
     fontFamily: fontStyles.Lato_Bold,
     
   },

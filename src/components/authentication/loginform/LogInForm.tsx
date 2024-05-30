@@ -9,7 +9,7 @@ import { setIsLoggedIn } from '../../../redux/reducers/isLoggedInReducer';
 import { setUserId } from '../../../redux/reducers/userIdReducer';
 import FormTextInput from '../../formtextinput/FormTextInput';
 import Button from '../../button/Button';
-import logger from '../../../utilities/logger/logger';
+
 
 type FormData = {
   username: string;

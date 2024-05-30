@@ -19,14 +19,13 @@ const AppNavigator: React.FC = () => {
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Splash">
       <Stack.Screen name="Splash"  component={SplashScreen} options={{ headerShown: false }}/>
-        {/* <Stack.Screen name="Login" component={LogInScreen} /> */}
         <Stack.Screen
           name="DrawerNavigator"
           component={DrawerNavigator}
           options={{ headerShown: false }}
         />
         <Stack.Screen name="ProductPage" component={ProductDetailsScreen}  />
-        <Stack.Screen name="RegistrationPage" component={RegistrationScreen} />
+        <Stack.Screen name="RegistrationPage" component={RegistrationScreen}  options={{ headerShown: false }}/>
         <Stack.Screen name="Login" component={LogInScreen}    options={{ headerShown: false }}/>
         <Stack.Screen name="Settings" component={SettingsScreen} />
         <Stack.Screen name="Edit" component={EditProductScreen} />
