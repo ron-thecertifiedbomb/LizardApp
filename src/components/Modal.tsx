@@ -28,7 +28,6 @@ const CustomModal: React.FC = () => {
     dispatch(setToClose());
   };
 
-  logger('modalState')
 
   return (
     <Modal

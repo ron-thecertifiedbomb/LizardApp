@@ -46,7 +46,7 @@ const RegisterForm = () => {
       return responseData;
     },
     {
-      onSuccess: (response) => {
+      onSuccess: response => {
         reset();
         navigation.navigate('Login' as never);
         Alert.alert('Registration Success', response.message);
@@ -61,23 +61,17 @@ const RegisterForm = () => {
   const onSubmit: SubmitHandler<FormData> = data => {
     const {firstname, lastname, mobile, username, password, email} = data;
 
-    const dateCreated = new Date().toISOString();
-    const timeCreated = new Date().toLocaleTimeString();
-
     const formData: FormData = {
-
       firstname,
       lastname,
       username,
       mobile,
-      gender,
-      password,
       email,
+      password,
+      gender,
       birthday: dob,
-      dateCreated,
-      timeCreated,
     };
-
+    logger('Data to post', formData);
     mutation.mutate(formData);
   };
 
@@ -97,7 +91,7 @@ const RegisterForm = () => {
 
       <FormTextInput
         control={control}
-        name=" lastname"
+        name="lastname"
         label="Lastname"
         rules={{required: 'Lastname is required'}}
         errors={errors}

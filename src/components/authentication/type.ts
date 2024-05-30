@@ -7,6 +7,5 @@ export interface FormData {
     password: string;
     gender: 'male' | 'female';
     birthday: Date;
-    dateCreated: string;
-    timeCreated: string;
+  
   }
