@@ -2371,6 +2371,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@react-native-async-storage/async-storage@npm:^1.23.1":
+  version: 1.23.1
+  resolution: "@react-native-async-storage/async-storage@npm:1.23.1"
+  dependencies:
+    merge-options: ^3.0.4
+  peerDependencies:
+    react-native: ^0.0.0-0 || >=0.60 <1.0
+  checksum: 7096546ed4a5faf1f6e0425e2e15713575f1a7493a04524da386ff35c3844b57b8fd20544fad4157b4a61e048b10235f2f06124f262da5b327edc74fbc31e02b
+  languageName: node
+  linkType: hard
+
 "@react-native-community/checkbox@npm:^0.5.17":
   version: 0.5.17
   resolution: "@react-native-community/checkbox@npm:0.5.17"
@@ -3487,6 +3498,7 @@ __metadata:
     "@fortawesome/fontawesome-svg-core": ^6.5.2
     "@fortawesome/free-solid-svg-icons": ^6.5.2
     "@fortawesome/react-native-fontawesome": ^0.3.1
+    "@react-native-async-storage/async-storage": ^1.23.1
     "@react-native-community/checkbox": ^0.5.17
     "@react-native-community/datetimepicker": ^8.0.1
     "@react-native-community/masked-view": ^0.1.11
@@ -3517,7 +3529,7 @@ __metadata:
     react-native-gesture-handler: ^2.16.2
     react-native-paper: ^5.12.3
     react-native-reanimated: ^3.11.0
-    react-native-safe-area-context: ^4.10.1
+    react-native-safe-area-context: ^4.10.3
     react-native-screens: ^3.31.1
     react-native-splash-screen: ^3.3.0
     react-native-svg: ^15.3.0
@@ -3527,6 +3539,7 @@ __metadata:
     react-test-renderer: 18.2.0
     reactotron-react-js: ^3.3.14
     reactotron-react-native: ^5.1.7
+    reactotron-redux: ^3.1.9
     redux: ^5.0.1
     redux-logger: ^3.0.6
     redux-observable: ^3.0.0-rc.2
@@ -4924,9 +4937,9 @@ __metadata:
   linkType: hard
 
 "electron-to-chromium@npm:^1.4.668":
-  version: 1.4.785
-  resolution: "electron-to-chromium@npm:1.4.785"
-  checksum: 4b983ba9274be7706663c7892e602e968aa3c6e2e8ae65e5a243901a39ec6838e8ba8ac6c8f001e150a690287343a584cc82105175704559894c37b4771e2090
+  version: 1.4.787
+  resolution: "electron-to-chromium@npm:1.4.787"
+  checksum: 0cfac6acabd8d779a4f1a3a47b91bfddf0275f2448a800830953caa46d3ccdbf548054f86c97196de147dd7abdbc2491e2628364f353d1852d9045502aa87f0f
   languageName: node
   linkType: hard
 
@@ -6506,6 +6519,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"is-plain-obj@npm:^2.1.0":
+  version: 2.1.0
+  resolution: "is-plain-obj@npm:2.1.0"
+  checksum: cec9100678b0a9fe0248a81743041ed990c2d4c99f893d935545cfbc42876cbe86d207f3b895700c690ad2fa520e568c44afc1605044b535a7820c1d40e38daa
+  languageName: node
+  linkType: hard
+
 "is-plain-object@npm:^2.0.4":
   version: 2.0.4
   resolution: "is-plain-object@npm:2.0.4"
@@ -7630,6 +7650,15 @@ __metadata:
   version: 1.5.0
   resolution: "memory-pager@npm:1.5.0"
   checksum: d1a2e684583ef55c61cd3a49101da645b11ad57014dfc565e0b43baa9004b743f7e4ab81493d8fff2ab24e9950987cc3209c94bcc4fc8d7e30a475489a1f15e9
+  languageName: node
+  linkType: hard
+
+"merge-options@npm:^3.0.4":
+  version: 3.0.4
+  resolution: "merge-options@npm:3.0.4"
+  dependencies:
+    is-plain-obj: ^2.1.0
+  checksum: d86ddb3dd6e85d558dbf25dc944f3527b6bacb944db3fdda6e84a3f59c4e4b85231095f58b835758b9a57708342dee0f8de0dffa352974a48221487fe9f4584f
   languageName: node
   linkType: hard
 
@@ -8996,13 +9025,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-safe-area-context@npm:^4.10.1":
-  version: 4.10.1
-  resolution: "react-native-safe-area-context@npm:4.10.1"
+"react-native-safe-area-context@npm:^4.10.3":
+  version: 4.10.3
+  resolution: "react-native-safe-area-context@npm:4.10.3"
   peerDependencies:
     react: "*"
     react-native: "*"
-  checksum: a0f31a66f0aba7050cfdc34512349f49dd65349d53407d461196fa70010f65aca7310212d5c7c47078745db6e02975a4d97881d0340160d40e0feb5a4a5d9de2
+  checksum: df7292fbc7f494095b150d4df1a6842e2f594ba13afb717444a720bc8fe5bc127a9d1ec3080ef4ef0606c00ef17813924ccf7d97f467d0245c76a86c380a8668
   languageName: node
   linkType: hard
 
@@ -9226,6 +9255,16 @@ __metadata:
     react-native-flipper:
       optional: true
   checksum: 6cdfcf45592dbfd8ca3f51fa59da666dc7b5b91c34bdd6dbd703ae75d5cd86df275250cc9a784c02077e1d05952041f76940384d926372a1cf3d49f6134a59cd
+  languageName: node
+  linkType: hard
+
+"reactotron-redux@npm:^3.1.9":
+  version: 3.1.9
+  resolution: "reactotron-redux@npm:3.1.9"
+  peerDependencies:
+    reactotron-core-client: "*"
+    redux: ">=4.0.0"
+  checksum: 6425560965d9ec0d32ce6c38cb368e5bd5d14f7fa66fabd5b447b5f9d9a62dd04eecd4d237bca4a2ed786f3f8a276b55efd8476d491df9cc18c0cec4c6d5b521
   languageName: node
   linkType: hard
 

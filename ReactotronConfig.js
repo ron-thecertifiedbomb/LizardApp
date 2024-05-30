@@ -1,11 +1,14 @@
 import Reactotron from 'reactotron-react-native';
-import {name} from './app.json'
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { reactotronRedux } from 'reactotron-redux';
 
 Reactotron
-  .configure({ name: name })
-  .useReactNative()
-  .connect();
+  .setAsyncStorageHandler(AsyncStorage)
+  .configure({ name: 'Lizard Interactive Mobile App' }) 
+  .useReactNative() 
+  .use(reactotronRedux()) 
+  .connect(); 
 
-console.tron = Reactotron; // Make it globally available
-  
+console.tron = Reactotron;
+
+export default Reactotron;
