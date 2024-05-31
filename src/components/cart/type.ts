@@ -1,6 +1,16 @@
+export interface RootObject {
+  CartItems: any[];
+  _id:       string;
+  email:     string;
+  firtname:  string;
+  lastname:  string;
+  ownerId:   string;
+ }
+
 export interface  CartData {
-  cartId: string;
-  ownerId: string | null;
+  _id?: string;
+  ownerId: string;
+  cartId?: string;
   productId: string;
   name: string;
   price: number;

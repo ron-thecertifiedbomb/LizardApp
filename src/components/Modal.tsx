@@ -1,11 +1,12 @@
 import React from 'react';
 import { Modal, View, Button, StyleSheet } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectModalState } from '../redux/selectors/selectors';
+
 import {  setToClose } from '../redux/reducers/modalslice/reducer/modalReducer'; // Assuming the action creators are defined here
 import logger from '../utilities/logger/logger';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import useGetAllProductsHooks from '../hooks/useGetAllProductsHook';
+import { selectModalState } from '../redux/reducers/modalslice/selectors/modalSeletor';
 
 
 
@@ -33,7 +34,7 @@ const CustomModal: React.FC = () => {
     <Modal
       animationType="slide"
       transparent={true}
-      visible={modalState.isOpen}
+      visible={modalState}
       onRequestClose={closeModal}>
       <View style={styles.modalContainer}>
         <View style={styles.modalContent}>

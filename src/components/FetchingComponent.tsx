@@ -1,65 +1,60 @@
 import React, { useEffect } from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { StackNavigationProp } from '@react-navigation/stack'; // Import StackNavigationProp
-import { RootStackParamList } from './navigation/types'; // Import types
-import useGetAllProductsHooks from '../hooks/useGetAllProductsHook';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { RootStackParamList } from './navigation/types';
 import Logo from './Logo/Logo';
+import useGetUserInfoHook from '../hooks/useGetUserInfoHook';
 
 const FetchingComponent = () => {
+  const navigation = useNavigation<StackNavigationProp<RootStackParamList, 'DrawerNavigator'>>();
 
-  const navigation = useNavigation<StackNavigationProp<RootStackParamList, 'DrawerNavigator'>>(); // Use StackNavigationProp
-  
-  const { isLoading, isError, data, error, refetch } = useGetAllProductsHooks();
-  
+  const { allProductsData, allProductsRefetch, cartListData, cartListRefetch, isLoading } = useGetUserInfoHook();
 
-  useEffect(() => {
 
+
+
+console.log('Cart List Data', cartListData )
+
+
+  useEffect(() => { 
     const fetchData = async () => {
       try {
-        await refetch();
+        await allProductsRefetch();
+        await cartListRefetch();
       } catch (error) {
         console.error('Error while fetching data:', error);
       }
     };
 
     fetchData();
-  }, [refetch]);
-
-
-
-
-
-  useEffect(() => {
-    
-    if (!isLoading && data) {
-      navigation.replace('DrawerNavigator');
-    }
-  }, [isLoading, data, navigation]);
+  }, [allProductsRefetch, cartListRefetch]);
 
   const handleRefresh = async () => {
     try {
-      await refetch();
+      await allProductsRefetch();
+      await cartListRefetch();
     } catch (error) {
       console.error('Error while refreshing:', error);
     }
   };
 
-  if (isLoading) {
-    // return <LoadingIndicator />;
+  useEffect(() => {
+    if (!isLoading && allProductsData && cartListData) {
+      navigation.replace('DrawerNavigator');
+    }
+  }, [isLoading, allProductsData, cartListData, navigation]);
+
+  if (!allProductsData || !cartListData) {
     return <Logo />;
   }
 
-  if (isError) {
-    return (
-      <View style={styles.centered}>
-        <Text>Error: {error?.message}</Text>
-        <Button title="Retry" onPress={handleRefresh} />
-      </View>
-    );
-  }
-
-  return null;
+  return (
+    <View style={styles.centered}>
+   
+      <Button title="Refresh" onPress={handleRefresh} />
+    </View>
+  );
 };
 
 const styles = StyleSheet.create({

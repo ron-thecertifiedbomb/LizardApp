@@ -8,7 +8,7 @@ import updateProductReducer from './updateProductReducer';
 import getAllProductsReducer from './productslice/reducer/getAllProductsReducer';
 import modalReducer from './modalslice/reducer/modalReducer'; 
 import cartSliceReducer from './cartslice/reducer/cartReducer'
-
+import getCartListReducer from './cartslice/reducer/userCartListReducer'
 
 const rootReducer = combineReducers({
 
@@ -20,6 +20,7 @@ const rootReducer = combineReducers({
   updateProduct: updateProductReducer,
   modal: modalReducer, 
   cart: cartSliceReducer,
+  getCartList: getCartListReducer
  
 
 });

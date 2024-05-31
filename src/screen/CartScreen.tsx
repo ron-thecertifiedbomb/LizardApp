@@ -5,7 +5,7 @@ import AllCartRender from '../components/cart/AllCartRender';
 import EmptyList from '../components/cart/EmptyList';
 import {RouteProp, useRoute} from '@react-navigation/native';
 import Header from '../components/Header';
-import { cartItems } from '../redux/reducers/cartslice/selectors/cartSelector';
+import { cartItems, cartList } from '../redux/reducers/cartslice/selectors/cartSelector';
 
 type RootStackParamList = {
   CartScree: {userId: string; cartScreenHeaderTitle: string};
@@ -17,11 +17,15 @@ const CartScreen: React.FC = () => {
 
   const cartData = useSelector(cartItems);
 
+  const userCartInfo = useSelector(cartList)
+
   const route = useRoute<StoreScreenRouteProp>();
   
   const {userId, cartScreenHeaderTitle} = route.params;
 
-  console.log(cartData)
+  // console.log(cartData)
+
+  console.log('User Cart List Info', userId)
 
   return (
     <View style={styles.container}>
