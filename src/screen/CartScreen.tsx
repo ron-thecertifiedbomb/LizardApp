@@ -5,7 +5,8 @@ import AllCartRender from '../components/cart/AllCartRender';
 import EmptyList from '../components/cart/EmptyList';
 import {RouteProp, useRoute} from '@react-navigation/native';
 import Header from '../components/Header';
-import { cartItems, cartList } from '../redux/reducers/cartslice/selectors/cartSelector';
+
+import useGetCartListHook from '../hooks/useGetCartListHook';
 
 type RootStackParamList = {
   CartScree: {userId: string; cartScreenHeaderTitle: string};
@@ -15,26 +16,25 @@ type StoreScreenRouteProp = RouteProp<RootStackParamList>;
 
 const CartScreen: React.FC = () => {
 
-  const cartData = useSelector(cartItems);
-
-  const userCartInfo = useSelector(cartList)
-
   const route = useRoute<StoreScreenRouteProp>();
-  
+
   const {userId, cartScreenHeaderTitle} = route.params;
+
+  const { cartList } = useGetCartListHook(userId)
+
 
   // console.log(cartData)
 
-  console.log('User Cart List Info', userId)
+  console.log('User Cart List Info fromuse GetCartListHook ', cartList)
 
   return (
     <View style={styles.container}>
       <Header title={cartScreenHeaderTitle} />
-      {cartData && cartData.length === 0 ? (
+      {cartList && cartList.length === 0 ? (
         <EmptyList />
       ) : (
         <>
-          <AllCartRender item={cartData ?? null} />
+          <AllCartRender item={cartList ?? null} />
           <MyCartFooter />
         </>
       )}

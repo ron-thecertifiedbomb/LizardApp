@@ -1,18 +1,15 @@
 import {useQuery} from 'react-query';
 import {useDispatch, useSelector} from 'react-redux';
-import {selectUserId} from '../redux/reducers/userslice/selectors/selector';
 import {CartData} from '../components/cart/type';
 import {getAllCartItems} from '../redux/reducers/cartslice/reducer/userCartListReducer';
 
 const useGetCartListHook = (ownerId: string) => {
   
-  console.log('UserId from fetching component', ownerId);
-
   const dispatch = useDispatch();
 
   const fetchData = async () => {
 
-    const response = await fetch(
+    const response = await fetch( 
       `https://nextjs-server-rho.vercel.app/api/products/cart/getallcartitems/route?_id=${ownerId}`,
     );
     if (!response.ok) {

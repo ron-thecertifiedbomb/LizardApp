@@ -4,6 +4,7 @@ import {IProduct} from '../types/products/type';
 import {getAllProducts} from '../redux/reducers/productslice/reducer/getAllProductsReducer';
 
 const useGetAllProductsHooks = () => {
+  
   const dispatch = useDispatch();
 
   const fetchData = async () => {
