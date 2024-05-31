@@ -16,6 +16,7 @@ import {userIsLoggedIn} from '../../../redux/reducers/userslice/selectors/select
 
 const LogInForm = () => {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
 
   const {
     control,
@@ -24,9 +25,6 @@ const LogInForm = () => {
     formState: {errors},
   } = useForm<FormLogInData>();
 
-  const isLoggedIn = useSelector(userIsLoggedIn);
-
-  const dispatch = useDispatch();
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
@@ -48,13 +46,14 @@ const LogInForm = () => {
         throw new Error('Failed to authenticate');
       }
 
-      return response.json();
+      const result = await response.json();
+      dispatch(setIsLoggedIn(true));
+      dispatch(setUserId(result.userId));
+
+      return result;
     },
     {
-      onSuccess: data => {
-        const userId = data.userId;
-        dispatch(setIsLoggedIn(true));
-        dispatch(setUserId(userId));
+      onSuccess: () => {
         Alert.alert('Success', 'Authentication successful', [
           {
             text: 'OK',
@@ -87,16 +86,29 @@ const LogInForm = () => {
   );
 
   const onSubmit = (data: FormLogInData) => {
-
-    const time = new Date().toISOString();
+    const time = new Date().toLocaleString('en-US', {
+      timeZone: 'Asia/Manila',
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: true, // Use true for 12-hour format, false for 24-hour format
+    });
+    
+    console.log(time);
+    
     const {username, password} = data;
 
     const payLoad: FormLogInData = {
       username,
       password,
       time,
-      isLoggedIn,
+      isLoggedIn: true,
     };
+
+    console.log('PayLoad', payLoad);
 
     mutation.mutate(payLoad);
   };
