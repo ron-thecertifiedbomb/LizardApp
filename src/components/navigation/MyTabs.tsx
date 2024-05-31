@@ -12,16 +12,13 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 import {useSelector} from 'react-redux';
-import {
-  selectIsLoggedIn,
-  selectUserId,
-} from '../../redux/selectors/users/selector';
-import logger from '../../utilities/logger/logger';
+import { selectUserId, userIsLoggedIn } from '../../redux/reducers/userslice/selectors/selector';
+
 
 export default function MyTabs() {
   const Tab = createBottomTabNavigator();
 
-  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const isLoggedIn = useSelector(userIsLoggedIn);
   const userId = useSelector(selectUserId);
 
   const cartScreenHeaderTitle = 'My Cart';

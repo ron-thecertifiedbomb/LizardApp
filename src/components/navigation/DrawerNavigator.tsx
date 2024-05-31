@@ -4,14 +4,14 @@ import {useSelector} from 'react-redux';
 import MyTabs from './MyTabs';
 import CartScreen from '../../screen/CartScreen';
 import OrdersScreen from '../../screen/OrdersScreen';
-import {selectIsLoggedIn} from '../../redux/selectors/users/selector';
+import {userIsLoggedIn} from '../../redux/reducers/userslice/selectors/selector';
 
 
 const Drawer = createDrawerNavigator();
 
 const DrawerNavigator = () => {
 
-  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const isLoggedIn = useSelector(userIsLoggedIn);
 
   const cartScreenHeaderTitle = 'My Cart';
   const storeScreenHeaderTitle = 'My Store';
