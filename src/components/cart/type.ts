@@ -10,6 +10,7 @@ export interface RootObject {
 export interface  CartData {
   _id?: string;
   ownerId: string;
+  orderId: string;
   cartId?: string;
   productId: string;
   name: string;

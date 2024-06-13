@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
-import {date, time} from '../utilities/helpers/lib';
+import {date, generateCustomOrderId, time} from '../utilities/helpers/lib';
 import {
   NavigationProp,
   RouteProp,
@@ -29,7 +29,9 @@ const StoreCard: React.FC<Props> = ({item}) => {
 
   const params = route.params;
 
-  console.log('UserID My Store Card', params.userId)
+  const userId = params.userId
+
+  console.log('UserID My Store Card', userId)
 
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
@@ -38,7 +40,8 @@ const StoreCard: React.FC<Props> = ({item}) => {
   const handleAddToCart = () => {
 
     const payload: CartData = {
-      ownerId: params.userId,
+      ownerId: userId,
+      orderId: generateCustomOrderId(userId, item._id),
       productId: item._id,
       name: item.name,
       price: item.price,
