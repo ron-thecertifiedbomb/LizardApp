@@ -56,7 +56,7 @@ const StoreCard: React.FC<Props> = ({item}) => {
           <Text style={styles.titleText}>{item.name}</Text>
           <Text style={styles.priceText}>Price {item.price}</Text>
           <View style={styles.quantityRow}>
-            <Text style={styles.quantityText}>Quantity: {item.quantity}</Text>
+            <Text style={styles.quantityText}>Stocks: {item.quantity}</Text>
             <TouchableOpacity
               style={styles.button}
               onPress={() => handleAddToCart()}>
