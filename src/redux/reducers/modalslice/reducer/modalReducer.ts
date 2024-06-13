@@ -1,28 +1,27 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface modalState {
-    isOpen: boolean;
-    IsClose: boolean;
+  modalState: boolean;
+  payloadText: string | null; // Payload text for loading or success message
 }
 
 const initialState: modalState = {
-  isOpen: false,
-  IsClose: true,
+  modalState: false,
+  payloadText: null,
 };
-
 
 const modalSlice = createSlice({
   name: 'modalProvider',
   initialState,
   reducers: {
-    setToOpen(state) {
-        state.isOpen = true;
-        
-      },
-      setToClose(state) {
-        state.isOpen = false;
-     
-      },
+    setToOpen(state, action: PayloadAction<string | null>) {
+      state.modalState = true;
+      state.payloadText = action.payload; // Set payload text
+    },
+    setToClose(state) {
+      state.modalState = false;
+      state.payloadText = null; // Reset payload text when closing
+    },
   },
 });
 

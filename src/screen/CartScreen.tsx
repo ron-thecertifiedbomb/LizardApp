@@ -9,6 +9,7 @@ import {cartListItems} from '../redux/reducers/cartslice/selectors/cartSelector'
 
 import useGetCartListHook from '../hooks/useGetCartListHook';
 import logger from '../utilities/logger/logger';
+import CustomModal from '../components/Modal';
 
 type RootStackParamList = {
   CartScreen: {userId: string; cartScreenHeaderTitle: string};
@@ -23,7 +24,7 @@ const CartScreen: React.FC = () => {
 
   const cartItems = useSelector(cartListItems);
 
-  logger('Cart List from APO listener', cartItems);
+  logger('Cart List from API listener', cartItems);
 
   return (
     <View style={styles.container}>
@@ -34,6 +35,7 @@ const CartScreen: React.FC = () => {
         <>
           <AllCartRender item={cartItems} />
           <MyCartFooter />
+          <CustomModal />
         </>
       )}
     </View>

@@ -10,6 +10,7 @@ import ProductDetailsScreen from '../../screen/ProductDetailsScreen';
 import EditProductScreen from '../../screen/EditProductScreen';
 import SplashScreen from '../../screen/SplashScreen';
 
+
 export type Props = NativeStackScreenProps<RootStackParamList>;
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -18,18 +19,19 @@ const AppNavigator: React.FC = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Splash">
-      <Stack.Screen name="Splash"  component={SplashScreen} options={{ headerShown: false }}/>
+        <Stack.Screen name="Splash" component={SplashScreen} options={{ headerShown: false }} />
         <Stack.Screen
           name="DrawerNavigator"
           component={DrawerNavigator}
           options={{ headerShown: false }}
         />
-        <Stack.Screen name="ProductPage" component={ProductDetailsScreen}  />
-        <Stack.Screen name="RegistrationPage" component={RegistrationScreen}  options={{ headerShown: false }}/>
-        <Stack.Screen name="Login" component={LogInScreen}    options={{ headerShown: false }}/>
+        <Stack.Screen name="ProductPage" component={ProductDetailsScreen} />
+        <Stack.Screen name="RegistrationPage" component={RegistrationScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="Login" component={LogInScreen} options={{ headerShown: false }} />
         <Stack.Screen name="Settings" component={SettingsScreen} />
         <Stack.Screen name="Edit" component={EditProductScreen} />
-    
+        {/* Include your modal as a screen */}
+       
       </Stack.Navigator>
     </NavigationContainer>
   );

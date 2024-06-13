@@ -18,7 +18,7 @@ const rootReducer = combineReducers({
   products: getAllProductsReducer,
   isActiveLink: isActiveLinkReducer, 
   updateProduct: updateProductReducer,
-  modal: modalReducer, 
+  modalProvider: modalReducer, 
   cart: cartSliceReducer,
   userCartItems: getCartListReducer
  

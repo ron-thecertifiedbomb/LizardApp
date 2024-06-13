@@ -1,46 +1,29 @@
 import React from 'react';
-import { Modal, View, Button, StyleSheet } from 'react-native';
+import { Modal, View, StyleSheet, ActivityIndicator, Text } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
+import { modalTitle, selectModalState } from '../redux/reducers/modalslice/selectors/modalSelector';
+import { setToClose } from '../redux/reducers/modalslice/reducer/modalReducer';
 
-import {  setToClose } from '../redux/reducers/modalslice/reducer/modalReducer'; // Assuming the action creators are defined here
-import logger from '../utilities/logger/logger';
-import { NavigationProp, useNavigation } from '@react-navigation/native';
-import useGetAllProductsHooks from '../hooks/useGetAllProductsHook';
-import { selectModalState } from '../redux/reducers/modalslice/selectors/modalSeletor';
-
-
-
-
-export type RootTabParamList = {
-  AllProducts: undefined;
-  
-};
 const CustomModal: React.FC = () => {
-  
-  const {isLoading, isError, data, error, refetch} = useGetAllProductsHooks();
-  const navigation = useNavigation<NavigationProp<RootTabParamList>>();
-
-  const dispatch = useDispatch();
   const modalState = useSelector(selectModalState);
+  const title = useSelector(modalTitle);
+  const dispatch = useDispatch();
 
   const closeModal = () => {
-    refetch()
-    navigation.goBack();
     dispatch(setToClose());
   };
 
-
   return (
     <Modal
-      animationType="slide"
+      animationType="fade"
       transparent={true}
       visible={modalState}
       onRequestClose={closeModal}>
       <View style={styles.modalContainer}>
-        <View style={styles.modalContent}>
-         
-          <Button title="Close" onPress={closeModal} />
-        </View>
+          {title === 'Loading' && <ActivityIndicator size="large" color="white" />}
+          {title !== 'Loading' && <View style={styles.modalContent}>
+      <Text style={styles.text}>{title}</Text>
+        </View>}
       </View>
     </Modal>
   );
@@ -54,10 +37,19 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
   modalContent: {
-    backgroundColor: 'white',
+    backgroundColor: 'black',
     padding: 20,
     borderRadius: 10,
-},
+    width: 250,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  text: {
+   
+    color: 'white',
+  
+  },
 });
 
 export default CustomModal;
