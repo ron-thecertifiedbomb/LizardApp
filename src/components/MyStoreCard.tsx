@@ -11,42 +11,30 @@ import {
 import {IProduct} from '../types/products/type';
 import {addedToCart} from '../redux/reducers/cartslice/reducer/cartReducer';
 import {CartData} from './cart/type';
-import { RootStackParamList } from './navigation/types';
+import {RootStackParamList} from './navigation/types';
+import {selectUserId} from '../redux/reducers/userslice/selectors/selector';
 
 interface Props {
   item: IProduct;
 }
 
-type ScreenStackParamList = {
-  StoreScreen: {userId: string; storeScreenHeaderTitle: string};
-};
-
-type StoreScreenRouteProp = RouteProp<ScreenStackParamList>;
-
 const StoreCard: React.FC<Props> = ({item}) => {
+  const userID = useSelector(selectUserId);
 
-  const route = useRoute<StoreScreenRouteProp>();
-
-  const params = route.params;
-
-  const userId = params.userId
-
-  console.log('UserID My Store Card', userId)
+  console.log('UserID My Store Card Component', userID);
 
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
   const dispatch = useDispatch();
 
   const handleAddToCart = () => {
-
     const payload: CartData = {
-      ownerId: userId,
-      orderId: generateCustomOrderId(userId, item._id),
+      ownerId: userID,
+      orderId: generateCustomOrderId(userID, item._id),
       productId: item._id,
       name: item.name,
       price: item.price,
       quantity: item.quantity,
-      totalOrderPrice: item.price,
       quantityOrdered: 1,
       isSelected: false,
       dateAdded: new Date().toLocaleDateString(),

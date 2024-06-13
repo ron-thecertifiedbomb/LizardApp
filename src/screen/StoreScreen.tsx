@@ -18,9 +18,9 @@ const StoreScreen: React.FC =() => {
 
   const route = useRoute<StoreScreenRouteProp>();
 
-  const {userId, storeScreenHeaderTitle} = route.params;
+  const {storeScreenHeaderTitle} = route.params;
 
-  console.log('UserID Store Screen', userId)
+
 
   return (
 

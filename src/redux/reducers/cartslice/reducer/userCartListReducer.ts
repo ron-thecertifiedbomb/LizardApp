@@ -11,7 +11,7 @@ const initialState: CartListDataState = {
 };
 
 const getCartListReducer = createSlice({
-  name: 'cartlist',
+  name: 'cartListItems',
   initialState,
   reducers: {
     getAllCartItems(state, action: PayloadAction<CartData[]>) {

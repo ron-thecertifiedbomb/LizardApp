@@ -7,33 +7,33 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from 'react-native';
-import {CartData} from './type';
+import {CartData, CartItem} from './type';
 import {useDispatch} from 'react-redux';
 import { decrementQuantity, incrementQuantity } from '../../redux/reducers/cartslice/reducer/cartReducer';
 
 
 interface Props {
-  item: CartData;
+  item: CartItem;
 }
 
 const CartQuantity: React.FC<Props> = ({item}) => {
   const dispatch = useDispatch();
 
   const handleIncrement = () => {
-    if (item.quantityOrdered < item.quantity) {
-      dispatch(incrementQuantity(item._id));
+    if (item.quantityOrdered < item.quantityOrdered) {
+      dispatch(incrementQuantity(item.productId));
     }
   };
 
   const handleDecrement = () => {
     if (item.quantityOrdered > 1) {
-      dispatch(decrementQuantity(item._id));
+      dispatch(decrementQuantity(item.productId));
     }
   };
 
   const handleQuantityChange = (text: string) => {
     const value = parseInt(text);
-    if (!isNaN(value) && value >= 1 && value <= item.quantity) {
+    if (!isNaN(value) && value >= 1 && value <= item.quantityOrdered) {
     }
   };
 
@@ -58,7 +58,7 @@ const CartQuantity: React.FC<Props> = ({item}) => {
         </TouchableOpacity>
       </View>
       <Text style={styles.totalPrice}>
-        Total Price: PhP {item.totalOrderPrice}
+        {/* Total Price: PhP {item.totalOrderPrice} */}
       </Text>
     </View>
   );
