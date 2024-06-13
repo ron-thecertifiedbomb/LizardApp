@@ -24,12 +24,10 @@ const CartScreen: React.FC = () => {
 
   const { cartList } = useGetCartListHook(userId)
 
-
   const cartItems = useSelector(cartListItems)
 
 
-  console.log('CartList', cartList)
-
+logger('Cart List', cartItems )
 
   return (
     <View style={styles.container}>
@@ -38,7 +36,7 @@ const CartScreen: React.FC = () => {
         <EmptyList />
       ) : (
         <>
-          <AllCartRender item={cartList} />
+          <AllCartRender item={cartItems} />
           <MyCartFooter />
         </>
       )}

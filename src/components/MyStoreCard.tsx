@@ -4,9 +4,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {date, generateCustomOrderId, time} from '../utilities/helpers/lib';
 import {
   NavigationProp,
-  RouteProp,
   useNavigation,
-  useRoute,
 } from '@react-navigation/native';
 import {IProduct} from '../types/products/type';
 import {addedToCart} from '../redux/reducers/cartslice/reducer/cartReducer';
@@ -20,8 +18,6 @@ interface Props {
 
 const StoreCard: React.FC<Props> = ({item}) => {
   const userID = useSelector(selectUserId);
-
-  console.log('UserID My Store Card Component', userID);
 
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 

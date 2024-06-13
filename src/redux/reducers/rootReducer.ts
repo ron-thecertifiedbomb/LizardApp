@@ -20,7 +20,7 @@ const rootReducer = combineReducers({
   updateProduct: updateProductReducer,
   modal: modalReducer, 
   cart: cartSliceReducer,
-  getCartList: getCartListReducer
+  userCartItems: getCartListReducer
  
 
 });

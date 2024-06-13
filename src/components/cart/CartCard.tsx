@@ -28,7 +28,6 @@ const CartCard: React.FC<Props> = ({ item }) => {
     navigation.navigate('ProductPage', { productId: productId });
   };
 
-  console.log('List ', item);
 
   return (
     <TouchableOpacity onPress={() => handleViewProduct(item.productId)}>
