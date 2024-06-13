@@ -9,7 +9,7 @@ import Header from '../components/Header';
 import useGetCartListHook from '../hooks/useGetCartListHook';
 
 type RootStackParamList = {
-  CartScree: {userId: string; cartScreenHeaderTitle: string};
+  CartScreen: {userId: string; cartScreenHeaderTitle: string};
 };
 
 type StoreScreenRouteProp = RouteProp<RootStackParamList>;

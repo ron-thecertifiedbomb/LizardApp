@@ -9,30 +9,27 @@ import {
   useRoute,
 } from '@react-navigation/native';
 import {IProduct} from '../types/products/type';
-
-
-
-import {setUserId} from '../redux/reducers/userIdReducer';
 import {addedToCart} from '../redux/reducers/cartslice/reducer/cartReducer';
 import {CartData} from './cart/type';
+import { RootStackParamList } from './navigation/types';
 
 interface Props {
   item: IProduct;
 }
 
-type RootStackParamList = {
-  CartScreen: {userId: string; cartScreenHeaderTitle: string};
+type ScreenStackParamList = {
+  StoreScreen: {userId: string; storeScreenHeaderTitle: string};
 };
 
-type StoreScreenRouteProp = RouteProp<RootStackParamList>;
+type StoreScreenRouteProp = RouteProp<ScreenStackParamList>;
 
 const StoreCard: React.FC<Props> = ({item}) => {
 
   const route = useRoute<StoreScreenRouteProp>();
 
-  const {userId, cartScreenHeaderTitle} = route.params;
+  const params = route.params;
 
-  console.log('UserID', userId)
+  console.log('UserID My Store Card', params.userId)
 
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
@@ -41,7 +38,7 @@ const StoreCard: React.FC<Props> = ({item}) => {
   const handleAddToCart = () => {
 
     const payload: CartData = {
-      ownerId: userId,
+      ownerId: params.userId,
       productId: item._id,
       name: item.name,
       price: item.price,
