@@ -2,43 +2,43 @@ import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {date, time} from '../utilities/helpers/lib';
-import {NavigationProp, RouteProp, useNavigation, useRoute} from '@react-navigation/native';
+import {
+  NavigationProp,
+  RouteProp,
+  useNavigation,
+  useRoute,
+} from '@react-navigation/native';
 import {IProduct} from '../types/products/type';
 import {addedToCart} from '../redux/reducers/cartslice/reducer/cartReducer';
-
-import logger from '../utilities/logger/logger';
+import {CartData} from './cart/type';
 import { RootStackParamList } from './navigation/types';
-import { selectUserId } from '../redux/selectors/selectors';
 
 interface Props {
   item: IProduct;
 }
 
+type ScreenStackParamList = {
+  StoreScreen: {userId: string; storeScreenHeaderTitle: string};
+};
 
-
-type StoreScreenRouteProp = RouteProp<RootStackParamList>;
-
+type StoreScreenRouteProp = RouteProp<ScreenStackParamList>;
 
 const StoreCard: React.FC<Props> = ({item}) => {
 
   const route = useRoute<StoreScreenRouteProp>();
-  
-  const userId = useSelector(selectUserId)
+
+  const params = route.params;
+
+  console.log('UserID My Store Card', params.userId)
 
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
   const dispatch = useDispatch();
-  
-
-
-  const id = userId;
-
 
   const handleAddToCart = () => {
 
-    const itemToCartList = {
-      cartId:  id,
-      ownerId: id,
+    const payload: CartData = {
+      ownerId: params.userId,
       productId: item._id,
       name: item.name,
       price: item.price,
@@ -46,14 +46,11 @@ const StoreCard: React.FC<Props> = ({item}) => {
       totalOrderPrice: item.price,
       quantityOrdered: 1,
       isSelected: false,
-      dateAdded: date(),
-      timeAdded: time(),
+      dateAdded: new Date().toLocaleDateString(),
+      timeAdded: new Date().toLocaleTimeString(),
     };
 
-
-  
-logger('data', itemToCartList )
-    dispatch(addedToCart(itemToCartList));
+    dispatch(addedToCart(payload));
   };
 
   const handleViewProduct = (productId: string) => {

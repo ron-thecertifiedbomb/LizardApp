@@ -3,31 +3,33 @@ import {View, Text, TouchableOpacity, Alert} from 'react-native';
 import {useForm} from 'react-hook-form';
 import {useNavigation} from '@react-navigation/native';
 import {useMutation} from 'react-query';
-import {useDispatch} from 'react-redux';
-import {setIsLoggedIn} from '../../../redux/reducers/isLoggedInReducer';
+import {useDispatch, useSelector} from 'react-redux';
+import {setIsLoggedIn} from '../../../redux/reducers/userslice/reducer/isLoggedInReducer';
 import {setUserId} from '../../../redux/reducers/userIdReducer';
 import FormTextInput from '../../formtextinput/FormTextInput';
 import Button from '../../button/Button';
-import {FormData} from '../type';
+import {FormData, FormLogInData} from '../type';
 import LoadingIndicator from '../../LoadingIndicator';
 import {StyleSheet} from 'react-native';
 import colors from '../../../constants/color';
+import {userIsLoggedIn} from '../../../redux/reducers/userslice/selectors/selector';
 
 const LogInForm = () => {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
+
   const {
     control,
     handleSubmit,
     reset,
     formState: {errors},
-  } = useForm<FormData>();
+  } = useForm<FormLogInData>();
 
-  const dispatch = useDispatch();
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
   const mutation = useMutation(
-    async (data: FormData) => {
+    async (data: FormLogInData) => {
       setIsLoading(true);
       const response = await fetch(
         'https://nextjs-server-rho.vercel.app/api/users/authenticate/route',
@@ -44,13 +46,14 @@ const LogInForm = () => {
         throw new Error('Failed to authenticate');
       }
 
-      return response.json();
+      const result = await response.json();
+      dispatch(setIsLoggedIn(true));
+      dispatch(setUserId(result.userId));
+
+      return result;
     },
     {
-      onSuccess: data => {
-        const userId = data.userId;
-        dispatch(setIsLoggedIn(true));
-        dispatch(setUserId(userId));
+      onSuccess: () => {
         Alert.alert('Success', 'Authentication successful', [
           {
             text: 'OK',
@@ -82,8 +85,32 @@ const LogInForm = () => {
     },
   );
 
-  const onSubmit = (data: FormData) => {
-    mutation.mutate(data);
+  const onSubmit = (data: FormLogInData) => {
+    const time = new Date().toLocaleString('en-US', {
+      timeZone: 'Asia/Manila',
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: true, // Use true for 12-hour format, false for 24-hour format
+    });
+    
+    console.log(time);
+    
+    const {username, password} = data;
+
+    const payLoad: FormLogInData = {
+      username,
+      password,
+      time,
+      isLoggedIn: true,
+    };
+
+    console.log('PayLoad', payLoad);
+
+    mutation.mutate(payLoad);
   };
 
   const handleNavigateToRegistration = () => {
@@ -108,9 +135,7 @@ const LogInForm = () => {
         errors={errors}
       />
 
-      <TouchableOpacity
-        onPress={handleNavigateToRegistration}
-        >
+      <TouchableOpacity onPress={handleNavigateToRegistration}>
         <Text style={styles.title}>Click here to register</Text>
       </TouchableOpacity>
 

@@ -20,6 +20,8 @@ const StoreScreen: React.FC =() => {
 
   const {userId, storeScreenHeaderTitle} = route.params;
 
+  console.log('UserID Store Screen', userId)
+
   return (
 
     <View style={{flex: 1}}>

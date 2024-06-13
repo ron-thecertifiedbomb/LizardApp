@@ -3,8 +3,9 @@ import {View, Text, StyleSheet, Image} from 'react-native';
 import {RouteProp, useRoute} from '@react-navigation/native';
 import Card from '../components/Card';
 import logger from '../utilities/logger/logger';
-import {AllProductsData} from '../redux/selectors/selectors';
+
 import {useSelector} from 'react-redux';
+import { allProducts } from '../redux/reducers/productslice/selectors/selector';
 
 type RootStackParamList = {
   ProductPage: {productId: string};
@@ -16,7 +17,7 @@ const ProductDetailsScreen: React.FC = () => {
   const route = useRoute<SingleProductScreenRouteProp>();
   const {productId} = route.params;
 
-  const products = useSelector(AllProductsData);
+  const products = useSelector(allProducts);
 
   logger('Product ID', productId);
 

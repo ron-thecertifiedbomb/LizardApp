@@ -26,7 +26,7 @@ const cartSlice = createSlice({
 
       const cartItem = action.payload;
 
-      const existingItem = state.cartItems.find(item => item._id === cartItem._id);
+      const existingItem = state.cartItems.find(item => item.productId === cartItem.productId);
       if (existingItem) {
         existingItem.quantityOrdered += 1; 
         existingItem.totalOrderPrice += cartItem.price; 
@@ -38,7 +38,7 @@ const cartSlice = createSlice({
 
     incrementQuantity(state, action: PayloadAction<string>) {
       const itemId = action.payload;
-      const existingItem = state.cartItems.find(item => item._id === itemId);
+      const existingItem = state.cartItems.find(item => item.productId === itemId);
       if (existingItem) {
         existingItem.quantityOrdered += 1;
         existingItem.totalOrderPrice += existingItem.price;
@@ -46,7 +46,7 @@ const cartSlice = createSlice({
     },
     decrementQuantity(state, action: PayloadAction<string>) {
       const itemId = action.payload;
-      const existingItem = state.cartItems.find(item => item._id === itemId);
+      const existingItem = state.cartItems.find(item => item.productId === itemId);
       if (existingItem && existingItem.quantityOrdered > 1) {
         existingItem.quantityOrdered -= 1;
         existingItem.totalOrderPrice -= existingItem.price;
@@ -54,7 +54,7 @@ const cartSlice = createSlice({
     },
     setIsSelected(state, action: PayloadAction<{ itemId: string; isSelected: boolean }>) {
       const { itemId, isSelected } = action.payload;
-      const existingItem = state.cartItems.find(item => item._id === itemId);
+      const existingItem = state.cartItems.find(item => item.productId === itemId);
       if (existingItem) {
         existingItem.isSelected = isSelected;
       }
