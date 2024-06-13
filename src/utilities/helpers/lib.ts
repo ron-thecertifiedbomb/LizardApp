@@ -36,3 +36,12 @@ const getFormattedDate = (date: Date = new Date()): string => {
 };
 
 export const time = getFormattedDate;
+
+
+export const generateCustomOrderId = (userId: string | null, storeId: string) => {
+  const timestamp = Date.now();
+  const randomNum = Math.floor(Math.random() * 100000);
+  const orderId = `ORD-${userId}-${storeId}-${timestamp}-${randomNum}`;
+  return orderId;
+};
+

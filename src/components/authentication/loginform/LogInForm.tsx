@@ -58,7 +58,7 @@ const LogInForm = () => {
           {
             text: 'OK',
             onPress: () => {
-              navigation.navigate('Store' as never);
+              navigation.navigate('DrawerNavigator' as never);
             },
           },
         ]);

@@ -3,23 +3,23 @@ import {IProduct} from '../../../../types/products/type';
 import {CartData} from '../../../../components/cart/type';
 
 interface CartListDataState {
-  getCartListInfo: CartData[] | null;
+  getCartListITems: CartData[] | null;
 }
 
 const initialState: CartListDataState = {
-  getCartListInfo: null,
+  getCartListITems: null,
 };
 
 const getCartListReducer = createSlice({
-  name: 'cartlist',
+  name: 'userCartItems',
   initialState,
   reducers: {
     getAllCartItems(state, action: PayloadAction<CartData[]>) {
-      state.getCartListInfo = action.payload;
+      state.getCartListITems = action.payload;
     },
   },
 });
 
-export const {getAllCartItems} = getCartListReducer.actions;
+export const { getAllCartItems } = getCartListReducer.actions;
 
 export default getCartListReducer.reducer;

@@ -1,5 +1,6 @@
 export interface RootObject {
-  CartItems: any[];
+
+  cartItems: CartItem[];
   _id:       string;
   email:     string;
   firtname:  string;
@@ -9,18 +10,32 @@ export interface RootObject {
 
 export interface  CartData {
   _id?: string;
-  ownerId: string;
+  ownerId: string | null;
+  orderId: string;
   cartId?: string;
   productId: string;
   name: string;
   price: number;
   quantity: number;
   quantityOrdered: number;
-  totalOrderPrice: number;
   dateAdded: string; 
   timeAdded: string;
   isSelected: boolean;
 }
+
+
+
+
+
+export interface CartItem {
+  dateAdded:       string;
+  name:            string;
+  orderId:         string;
+  price:           number;
+  productId:       string;
+  quantityOrdered: number;
+  timeAdded:       string;
+ }
 
 
 

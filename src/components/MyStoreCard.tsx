@@ -1,49 +1,36 @@
 import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
-import {date, time} from '../utilities/helpers/lib';
+import {date, generateCustomOrderId, time} from '../utilities/helpers/lib';
 import {
   NavigationProp,
-  RouteProp,
   useNavigation,
-  useRoute,
 } from '@react-navigation/native';
 import {IProduct} from '../types/products/type';
 import {addedToCart} from '../redux/reducers/cartslice/reducer/cartReducer';
 import {CartData} from './cart/type';
-import { RootStackParamList } from './navigation/types';
+import {RootStackParamList} from './navigation/types';
+import {selectUserId} from '../redux/reducers/userslice/selectors/selector';
 
 interface Props {
   item: IProduct;
 }
 
-type ScreenStackParamList = {
-  StoreScreen: {userId: string; storeScreenHeaderTitle: string};
-};
-
-type StoreScreenRouteProp = RouteProp<ScreenStackParamList>;
-
 const StoreCard: React.FC<Props> = ({item}) => {
-
-  const route = useRoute<StoreScreenRouteProp>();
-
-  const params = route.params;
-
-  console.log('UserID My Store Card', params.userId)
+  const userID = useSelector(selectUserId);
 
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
   const dispatch = useDispatch();
 
   const handleAddToCart = () => {
-
     const payload: CartData = {
-      ownerId: params.userId,
+      ownerId: userID,
+      orderId: generateCustomOrderId(userID, item._id),
       productId: item._id,
       name: item.name,
       price: item.price,
       quantity: item.quantity,
-      totalOrderPrice: item.price,
       quantityOrdered: 1,
       isSelected: false,
       dateAdded: new Date().toLocaleDateString(),
@@ -69,7 +56,7 @@ const StoreCard: React.FC<Props> = ({item}) => {
           <Text style={styles.titleText}>{item.name}</Text>
           <Text style={styles.priceText}>Price {item.price}</Text>
           <View style={styles.quantityRow}>
-            <Text style={styles.quantityText}>Quantity: {item.quantity}</Text>
+            <Text style={styles.quantityText}>Stocks: {item.quantity}</Text>
             <TouchableOpacity
               style={styles.button}
               onPress={() => handleAddToCart()}>

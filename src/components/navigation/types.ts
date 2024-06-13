@@ -12,7 +12,7 @@ export type RootStackParamList = {
   DrawerNavigator: undefined;
   Registration: undefined;
   RegistrationPage: undefined;
-  Model: undefined;
+  CustomModal: undefined;
   Login: undefined;
   Edit: undefined;
   Splash: undefined;
