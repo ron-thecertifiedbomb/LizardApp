@@ -21,7 +21,7 @@ const CartScreen: React.FC = () => {
 
   const data = useSelector(cartListItems);
 
-  console.log('Data',data )
+
 
   return (
     <View style={styles.container}>

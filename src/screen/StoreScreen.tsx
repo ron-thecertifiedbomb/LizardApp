@@ -15,6 +15,8 @@ type StoreScreenRouteProp = RouteProp<RootStackParamList>;
 const StoreScreen: React.FC = () => {
   const products = useSelector(allProducts);
 
+  console.log(products)
+
   const route = useRoute<StoreScreenRouteProp>();
 
   const {storeScreenHeaderTitle} = route.params;

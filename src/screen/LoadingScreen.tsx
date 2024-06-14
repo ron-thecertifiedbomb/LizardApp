@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, Animated } from 'react-native';
+import {View, StyleSheet, Animated} from 'react-native';
 
 const LoadingScreen = () => {
   const spinValue = new Animated.Value(0);
@@ -9,7 +9,7 @@ const LoadingScreen = () => {
       toValue: 1,
       duration: 2000,
       useNativeDriver: true,
-    })
+    }),
   ).start();
 
   const spin = spinValue.interpolate({
@@ -19,7 +19,7 @@ const LoadingScreen = () => {
 
   return (
     <View style={styles.overlay}>
-      <Animated.View style={[styles.loader, { transform: [{ rotate: spin }] }]} />
+      <Animated.View style={[styles.loader, {transform: [{rotate: spin}]}]} />
     </View>
   );
 };
