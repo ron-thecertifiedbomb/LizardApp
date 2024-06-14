@@ -1,29 +1,21 @@
 import React from 'react';
-import { View, Text, FlatList, StyleSheet } from 'react-native';
+import {View, Text, FlatList, StyleSheet} from 'react-native';
 import CartCard from './CartCard';
-import {  RootObject } from './type';
+import {RootObject} from './type';
 import logger from '../../utilities/logger/logger';
 
 interface Props {
-  item: RootObject;
+  item: RootObject[];
 }
 
-const AllCartRender: React.FC<Props> = ({ item }) => {
-  
-  const cartItems = item.cartItems;
-
-
+const AllCartRender: React.FC<Props> = ({item}) => {
   return (
     <View style={styles.container}>
-      {cartItems && cartItems.length > 0 ? (
-        <FlatList
-          data={cartItems}
-          keyExtractor={item => item.productId}
-          renderItem={({ item }) => <CartCard item={item} />}
-        />
-      ) : (
-        <Text>No items available</Text>
-      )}
+      <FlatList
+        data={item}
+        keyExtractor={item => item.productId}
+        renderItem={({item}) => <CartCard item={item} />}
+      />
     </View>
   );
 };

@@ -6,9 +6,6 @@ import EmptyList from '../components/cart/EmptyList';
 import {RouteProp, useRoute} from '@react-navigation/native';
 import Header from '../components/Header';
 import {cartListItems} from '../redux/reducers/cartslice/selectors/cartSelector';
-
-import useGetCartListHook from '../hooks/useGetCartListHook';
-import logger from '../utilities/logger/logger';
 import CustomModal from '../components/Modal';
 
 type RootStackParamList = {
@@ -22,18 +19,18 @@ const CartScreen: React.FC = () => {
 
   const {cartScreenHeaderTitle} = route.params;
 
-  const cartItems = useSelector(cartListItems);
+  const data = useSelector(cartListItems);
 
-  logger('Cart List from API listener', cartItems);
+
 
   return (
     <View style={styles.container}>
       <Header title={cartScreenHeaderTitle} />
-      {cartItems && cartItems.length === 0 ? (
+      {data && data.length === 0 ? (
         <EmptyList />
       ) : (
         <>
-          <AllCartRender item={cartItems} />
+          <AllCartRender item={data} />
           <MyCartFooter />
           <CustomModal />
         </>

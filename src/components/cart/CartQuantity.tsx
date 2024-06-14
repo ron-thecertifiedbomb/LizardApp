@@ -7,13 +7,13 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from 'react-native';
-import {CartData, CartItem} from './type';
+import {RootObject} from './type';
 import {useDispatch} from 'react-redux';
 import { decrementQuantity, incrementQuantity } from '../../redux/reducers/cartslice/reducer/cartReducer';
 
 
 interface Props {
-  item: CartItem;
+  item: RootObject;
 }
 
 const CartQuantity: React.FC<Props> = ({item}) => {
