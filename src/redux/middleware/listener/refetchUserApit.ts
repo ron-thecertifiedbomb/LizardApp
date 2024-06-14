@@ -13,7 +13,6 @@ refetchUserCartListApiListenerMiddleware.startListening({
 
     try {
         const userId = action.payload;
-  
         console.log('Payload via UserCartListApiListenerMiddleware Refetch', userId.ownerId);
   
         const response = await fetch(

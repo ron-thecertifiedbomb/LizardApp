@@ -36,8 +36,8 @@ cartListApiListenerMiddleware.startListening({
       const data = await response.json();
       listenerApi.dispatch(setToOpen('Added to Cart Successfully'));
       
-      // After adding the item, refetch the cart list
-      const userId = payload.ownerId; // Assuming payload contains the user ID
+    
+      const userId = payload.ownerId; 
       const refetchResponse = await fetch(
         `https://nextjs-server-rho.vercel.app/api/products/cart/getallcartitems/route?_id=${userId}`
         );
