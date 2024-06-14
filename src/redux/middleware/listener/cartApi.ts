@@ -16,7 +16,8 @@ cartListApiListenerMiddleware.startListening({
       const cartItems = JSON.stringify(payload);
       
       console.log('Payload via Middleware', cartItems);
-      listenerApi.dispatch(setToOpen("Loading"));
+      listenerApi.dispatch(setToOpen({type: "Loading", title: "Loading"}));
+
 
       const response = await fetch(
         'https://nextjs-server-rho.vercel.app/api/products/cart/addtocart/route',
@@ -34,10 +35,10 @@ cartListApiListenerMiddleware.startListening({
       }
 
       const data = await response.json();
-      listenerApi.dispatch(setToOpen('Added to Cart Successfully'));
+      listenerApi.dispatch(setToOpen({type: "Loading", title: 'Added to Cart Successfully'}));
       
-      // After adding the item, refetch the cart list
-      const userId = payload.ownerId; // Assuming payload contains the user ID
+    
+      const userId = payload.ownerId; 
       const refetchResponse = await fetch(
         `https://nextjs-server-rho.vercel.app/api/products/cart/getallcartitems/route?_id=${userId}`
         );

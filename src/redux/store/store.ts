@@ -1,10 +1,9 @@
 import {configureStore} from '@reduxjs/toolkit';
 import rootReducer from '../reducers/rootReducer';
 import loggerMiddleware from '../middleware/logger';
-
 import UserCartListApiListenerMiddleware from '../middleware/listener/getUserCartListApi';
-
 import cartListApiListenerMiddleware from '../middleware/listener/cartApi';
+import DeleteCartListApiListenerMiddleware from '../middleware/listener/deleteCartUpdateApi';
 
 export const store = configureStore({
   reducer: rootReducer,
@@ -13,7 +12,7 @@ export const store = configureStore({
       loggerMiddleware,
       cartListApiListenerMiddleware.middleware,
       UserCartListApiListenerMiddleware.middleware,
-
+      DeleteCartListApiListenerMiddleware.middleware,
     ),
 });
 

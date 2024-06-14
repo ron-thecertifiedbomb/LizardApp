@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import SplashScreen from 'react-native-splash-screen';
 import AppNavigator from './src/components/navigation/AppNavigator';
 import { store } from './src/redux/store/store';
+import CustomModal from './src/components/modal/Modal';
 
 
 
@@ -18,7 +19,7 @@ function Entry(): React.JSX.Element {
     <Provider store={store}>
       <QueryClientProvider client={queryClient}>
         <AppNavigator />
-       
+       <CustomModal />
       </QueryClientProvider>
     </Provider>
   );

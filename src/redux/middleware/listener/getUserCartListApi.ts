@@ -1,7 +1,6 @@
 import { createListenerMiddleware } from '@reduxjs/toolkit';
 import { setUserId } from '../../reducers/userIdReducer';
 import { getAllCartItems } from '../../reducers/cartslice/reducer/userCartListReducer';
-import { addedToCart } from '../../reducers/cartslice/reducer/cartReducer';
 
 const UserCartListApiListenerMiddleware = createListenerMiddleware();
 
@@ -25,7 +24,6 @@ UserCartListApiListenerMiddleware.startListening({
 
       const data = await response.json();
       console.log('Data Successfully Fetched:', data);
-
       listenerApi.dispatch(getAllCartItems(data));
     } catch (error: any) {
       console.error('Server error:', error);
@@ -33,7 +31,6 @@ UserCartListApiListenerMiddleware.startListening({
     }
   },
 });
-
 
 
 export default UserCartListApiListenerMiddleware;
