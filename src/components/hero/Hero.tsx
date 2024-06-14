@@ -17,7 +17,7 @@ export default Hero;
 
 const styles = StyleSheet.create({
   heroWrapper: {
-    height: 300,
+    height: 220,
     width: '100%',
     backgroundColor: 'white',
     justifyContent: 'center',
