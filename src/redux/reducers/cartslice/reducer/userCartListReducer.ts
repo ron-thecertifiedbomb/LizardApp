@@ -1,22 +1,22 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {CartData} from '../../../../components/cart/type';
-import {cartItems} from '../selectors/cartSelector';
+import {RootObject} from '../../../../components/cart/type';
+
 
 interface CartListDataState {
-  getCartListItems: CartData[] | null;
-  cartData: CartData[]; // Initialize as an empty array
+  getCartListItems: RootObject[] | null;
+  cartData: RootObject[]; 
 }
 
 const initialState: CartListDataState = {
   getCartListItems: null,
-  cartData: [], // Initialize cart as an empty array
+  cartData: [], 
 };
 
 const getCartListReducer = createSlice({
   name: 'userCartItems',
   initialState,
   reducers: {
-    getAllCartItems(state, action: PayloadAction<CartData[]>) {
+    getAllCartItems(state, action: PayloadAction<RootObject[]>) {
       state.getCartListItems = action.payload;
       console.log('getAllCartItems', state.getCartListItems);
       const list = state.getCartListItems?.cartItems;

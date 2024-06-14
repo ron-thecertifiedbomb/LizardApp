@@ -6,9 +6,6 @@ import EmptyList from '../components/cart/EmptyList';
 import {RouteProp, useRoute} from '@react-navigation/native';
 import Header from '../components/Header';
 import {cartListItems} from '../redux/reducers/cartslice/selectors/cartSelector';
-
-import useGetCartListHook from '../hooks/useGetCartListHook';
-import logger from '../utilities/logger/logger';
 import CustomModal from '../components/Modal';
 
 type RootStackParamList = {

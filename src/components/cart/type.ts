@@ -1,29 +1,21 @@
-export interface RootObject {
-
-  cartItems: CartItem[];
-  _id:       string;
-  email:     string;
-  firtname:  string;
-  lastname:  string;
-  ownerId:   string;
- }
-
-export interface  CartData {
-  _id?: string;
-  ownerId: string | null;
-  orderId: string;
-  cartId?: string;
-  productId: string;
-  name: string;
-  price: number;
-  quantity: number;
-  quantityOrdered: number;
-  dateAdded: string; 
-  timeAdded: string;
-  isSelected: boolean;
-}
 
 
+  
+  
+  export interface RootObject {
+    _id:       string;
+    cartItems: CartItem[];
+    length: number;
+    email?:     string;
+    firtname?:  string;
+    lastname?:  string;
+    ownerId?:   string;
+    productId:       string;
+    orderId: string;
+    name:         string;
+    price:           number;
+    quantityOrdered: number
+   }
 
 
 

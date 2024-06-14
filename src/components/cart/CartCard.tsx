@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import { CartData, CartItem } from './type';
+import {  CartItem, RootObject } from './type';
 import CartQuantity from './CartQuantity';
 import { formatPrice } from '../../utilities/helpers/lib';
 import { useDispatch } from 'react-redux';
@@ -13,7 +13,7 @@ import { setIsSelected } from '../../redux/reducers/cartslice/reducer/cartReduce
 import { deleteItem } from '../../redux/reducers/cartslice/reducer/userCartListReducer';
 
 interface Props {
-  item: CartItem;
+  item: RootObject;
 }
 
 const CartCard: React.FC<Props> = ({ item }) => {
