@@ -10,6 +10,7 @@ import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { setIsSelected } from '../../redux/reducers/cartslice/reducer/cartReducer';
+import { deleteItem } from '../../redux/reducers/cartslice/reducer/userCartListReducer';
 
 interface Props {
   item: CartItem;
@@ -29,6 +30,10 @@ const CartCard: React.FC<Props> = ({ item }) => {
   };
 
 
+  const handleDelete = (productId: string) => {
+   dispatch(deleteItem({productId}))
+  };
+
   return (
     <TouchableOpacity onPress={() => handleViewProduct(item.productId)}>
       <View style={styles.card}>
@@ -44,7 +49,7 @@ const CartCard: React.FC<Props> = ({ item }) => {
               value={item.isSelected}
               onValueChange={handleCheckboxChange}
             /> */}
-            <TouchableOpacity onPress={() => {/* handle delete item */}}>
+            <TouchableOpacity onPress={() => handleDelete(item.productId)}>
               <FontAwesomeIcon icon={faTrashAlt} size={20} color="grey" />
             </TouchableOpacity>
           </View>

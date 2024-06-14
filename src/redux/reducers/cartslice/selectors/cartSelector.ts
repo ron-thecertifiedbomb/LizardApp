@@ -7,4 +7,4 @@ export const cartTotalPrice = (state: RootState) =>
     state.cart.totalPrice;
 
 
-export const cartListItems = (state: RootState) => state.userCartItems.getCartListITems
+export const cartListItems = (state: RootState) => state.userCartItems.cartData

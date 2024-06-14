@@ -4,6 +4,7 @@ import { CartData } from '../../../../components/cart/type';
 
 
 interface CartState {
+  length: number;
 
   cartItems: CartData[];
   totalPrice: number; 

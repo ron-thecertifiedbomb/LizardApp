@@ -10,20 +10,18 @@ interface Props {
 
 const AllCartRender: React.FC<Props> = ({ item }) => {
   
-  const cartItems = item.cartItems;
+
 
 
   return (
     <View style={styles.container}>
-      {cartItems && cartItems.length > 0 ? (
+
         <FlatList
-          data={cartItems}
+          data={item}
           keyExtractor={item => item.productId}
           renderItem={({ item }) => <CartCard item={item} />}
         />
-      ) : (
-        <Text>No items available</Text>
-      )}
+
     </View>
   );
 };

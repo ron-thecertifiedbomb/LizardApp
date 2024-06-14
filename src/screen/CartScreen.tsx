@@ -22,18 +22,18 @@ const CartScreen: React.FC = () => {
 
   const {cartScreenHeaderTitle} = route.params;
 
-  const cartItems = useSelector(cartListItems);
+  const data = useSelector(cartListItems);
 
-  logger('Cart List from API listener', cartItems);
+  console.log('Data',data )
 
   return (
     <View style={styles.container}>
       <Header title={cartScreenHeaderTitle} />
-      {cartItems && cartItems.length === 0 ? (
+      {data && data.length === 0 ? (
         <EmptyList />
       ) : (
         <>
-          <AllCartRender item={cartItems} />
+          <AllCartRender item={data} />
           <MyCartFooter />
           <CustomModal />
         </>
