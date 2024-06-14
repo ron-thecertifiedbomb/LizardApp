@@ -8,7 +8,6 @@ import {
 } from '@react-navigation/native';
 import {IProduct} from '../types/products/type';
 import {addedToCart} from '../redux/reducers/cartslice/reducer/cartReducer';
-import {CartData} from './cart/type';
 import {RootStackParamList} from './navigation/types';
 import {selectUserId} from '../redux/reducers/userslice/selectors/selector';
 
@@ -24,7 +23,7 @@ const StoreCard: React.FC<Props> = ({item}) => {
   const dispatch = useDispatch();
 
   const handleAddToCart = () => {
-    const payload: CartData = {
+    const payload: IProduct = {
       ownerId: userID,
       orderId: generateCustomOrderId(userID, item._id),
       productId: item._id,
@@ -80,8 +79,8 @@ const styles = StyleSheet.create({
     shadowRadius: 8,
     elevation: 3,
     marginBottom: 16,
-    width: 180,
-    height: 200,
+    width: 165,
+    height: 180,
   },
   cardBody: {
     flex: 1,

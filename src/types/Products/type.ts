@@ -2,7 +2,13 @@
 export interface IProduct {
   _id:                 string;
   ownerId: string | null;
-  availableColors:     string[];
+  productId? : string;
+  orderId: string | null;
+  quantityOrdered?: number;
+  availableColors?:     string[];
+  isSelected?: boolean;
+  dateAdded?: string;
+  timeAdded: string;
   brand:               string;
   category:            string;
   imagelink_portrait?: string;

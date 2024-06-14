@@ -8,6 +8,7 @@ const useGetAllProductsHooks = () => {
   const dispatch = useDispatch();
 
   const fetchData = async () => {
+    
     const response = await fetch(
       'https://nextjs-server-rho.vercel.app/api/products/getAllProducts/route',
     );

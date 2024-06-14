@@ -11,9 +11,6 @@ UserCartListApiListenerMiddleware.startListening({
 
     try {
       const userId = action.payload;
-
-      console.log('Payload via UserCartListApiListenerMiddleware', userId);
-
       const response = await fetch(
         `https://nextjs-server-rho.vercel.app/api/products/cart/getallcartitems/route?_id=${userId}`
       );
@@ -23,7 +20,7 @@ UserCartListApiListenerMiddleware.startListening({
       }
 
       const data = await response.json();
-      console.log('Data Successfully Fetched:', data);
+      console.log('Data Successfully Fetched:');
       listenerApi.dispatch(getAllCartItems(data));
     } catch (error: any) {
       console.error('Server error:', error);

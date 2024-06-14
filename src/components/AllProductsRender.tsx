@@ -34,9 +34,10 @@ const AllProductsRender: React.FC<Props> = ({item}) => {
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    padding: 15,
+    padding: 25,
+    paddingLeft: 30,
+    paddingRight: 30,
     justifyContent: 'center',
-
     alignContent: 'center',
     display: 'flex',
   },

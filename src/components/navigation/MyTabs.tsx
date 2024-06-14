@@ -13,8 +13,6 @@ import {
 
 import {useSelector} from 'react-redux';
 import { selectUserId, userIsLoggedIn } from '../../redux/reducers/userslice/selectors/selector';
-import logger from '../../utilities/logger/logger';
-
 
 export default function MyTabs() {
   const Tab = createBottomTabNavigator();
@@ -25,8 +23,6 @@ export default function MyTabs() {
   const cartScreenHeaderTitle = 'My Cart';
   const storeScreenHeaderTitle = 'My Store';
   const orderScreenHeaderTitle = 'My Orders';
-
-
 
   return (
     <Tab.Navigator

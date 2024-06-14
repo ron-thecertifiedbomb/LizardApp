@@ -1,5 +1,5 @@
 import {createListenerMiddleware} from '@reduxjs/toolkit';
-import { deleteItem } from '../../reducers/cartslice/reducer/userCartListReducer';
+import {deleteItem} from '../../reducers/cartslice/reducer/userCartListReducer';
 
 const DeleteCartListApiListenerMiddleware = createListenerMiddleware();
 
@@ -11,8 +11,6 @@ DeleteCartListApiListenerMiddleware.startListening({
     try {
       const payload = action.payload;
       const itemToDelete = JSON.stringify(payload);
-
-      console.log('Payload via Middleware', itemToDelete);
 
       const response = await fetch(
         'https://nextjs-server-rho.vercel.app/api/products/cart/addtocart/route',
@@ -30,8 +28,7 @@ DeleteCartListApiListenerMiddleware.startListening({
       }
 
       const data = await response.json();
-
-      console.log('Item successfully deleted:', data);
+      console.log('Item successfully deleted:');
     } catch (error: any) {
       console.error('Server error:', error);
       console.log('Error', error.message);

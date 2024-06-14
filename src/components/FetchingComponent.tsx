@@ -3,19 +3,14 @@ import { View, Text, Button, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from './navigation/types';
-import Logo from './Logo/Logo';
+import Logo from './logo/Logo';
 import useGetUserInfoHook from '../hooks/useGetUserInfoHook';
 
 const FetchingComponent = () => {
+  
   const navigation = useNavigation<StackNavigationProp<RootStackParamList, 'DrawerNavigator'>>();
 
   const { allProductsData, allProductsRefetch, cartListData, cartListRefetch, isLoading } = useGetUserInfoHook();
-
-
-
-
-console.log('Cart List Data', cartListData )
-
 
   useEffect(() => { 
     const fetchData = async () => {
@@ -51,7 +46,6 @@ console.log('Cart List Data', cartListData )
 
   return (
     <View style={styles.centered}>
-   
       <Button title="Refresh" onPress={handleRefresh} />
     </View>
   );

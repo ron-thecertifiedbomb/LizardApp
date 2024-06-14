@@ -1,10 +1,10 @@
 import {View} from 'react-native';
 import AllProductsRender from '../components/AllProductsRender';
 import {useSelector} from 'react-redux';
-
 import {RouteProp, useRoute} from '@react-navigation/native';
 import Header from '../components/Header';
 import {allProducts} from '../redux/reducers/productslice/selectors/selector';
+import Hero from '../components/hero/Hero';
 
 type RootStackParamList = {
   StoreScreen: {userId: string; storeScreenHeaderTitle: string};
@@ -13,17 +13,16 @@ type RootStackParamList = {
 type StoreScreenRouteProp = RouteProp<RootStackParamList>;
 
 const StoreScreen: React.FC = () => {
+
   const products = useSelector(allProducts);
-
-  console.log(products)
-
   const route = useRoute<StoreScreenRouteProp>();
-
   const {storeScreenHeaderTitle} = route.params;
+
 
   return (
     <View style={{flex: 1}}>
       <Header title={storeScreenHeaderTitle} />
+      <Hero/>
       <AllProductsRender item={products ?? null} />
     </View>
   );
