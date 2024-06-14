@@ -1,26 +1,35 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-interface modalState {
-  modalState: boolean;
-  payloadText: string | null; // Payload text for loading or success message
+interface ModalPayload {
+  type: 'Loading' | 'Confirmation' | 'Display';
+  title: string;
+  message?: string;
+  confirmAction?: () => void;
+  cancelAction?: () => void;
+  closeAction?: () => void;
 }
 
-const initialState: modalState = {
+interface ModalState {
+  modalState: boolean;
+  payloadObject: ModalPayload | null;
+}
+
+const initialState: ModalState = {
   modalState: false,
-  payloadText: null,
+  payloadObject: null,
 };
 
 const modalSlice = createSlice({
   name: 'modalProvider',
   initialState,
   reducers: {
-    setToOpen(state, action: PayloadAction<string | null>) {
+    setToOpen(state, action: PayloadAction<ModalPayload>) {
       state.modalState = true;
-      state.payloadText = action.payload; // Set payload text
+      state.payloadObject = action.payload;
     },
     setToClose(state) {
       state.modalState = false;
-      state.payloadText = null; // Reset payload text when closing
+      state.payloadObject = null;
     },
   },
 });
