@@ -1,8 +1,9 @@
 import React from 'react';
 import { Modal, View, StyleSheet, ActivityIndicator, Text, Button } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { modalObject, modalState } from '../redux/reducers/modalslice/selectors/modalSelector';
-import { setToClose } from '../redux/reducers/modalslice/reducer/modalReducer';
+import { modalObject, modalState } from '../../redux/reducers/modalslice/selectors/modalSelector';
+import { setToClose } from '../../redux/reducers/modalslice/reducer/modalReducer';
+
 
 const CustomModal: React.FC = () => {
   const modalstatus = useSelector(modalState);

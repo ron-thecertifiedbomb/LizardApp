@@ -1,9 +1,7 @@
 import React, { useEffect } from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import ProductForm from '../components/EditProductForm';
-import CustomModal from '../components/Modal';
 import { useDispatch } from 'react-redux';
-
 import { RouteProp, useRoute } from '@react-navigation/native';
 import { singleProductData } from '../redux/reducers/productslice/reducer/getAllProductsReducer';
 
@@ -27,23 +25,11 @@ const EditProductScreen = () => {
   }, [dispatch]); 
 
 
-  // const { isLoading, isError, error } = useGetSingleProduct(productId);
-
-
-  // if (isLoading) {
-  //   return <LoadingScreen />;
-  // }
-
-  // if (isError) {
-  //   const errorMessage =
-  //     error instanceof Error ? error.message : 'An unknown error occurred';
-  //   return <Text >Error: {errorMessage}</Text>;
-  // }
 
   return (
     <View style={styles.container}>
     <ProductForm  />
-    <CustomModal />
+
     </View>
   );
 };

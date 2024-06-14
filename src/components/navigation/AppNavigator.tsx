@@ -12,7 +12,6 @@ import SplashScreen from '../../screen/SplashScreen';
 
 
 export type Props = NativeStackScreenProps<RootStackParamList>;
-
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const AppNavigator: React.FC = () => {
@@ -30,8 +29,6 @@ const AppNavigator: React.FC = () => {
         <Stack.Screen name="Login" component={LogInScreen} options={{ headerShown: false }} />
         <Stack.Screen name="Settings" component={SettingsScreen} />
         <Stack.Screen name="Edit" component={EditProductScreen} />
-        {/* Include your modal as a screen */}
-       
       </Stack.Navigator>
     </NavigationContainer>
   );
