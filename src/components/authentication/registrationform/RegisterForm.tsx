@@ -64,10 +64,10 @@ const RegisterForm = () => {
     const {firstname, lastname, mobile, username, password, email} = data;
 
     const currentDate = new Date();
-    const dateCreated = currentDate.toISOString().split('T')[0]; // Format date as ISO string
-    const timeCreated = currentDate.toLocaleTimeString(); // Get current time
+    const dateCreated = currentDate.toISOString().split('T')[0]; 
+    const timeCreated = currentDate.toLocaleTimeString(); 
 
-    const formData: User = {
+    const userPayload: User = {
       firstname,
       lastname,
       username,
@@ -78,9 +78,10 @@ const RegisterForm = () => {
       birthday: dob,
       dateCreated,
       timeCreated,
-
+      isLoggedIn: false,
+      lastLoggedIn: '',
     };
-    mutation.mutate(formData);
+    mutation.mutate(userPayload);
   };
 
   return (

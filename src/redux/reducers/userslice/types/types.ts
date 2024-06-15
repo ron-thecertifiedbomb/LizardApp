@@ -12,6 +12,6 @@ export interface User {
   birthday?: Date; 
   dateCreated?: string;
   timeCreated?: string; 
-  isLoggedIn?: boolean | string; 
+  isLoggedIn?: boolean ; 
   lastLoggedIn?: string; 
 }
