@@ -1,26 +1,39 @@
 import React, { useEffect } from 'react';
-import { View, ActivityIndicator, StyleSheet } from 'react-native';
+import { View, ActivityIndicator, StyleSheet, Alert } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useDispatch } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 import { setIsLoggedIn } from '../../redux/reducers/userslice/reducer/isLoggedInReducer';
 import { setUserId } from '../../redux/reducers/userIdReducer';
+import Logo from '../logo/Logo';
+import useGetAllProductsHooks from '../../hooks/useGetAllProductsHook';
 
 const AppInitializer: React.FC = () => {
-    
+
   const dispatch = useDispatch();
   const navigation = useNavigation();
 
-  useEffect(() => {
+  useGetAllProductsHooks();
 
+  useEffect(() => {
     const initializeApp = async () => {
       try {
         const value = await AsyncStorage.getItem('userData');
         if (value) {
           const userData = JSON.parse(value);
-          dispatch(setIsLoggedIn(userData.isLoggedIn));
-          dispatch(setUserId(userData.userId));
-          navigation.navigate('DrawerNavigator' as never);
+          const { isLoggedIn, userId, expiration } = userData;
+
+          if (expiration && Date.now() > expiration) {
+
+            await AsyncStorage.removeItem('userData');
+            dispatch(setIsLoggedIn(false));
+            navigation.navigate('LogInScreen' as never);
+            Alert.alert('Session Expired', 'Your session has expired. Please log in again.');
+          } else {
+            dispatch(setIsLoggedIn(isLoggedIn));
+            dispatch(setUserId(userId));
+            navigation.navigate('DrawerNavigator' as never);
+          }
         } else {
           navigation.navigate('LogInScreen' as never);
         }
@@ -35,6 +48,7 @@ const AppInitializer: React.FC = () => {
 
   return (
     <View style={styles.container}>
+      <Logo />
       <ActivityIndicator size="large" color="#0000ff" />
     </View>
   );

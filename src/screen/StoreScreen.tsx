@@ -21,10 +21,13 @@ const StoreScreen: React.FC = () => {
   const {storeScreenHeaderTitle} = route.params;
 
 
+  console.log('all product', products);
+
+
   return (
     <Container style={styles.container}>
       <Header title={storeScreenHeaderTitle} />
-      <Carousel
+      {/* <Carousel
       images={images}
       height={350}
       horizontal={true}
@@ -35,9 +38,9 @@ const StoreScreen: React.FC = () => {
       activeDashSize={30}
       animations={['scale']}
       dotPosition="bottom"
-    />
-   
-      {/* <AllProductsRender item={products ?? null} /> */}
+    /> */}
+
+      <AllProductsRender item={products ?? null} />
       </Container>
   );
 };
@@ -48,7 +51,7 @@ const styles = StyleSheet.create({
   container: {
     display: 'flex',
     justifyContent: 'flex-start',
-  
+
   },
 });
 

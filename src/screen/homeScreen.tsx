@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text, FlatList} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
-import {usersData} from '../redux/reducers/getUserDataReducer';
+import {usersData} from '../redux/reducers/userslice/reducer/getUserDataReducer';
 import {selectFilteredData} from '../redux/selectors/selectors';
 import Card from '../components/Card';
 import ClientSideFilterTabs from '../components/ClientSideFilterTabs';
@@ -16,14 +16,14 @@ interface UserData {
 }
 
 export default function HomeScreen() {
-  
+
   const dispatch = useDispatch();
   const filteredData = useSelector(selectFilteredData);
 
   const handleStoreData = (data: UserData[]) => {
     dispatch(usersData(data));
   };
-  
+
   const {isLoading, isError, error} = useGetAllUsersHooks({
     onSuccessCallback: handleStoreData,
   });

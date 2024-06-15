@@ -4,12 +4,12 @@ import {CartData} from '../components/cart/type';
 import {getAllCartItems} from '../redux/reducers/cartslice/reducer/userCartListReducer';
 
 const useGetCartListHook = (ownerId: string) => {
-  
+
   const dispatch = useDispatch();
 
   const fetchData = async () => {
 
-    const response = await fetch( 
+    const response = await fetch(
       `https://nextjs-server-rho.vercel.app/api/products/cart/getallcartitems/route?_id=${ownerId}`,
     );
     if (!response.ok) {
@@ -27,7 +27,7 @@ const useGetCartListHook = (ownerId: string) => {
     },
   });
 
-const cartList = data
+const cartList = data;
 
 
   return {isLoading, isError, cartList, error, refetch};

@@ -12,7 +12,7 @@ refetchUserCartListApiListenerMiddleware.startListening({
 
     try {
       const userId = action.payload;
-      
+
       const response = await fetch(
         `https://nextjs-server-rho.vercel.app/api/products/cart/getallcartitems/route?_id=${userId}`,
       );

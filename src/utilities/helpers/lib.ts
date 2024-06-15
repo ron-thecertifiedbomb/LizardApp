@@ -40,7 +40,7 @@ export const generateCustomOrderId = (userId: string | null, storeId: string) =>
   return orderId;
 };
 
-export const time = new Date().toLocaleString('en-US', {
+export const timeCreated = new Date().toLocaleString('en-US', {
   timeZone: 'Asia/Manila',
   year: 'numeric',
   month: '2-digit',
@@ -48,7 +48,7 @@ export const time = new Date().toLocaleString('en-US', {
   hour: '2-digit',
   minute: '2-digit',
   second: '2-digit',
-  hour12: true, 
+  hour12: true,
 });
 
 

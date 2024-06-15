@@ -10,9 +10,9 @@ export default function RegistrationScreen() {
   return (
     <Container >
 
-  
+
       <RegisterForm />
-  
+
     </Container>
   );
 

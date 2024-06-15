@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 14,
     fontFamily: fontStyles.Lato_Bold,
-    
+
   },
 });
 

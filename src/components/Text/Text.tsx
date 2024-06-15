@@ -36,6 +36,6 @@ const styles = StyleSheet.create({
     fontFamily: fontStyles.Lato_Bold,
     fontWeight: '100',
     color: colors.primaryTextColor,
-   
+
   },
 });

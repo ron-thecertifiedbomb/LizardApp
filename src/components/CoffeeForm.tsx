@@ -12,7 +12,7 @@ interface Coffee {
     type: string;
     favourite: boolean;
   }
-  
+
   const CoffeeForm = ({ onSubmit }: { onSubmit: (data: Coffee) => void }) => {
 
   const [coffee, setCoffee] = useState({
@@ -42,7 +42,7 @@ interface Coffee {
   };
 
   return (
-    <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center',  }}>
+    <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center'  }}>
       <TextInput
         style={{ width: '100%', borderWidth: 1, borderColor: 'gray', marginBottom: 10 }}
         placeholder="Name"

@@ -4,12 +4,12 @@ import {RootObject} from '../../../../components/cart/type';
 
 interface CartListDataState {
   getCartListItems: RootObject[] | null;
-  cartData: RootObject[]; 
+  cartData: RootObject[];
 }
 
 const initialState: CartListDataState = {
   getCartListItems: null,
-  cartData: [], 
+  cartData: [],
 };
 
 const getCartListReducer = createSlice({

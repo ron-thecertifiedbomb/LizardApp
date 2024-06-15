@@ -15,7 +15,7 @@ export default function CartScreen() {
   const route = useRoute<StoreScreenRouteProp>();
   const {userId, orderScreenHeaderTitle} = route.params;
 
-  console.log(userId)
+  console.log(userId);
 
   return (
     <View style={styles.container}>
@@ -23,7 +23,7 @@ export default function CartScreen() {
       <Container>
    <AsyncStorageChecker />
       </Container>
-      
+
     </View>
   );
 }

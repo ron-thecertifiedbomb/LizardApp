@@ -1,7 +1,7 @@
 interface FontStyles {
     [key: string]: string;
   }
-  
+
   const fontStyles: FontStyles = {
     Lato_Black: 'Lato-Black',
     Lato_BlackItalic: 'Lato-BlackItalic',
@@ -12,8 +12,7 @@ interface FontStyles {
     Lato_LightItalic: 'Lato-LightItalic',
     Lato_Regular: 'Lato-Regular',
     Lato_Thin: 'Lato-Thin',
-    Lato_ThinItalic: 'Lato-ThinItalic'
+    Lato_ThinItalic: 'Lato-ThinItalic',
   };
-  
+
   export default fontStyles;
-  

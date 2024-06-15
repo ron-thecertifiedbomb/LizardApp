@@ -1,5 +1,5 @@
 
-import { RootState } from "../../../store/store";
+import { RootState } from '../../../store/store';
 
 export const allProducts = (state: RootState) =>
     state.products.allproducts;

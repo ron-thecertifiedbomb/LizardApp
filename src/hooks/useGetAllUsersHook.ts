@@ -24,7 +24,7 @@ const useGetAllUsersHooks = ({ onSuccessCallback }: UseUserDataProps) => {
 
   const { isLoading, isError, data, error, refetch } = useQuery<UserData[], Error>('data', fetchData, {
     onSuccess: (data) => {
-      onSuccessCallback(data); 
+      onSuccessCallback(data);
     },
     onError: (error) => {
       console.error(error);
@@ -32,8 +32,8 @@ const useGetAllUsersHooks = ({ onSuccessCallback }: UseUserDataProps) => {
   });
 
   useEffect(() => {
- 
-  }, [data as UserData[]]); 
+
+  }, [data as UserData[]]);
 
   return { isLoading, isError, data, error, refetch };
 };

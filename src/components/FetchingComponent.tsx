@@ -7,12 +7,12 @@ import Logo from './logo/Logo';
 import useGetUserInfoHook from '../hooks/useGetUserInfoHook';
 
 const FetchingComponent = () => {
-  
+
   const navigation = useNavigation<StackNavigationProp<RootStackParamList, 'DrawerNavigator'>>();
 
   const { allProductsData, allProductsRefetch, cartListData, cartListRefetch, isLoading } = useGetUserInfoHook();
 
-  useEffect(() => { 
+  useEffect(() => {
     const fetchData = async () => {
       try {
         await allProductsRefetch();
@@ -21,7 +21,6 @@ const FetchingComponent = () => {
         console.error('Error while fetching data:', error);
       }
     };
-
     fetchData();
   }, [allProductsRefetch, cartListRefetch]);
 
@@ -34,20 +33,18 @@ const FetchingComponent = () => {
     }
   };
 
-  useEffect(() => {
-    if (!isLoading && allProductsData && cartListData) {
-      navigation.replace('DrawerNavigator');
-    }
-  }, [isLoading, allProductsData, cartListData, navigation]);
+  // useEffect(() => {
+  //   if (!isLoading && allProductsData && cartListData) {
+  //     navigation.replace('DrawerNavigator');
+  //   }
+  // }, [isLoading, allProductsData, cartListData, navigation]);
 
-  if (!allProductsData || !cartListData) {
-    return <Logo />;
-  }
+  // if (!allProductsData || !cartListData) {
+  //   return '';
+  // }
 
   return (
-    <View style={styles.centered}>
-      <Button title="Refresh" onPress={handleRefresh} />
-    </View>
+    <View style={styles.centered} />
   );
 };
 

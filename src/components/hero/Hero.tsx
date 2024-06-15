@@ -7,7 +7,7 @@ const Hero = () => {
       <Image
         style={styles.image}
         source={require('../../../assets/images/mj1.png')}
-       
+
       />
     </View>
   );

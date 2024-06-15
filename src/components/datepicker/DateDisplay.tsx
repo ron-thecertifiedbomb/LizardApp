@@ -6,25 +6,25 @@ interface DateDisplayProps {
 }
 
 const DateDisplay: React.FC<DateDisplayProps> = ({ value }) => {
-  
-  const formattedDate = value.toDateString(); 
+
+  const formattedDate = value.toDateString();
 
   return (
     <View style={styles.container}>
       <TextInput
         style={styles.input}
         value={formattedDate}
-        editable={false} 
+        editable={false}
       />
     </View>
-    
+
   );
 };
 
 const styles = StyleSheet.create({
   container: {
    flex: 1,
-   
+
   },
   input: {
     borderWidth: 1,
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     fontSize: 16,
     color: '#000', // Text color
-   
+
   },
 });
 

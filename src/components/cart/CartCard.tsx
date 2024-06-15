@@ -31,7 +31,7 @@ const CartCard: React.FC<Props> = ({ item }) => {
 
 
   const handleDelete = (productId: string) => {
-   dispatch(deleteItem({productId}))
+   dispatch(deleteItem({productId}));
   };
 
   return (
@@ -85,11 +85,11 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignContent: 'center',
     alignItems: 'center',
- 
+
   },
   titleText: {
     fontSize: 16,
-   
+
     color: 'black',
   },
   priceText: {

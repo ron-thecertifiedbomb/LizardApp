@@ -8,39 +8,40 @@ import { setIsLoggedIn } from '../../../redux/reducers/userslice/reducer/isLogge
 import { setUserId } from '../../../redux/reducers/userIdReducer';
 import FormTextInput from '../../formtextinput/FormTextInput';
 import Button from '../../button/Button';
-import { FormLogInData } from '../type';
 import LoadingIndicator from '../../LoadingIndicator';
 import { StyleSheet } from 'react-native';
 import colors from '../../../constants/color';
-import { time } from '../../../utilities/helpers/lib';
+import { timeCreated } from '../../../utilities/helpers/lib';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { User } from '../../../redux/reducers/userslice/types/types';
 
 const LogInForm: React.FC = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
 
-  const { control, handleSubmit, reset, formState: { errors } } = useForm<FormLogInData>();
+  const { control, handleSubmit, reset, formState: { errors } } = useForm<User>();
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
   const mutation = useMutation(
-    async (data: FormLogInData) => {
+
+    async (data: User) => {
+
       setIsLoading(true);
+
       const response = await fetch('https://nextjs-server-rho.vercel.app/api/users/authenticate/route', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
       });
 
-      if (!response.ok) throw new Error('Failed to authenticate');
-      
+      if (!response.ok) {throw new Error('Failed to authenticate');}
+
       const result = await response.json();
       dispatch(setIsLoggedIn(true));
       dispatch(setUserId(result.userId));
-
-      const value = JSON.stringify(result);
-      await AsyncStorage.setItem('userData', value);
-
+      const userData = JSON.stringify(result);
+      await AsyncStorage.setItem('userData', userData);
       return result;
     },
     {
@@ -59,9 +60,9 @@ const LogInForm: React.FC = () => {
     }
   );
 
-  const onSubmit = (data: FormLogInData) => {
+  const onSubmit = (data: User) => {
     const { username, password } = data;
-    const payLoad: FormLogInData = { username, password, time, isLoggedIn: true };
+    const payLoad: User = { username, password, timeCreated, isLoggedIn: true };
     mutation.mutate(payLoad);
   };
 

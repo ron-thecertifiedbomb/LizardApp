@@ -37,17 +37,17 @@ const ProductForm: React.FC = () => {
   type RootStackParamList = {
     ProductForm: {productId: string};
   };
-  
+
   type SingleProductScreenRouteProp = RouteProp<RootStackParamList>;
-  
+
   const productData = useSelector((state: RootState) => state.allProducts.singleProduct);
 
   const route = useRoute<SingleProductScreenRouteProp>();
   const {productId} = route.params;
-  const productID = productId
+  const productID = productId;
 
-  console.log('Single Product Data from Redux',productData )
-  const dispatch = useDispatch()
+  console.log('Single Product Data from Redux',productData );
+  const dispatch = useDispatch();
 
   const initialProductState: Product = {
     name: productData?.name || '',
@@ -129,7 +129,7 @@ const ProductForm: React.FC = () => {
 
 
   const handleUpdateProduct = async () => {
-    
+
     const productData = {
       name: formState.name,
       brand: formState.brand,
@@ -176,8 +176,8 @@ const ProductForm: React.FC = () => {
         throw new Error(`Failed to update product: ${errorMessage}`);
       }
 
-      dispatch(setToOpen())
-    
+      dispatch(setToOpen());
+
       console.log('Product updated successfully');
     } catch (error: unknown) {
       if (error instanceof Error) {

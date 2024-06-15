@@ -1,5 +1,5 @@
-import useGetAllProductsHooks from "./useGetAllProductsHook";
-import useGetCartListHook from "./useGetCartListHook";
+import useGetAllProductsHooks from './useGetAllProductsHook';
+import useGetCartListHook from './useGetCartListHook';
 
 const useGetUserInfoHook = () => {
 
@@ -11,7 +11,7 @@ const useGetUserInfoHook = () => {
     allProductsRefetch,
     cartListData,
     cartListRefetch,
-    isLoading
+    isLoading,
   };
 };
 

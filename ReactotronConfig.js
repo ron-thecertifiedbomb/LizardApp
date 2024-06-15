@@ -4,10 +4,10 @@ import { reactotronRedux } from 'reactotron-redux';
 
 Reactotron
   .setAsyncStorageHandler(AsyncStorage)
-  .configure({ name: 'Lizard Interactive Mobile App' }) 
-  .useReactNative() 
-  .use(reactotronRedux()) 
-  .connect(); 
+  .configure({ name: 'Lizard Interactive Mobile App' })
+  .useReactNative()
+  .use(reactotronRedux())
+  .connect();
 
 console.tron = Reactotron;
 

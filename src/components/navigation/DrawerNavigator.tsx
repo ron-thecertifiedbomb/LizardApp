@@ -11,8 +11,6 @@ const Drawer = createDrawerNavigator();
 
 const DrawerNavigator = () => {
 
-  const isLoggedIn = useSelector(userIsLoggedIn);
-
   const cartScreenHeaderTitle = 'My Cart';
   const storeScreenHeaderTitle = 'My Store';
   const orderScreenHeaderTitle = 'My Orders';

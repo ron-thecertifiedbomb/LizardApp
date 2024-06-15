@@ -14,15 +14,15 @@ type RootStackParamList = {
 type SingleProductScreenRouteProp = RouteProp<RootStackParamList>;
 
 const EditProductScreen = () => {
-  
+
   const route = useRoute<SingleProductScreenRouteProp>();
   const {productId} = route.params;
 
   const dispatch = useDispatch();
-  
+
   useEffect(() => {
     dispatch(singleProductData(productId));
-  }, [dispatch]); 
+  }, [dispatch]);
 
 
 
@@ -40,8 +40,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     justifyContent: 'center',
     alignItems: 'center',
-    width: '100%'
-  }
+    width: '100%',
+  },
 });
 
 export default EditProductScreen;

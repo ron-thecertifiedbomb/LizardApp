@@ -12,7 +12,7 @@ interface CarouselProps {
   imagesStyles?: ImageStyle;
   dotColor?: string;
   activeDashSize?: number;
-  animations?: ("scale" | "fade")[] | undefined
+  animations?: ('scale' | 'fade')[] | undefined
   dotPosition?: 'left' | 'right' | 'top' | 'bottom';
 }
 const Carousel: React.FC<CarouselProps> = ({

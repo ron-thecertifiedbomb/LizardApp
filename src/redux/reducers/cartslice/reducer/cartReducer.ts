@@ -7,7 +7,7 @@ interface CartState {
   length: number;
 
   cartItems: CartData[];
-  totalPrice: number; 
+  totalPrice: number;
   isSelected: false,
 }
 
@@ -15,7 +15,7 @@ const initialState: CartState = {
 
   cartItems: [],
   totalPrice: 0,
-  isSelected: false
+  isSelected: false,
 };
 
 const cartSlice = createSlice({
@@ -29,8 +29,8 @@ const cartSlice = createSlice({
 
       const existingItem = state.cartItems.find(item => item.productId === cartItem.productId);
       if (existingItem) {
-        existingItem.quantityOrdered += 1; 
-        existingItem.totalOrderPrice += cartItem.price; 
+        existingItem.quantityOrdered += 1;
+        existingItem.totalOrderPrice += cartItem.price;
       } else {
         state.cartItems.push({ ...cartItem, quantityOrdered: 1, totalOrderPrice: cartItem.price, isSelected: false });
       }

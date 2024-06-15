@@ -32,14 +32,13 @@ export type DrawerParamList = {
   MyOrders: undefined;
 };
 export type Props = {
-    navigation: DrawerNavigationProp<DrawerParamList>; 
+    navigation: DrawerNavigationProp<DrawerParamList>;
   };
-  
+
   export type StackNavigationType = NativeStackNavigationProp<RootStackParamList, keyof RootStackParamList>;
-  
+
   export type DrawerNavigationType = DrawerNavigationProp<DrawerParamList>;
-  
+
   export type CompositeNavigationType = CompositeNavigationProp<StackNavigationType, DrawerNavigationType>;
-  
+
   export type RouteType<T extends keyof (RootStackParamList & DrawerParamList)> = RouteProp<RootStackParamList & DrawerParamList, T>;
-  

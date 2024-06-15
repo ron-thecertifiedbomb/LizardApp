@@ -20,7 +20,7 @@ export const useFetchProducts = () => {
   });
 
   return { isLoading, isError, data, error, refetch };
-  
+
 };
 
 

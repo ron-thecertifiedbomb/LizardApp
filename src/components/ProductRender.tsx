@@ -23,11 +23,11 @@ const AllProductsRender: React.FC = () => {
         <Text>Loading...</Text>
       ) : isError ? (
         <Text>Error: {(error as Error).message}</Text>
-      ) : 
+      ) :
 
          <ProductCard item={data} />}
-   
-      
+
+
     </View>
   );
 };

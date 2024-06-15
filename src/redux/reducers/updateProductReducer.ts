@@ -1,5 +1,5 @@
-import { Reducer } from "redux";
-import { UpdateProductFieldAction, UpdateProductState } from "../../../type";
+import { Reducer } from 'redux';
+import { UpdateProductFieldAction, UpdateProductState } from '../../../type';
 
 
 const initialState: UpdateProductState = {

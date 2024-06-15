@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 import {selectisActiveLink} from '../redux/selectors/selectors';
-import {filterData} from '../redux/reducers/getUserDataReducer';
+import {filterData} from '../redux/reducers/userslice/reducer/getUserDataReducer';
 import {setIsActiveLink} from '../redux/reducers/isAtiveLinkReducer';
 import {tabs} from '../utilities/lib';
 

@@ -10,7 +10,7 @@ export interface FormData {
   }
 
   export interface FormLogInData {
-   
+
     username: string;
     password: string;
     isLoggedIn: boolean;

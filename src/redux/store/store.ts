@@ -7,11 +7,11 @@ import DeleteCartListApiListenerMiddleware from '../middleware/listener/deleteCa
 import Reactotron from '../../../ReactotronConfig';
 
 export const store = configureStore({
-  
+
   reducer: rootReducer,
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware().concat(
-      
+
       loggerMiddleware,
       cartListApiListenerMiddleware.middleware,
       UserCartListApiListenerMiddleware.middleware,

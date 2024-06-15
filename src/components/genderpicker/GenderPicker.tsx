@@ -17,7 +17,7 @@ const GenderPicker: React.FC<GenderPickerProps> = ({value, onChange}) => {
 };
 
 const styles = StyleSheet.create({
-  
+
   input: {
     paddingHorizontal: 10,
     paddingVertical: 8,

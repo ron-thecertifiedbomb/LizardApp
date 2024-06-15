@@ -9,7 +9,7 @@ interface DatePickerProps {
 }
 
 const DatePicker: React.FC<DatePickerProps> = ({ value, onChange }) => {
-  
+
   const [showDatePicker, setShowDatePicker] = React.useState(false);
 
   const toggleDatePicker = () => {
@@ -19,7 +19,7 @@ const DatePicker: React.FC<DatePickerProps> = ({ value, onChange }) => {
   const onDateChange = (event: any, selectedDate: Date | undefined) => {
     const currentDate = selectedDate || value;
     onChange(currentDate);
-    toggleDatePicker(); 
+    toggleDatePicker();
   };
 
   return (

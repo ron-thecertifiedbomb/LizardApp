@@ -1,6 +1,6 @@
-import { useQuery } from "react-query";
+import { useQuery } from 'react-query';
 import { useDispatch } from 'react-redux';
-import { singleProductData } from '../redux/reducers/getAllProductsReducer'; 
+import { singleProductData } from '../redux/reducers/getAllProductsReducer';
 
 const useEditProduct = (productId: string) => {
   const dispatch = useDispatch();
@@ -18,7 +18,7 @@ const useEditProduct = (productId: string) => {
   const { isLoading, isError, data, error } = useQuery(['product', productId], fetchData, {
     onSuccess: (data) => {
       dispatch(singleProductData(data));
-    }
+    },
   });
 
   return { isLoading, isError, data, error };

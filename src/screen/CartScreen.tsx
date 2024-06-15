@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
   container: {
     display: 'flex',
     justifyContent: 'flex-start',
-  
+
   },
 });
 

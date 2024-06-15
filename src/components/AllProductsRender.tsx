@@ -4,10 +4,12 @@ import {IProduct} from '../types/products/type';
 import StoreCard from './MyStoreCard';
 
 interface Props {
-
   item: IProduct[] | null;
 }
 const AllProductsRender: React.FC<Props> = ({item}) => {
+
+
+
 
   return (
     <View style={styles.container}>
@@ -20,7 +22,6 @@ const AllProductsRender: React.FC<Props> = ({item}) => {
           ItemSeparatorComponent={() => <View style={{height: 1, width: 10}} />}
           columnWrapperStyle={{
             justifyContent: 'space-between',
-            
           }}
           showsVerticalScrollIndicator={false}
           showsHorizontalScrollIndicator={false}

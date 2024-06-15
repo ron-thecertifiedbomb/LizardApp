@@ -4,6 +4,7 @@ import {useSelector} from 'react-redux';
 import {RootState} from '../redux/store/store';
 
 const Card: React.FC = () => {
+
   const product = useSelector(
     (state: RootState) => state.allProducts.singleProduct,
   );
