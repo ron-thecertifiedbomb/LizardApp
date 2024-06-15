@@ -1,160 +1,85 @@
-import React, {useState} from 'react';
-import {View, Text, TouchableOpacity, Alert} from 'react-native';
-import {useForm} from 'react-hook-form';
-import {useNavigation} from '@react-navigation/native';
-import {useMutation} from 'react-query';
-import {useDispatch, useSelector} from 'react-redux';
-import {setIsLoggedIn} from '../../../redux/reducers/userslice/reducer/isLoggedInReducer';
-import {setUserId} from '../../../redux/reducers/userIdReducer';
+import React, { useState } from 'react';
+import { View, Text, TouchableOpacity, Alert } from 'react-native';
+import { useForm } from 'react-hook-form';
+import { useNavigation } from '@react-navigation/native';
+import { useMutation } from 'react-query';
+import { useDispatch } from 'react-redux';
+import { setIsLoggedIn } from '../../../redux/reducers/userslice/reducer/isLoggedInReducer';
+import { setUserId } from '../../../redux/reducers/userIdReducer';
 import FormTextInput from '../../formtextinput/FormTextInput';
 import Button from '../../button/Button';
-import {FormData, FormLogInData} from '../type';
+import { FormLogInData } from '../type';
 import LoadingIndicator from '../../LoadingIndicator';
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 import colors from '../../../constants/color';
-import {userIsLoggedIn} from '../../../redux/reducers/userslice/selectors/selector';
+import { time } from '../../../utilities/helpers/lib';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const LogInForm = () => {
+const LogInForm: React.FC = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
 
-  const {
-    control,
-    handleSubmit,
-    reset,
-    formState: {errors},
-  } = useForm<FormLogInData>();
-
+  const { control, handleSubmit, reset, formState: { errors } } = useForm<FormLogInData>();
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
   const mutation = useMutation(
     async (data: FormLogInData) => {
       setIsLoading(true);
-      const response = await fetch(
-        'https://nextjs-server-rho.vercel.app/api/users/authenticate/route',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(data),
-        },
-      );
+      const response = await fetch('https://nextjs-server-rho.vercel.app/api/users/authenticate/route', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
 
-      if (!response.ok) {
-        throw new Error('Failed to authenticate');
-      }
-
+      if (!response.ok) throw new Error('Failed to authenticate');
+      
       const result = await response.json();
       dispatch(setIsLoggedIn(true));
       dispatch(setUserId(result.userId));
+
+      const value = JSON.stringify(result);
+      await AsyncStorage.setItem('userData', value);
 
       return result;
     },
     {
       onSuccess: () => {
         Alert.alert('Success', 'Authentication successful', [
-          {
-            text: 'OK',
-            onPress: () => {
-              navigation.navigate('DrawerNavigator' as never);
-            },
-          },
+          { text: 'OK', onPress: () => navigation.navigate('DrawerNavigator' as never) },
         ]);
       },
-      onError: error => {
+      onError: (error) => {
         console.error(error);
-        Alert.alert(
-          'Error',
-          'An error occurred during login. Please try again.',
-          [
-            {
-              text: 'OK',
-              onPress: () => {
-                setError('An error occurred during login. Please try again.');
-                reset();
-              },
-            },
-          ],
-        );
+        Alert.alert('Error', 'An error occurred during login. Please try again.', [
+          { text: 'OK', onPress: () => { setError('An error occurred during login. Please try again.'); reset(); } },
+        ]);
       },
-      onSettled: () => {
-        setIsLoading(false);
-      },
-    },
+      onSettled: () => setIsLoading(false),
+    }
   );
 
   const onSubmit = (data: FormLogInData) => {
-    const time = new Date().toLocaleString('en-US', {
-      timeZone: 'Asia/Manila',
-      year: 'numeric',
-      month: '2-digit',
-      day: '2-digit',
-      hour: '2-digit',
-      minute: '2-digit',
-      second: '2-digit',
-      hour12: true, // Use true for 12-hour format, false for 24-hour format
-    });
-    
-    console.log(time);
-    
-    const {username, password} = data;
-
-    const payLoad: FormLogInData = {
-      username,
-      password,
-      time,
-      isLoggedIn: true,
-    };
-
-    console.log('PayLoad', payLoad);
-
+    const { username, password } = data;
+    const payLoad: FormLogInData = { username, password, time, isLoggedIn: true };
     mutation.mutate(payLoad);
   };
 
-  const handleNavigateToRegistration = () => {
-    navigation.navigate('RegistrationPage' as never);
-  };
+  const handleNavigateToRegistration = () => navigation.navigate('RegistrationPage' as never);
 
   return (
-    <View style={{width: '80%', alignSelf: 'center', display: 'flex', gap: 10}}>
-      <FormTextInput
-        control={control}
-        name="username"
-        label="Username"
-        rules={{required: 'Username is required'}}
-        errors={errors}
-      />
-
-      <FormTextInput
-        control={control}
-        name="password"
-        label="Password"
-        rules={{required: 'Password is required'}}
-        errors={errors}
-      />
-
-      <TouchableOpacity onPress={handleNavigateToRegistration}>
-        <Text style={styles.title}>Click here to register</Text>
-      </TouchableOpacity>
-
+    <View style={{ width: '80%', alignSelf: 'center', display: 'flex', gap: 10 }}>
+      <FormTextInput control={control} name="username" label="Username" rules={{ required: 'Username is required' }} errors={errors} />
+      <FormTextInput control={control} name="password" label="Password" rules={{ required: 'Password is required' }} errors={errors} />
+      <TouchableOpacity onPress={handleNavigateToRegistration}><Text style={styles.title}>Click here to register</Text></TouchableOpacity>
       <LoadingIndicator visible={isLoading} />
-
-      <Button
-        title={'Log In'}
-        onPress={handleSubmit(onSubmit)}
-        loading={isLoading}
-      />
+      <Button title={'Log In'} onPress={handleSubmit(onSubmit)} loading={isLoading} />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  title: {
-    fontSize: 12,
-    color: colors.primaryColor,
-  },
+  title: { fontSize: 12, color: colors.primaryColor },
 });
 
 export default LogInForm;

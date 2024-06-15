@@ -1,1 +1,0 @@
-export const tabs = ['All', 'Espresso', 'Latte', 'Cappuccino', 'Black Coffee', 'Macchiato'];

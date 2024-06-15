@@ -41,6 +41,7 @@ const CartCard: React.FC<Props> = ({ item }) => {
           <Text style={styles.titleText}>{item.name}</Text>
           <View style={styles.secondRow}>
             <Text style={styles.priceText}>Price: {formatPrice(item.price)}</Text>
+            <Text style={styles.priceText}>Stocks: {item.quantityOrdered}</Text>
             {/* <Text style={styles.quantityText}>Total Orders: {item.quantityOrdered}</Text> */}
           </View>
           <CartQuantity item={item} />
@@ -73,6 +74,7 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     width: '100%',
     padding: 10,
+
   },
   cardBody: {
     flex: 1,
@@ -83,15 +85,15 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignContent: 'center',
     alignItems: 'center',
-    padding: 10,
+ 
   },
   titleText: {
-    fontSize: 20,
-    fontWeight: 'bold',
+    fontSize: 16,
+   
     color: 'black',
   },
   priceText: {
-    fontSize: 16,
+    fontSize: 12,
     color: 'black',
   },
   quantityText: {

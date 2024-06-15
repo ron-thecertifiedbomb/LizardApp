@@ -3,6 +3,7 @@ import {useRoute, RouteProp} from '@react-navigation/native';
 import Header from '../components/Header';
 import TextComponent from '../components/Text/Text';
 import Container from '../components/container/Container';
+import AsyncStorageChecker from '../components/asyncstoragechecker/AsyncStorageChecker';
 
 type RootStackParamList = {
   OrderScreen: {userId: string; orderScreenHeaderTitle: string};
@@ -20,8 +21,7 @@ export default function CartScreen() {
     <View style={styles.container}>
       <Header title={orderScreenHeaderTitle} />
       <Container>
-      <TextComponent text={'Welcome Home'}/>
-   
+   <AsyncStorageChecker />
       </Container>
       
     </View>
