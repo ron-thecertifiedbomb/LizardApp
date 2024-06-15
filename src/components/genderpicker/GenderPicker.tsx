@@ -2,11 +2,12 @@ import {Picker} from '@react-native-picker/picker';
 import React from 'react';
 import {StyleSheet} from 'react-native';
 
+
+
 interface GenderPickerProps {
-  value: 'male' | 'female';
+  value: 'male' | 'female' | undefined; 
   onChange: (value: 'male' | 'female') => void;
 }
-
 const GenderPicker: React.FC<GenderPickerProps> = ({value, onChange}) => {
   return (
     <Picker selectedValue={value} onValueChange={onChange} style={styles.input}>

@@ -9,7 +9,7 @@ export interface User {
   email?: string;
   password?: string;
   gender?: 'male' | 'female'; 
-  birthday?: string; 
+  birthday?: Date; 
   dateCreated?: string;
   timeCreated?: string; 
   isLoggedIn?: boolean | string; 

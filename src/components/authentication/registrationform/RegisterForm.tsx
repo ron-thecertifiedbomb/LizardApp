@@ -10,7 +10,7 @@ import Button from '../../button/Button';
 import DateDisplay from '../../datepicker/DateDisplay';
 import GenderPicker from '../../genderpicker/GenderPicker';
 import fontStyles from '../../../constants/fontStyle';
-import {FormData} from '../type';
+import {User} from '../../../redux/reducers/userslice/types/types';
 
 const RegisterForm = () => {
   const {
@@ -18,14 +18,16 @@ const RegisterForm = () => {
     handleSubmit,
     reset,
     formState: {errors},
-  } = useForm<FormData>();
+  } = useForm<User>();
 
   const [dob, setDob] = useState(new Date());
-  const [gender, setGender] = useState<FormData['gender']>('male');
+
+  const [gender, setGender] = useState<User['gender']>('male');
+
   const navigation = useNavigation();
 
   const mutation = useMutation(
-    async (data: FormData) => {
+    async (data: User) => {
       const response = await fetch(
         'https://nextjs-server-rho.vercel.app/api/users/signup/route',
         {
@@ -58,10 +60,14 @@ const RegisterForm = () => {
     },
   );
 
-  const onSubmit: SubmitHandler<FormData> = data => {
+  const onSubmit: SubmitHandler<User> = data => {
     const {firstname, lastname, mobile, username, password, email} = data;
 
-    const formData: FormData = {
+    const currentDate = new Date();
+    const dateCreated = currentDate.toISOString().split('T')[0]; // Format date as ISO string
+    const timeCreated = currentDate.toLocaleTimeString(); // Get current time
+
+    const formData: User = {
       firstname,
       lastname,
       username,
@@ -70,8 +76,10 @@ const RegisterForm = () => {
       password,
       gender,
       birthday: dob,
+      dateCreated,
+      timeCreated,
+
     };
-    logger('Data to post', formData);
     mutation.mutate(formData);
   };
 
