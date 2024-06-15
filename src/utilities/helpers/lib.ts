@@ -10,7 +10,6 @@ export const calculateTotalPrice = (price: number, quantity: number) => {
 };
 
 const getCurrentDate = () => {
-  
   const currentDate = new Date();
   const formattedDate = currentDate.toISOString().split('T')[0];
   return formattedDate;
@@ -18,9 +17,7 @@ const getCurrentDate = () => {
 
 export const date = getCurrentDate;
 
-
-
-const getFormattedDate = (date: Date = new Date()): string => {
+export const getFormattedDate = (date: Date = new Date()): string => {
   const options: Intl.DateTimeFormatOptions = {
     weekday: 'long',
     year: 'numeric',
@@ -35,8 +32,6 @@ const getFormattedDate = (date: Date = new Date()): string => {
   return new Intl.DateTimeFormat('en-US', options).format(date);
 };
 
-export const time = getFormattedDate;
-
 
 export const generateCustomOrderId = (userId: string | null, storeId: string) => {
   const timestamp = Date.now();
@@ -44,4 +39,18 @@ export const generateCustomOrderId = (userId: string | null, storeId: string) =>
   const orderId = `ORD-${userId}-${storeId}-${timestamp}-${randomNum}`;
   return orderId;
 };
+
+export const time = new Date().toLocaleString('en-US', {
+  timeZone: 'Asia/Manila',
+  year: 'numeric',
+  month: '2-digit',
+  day: '2-digit',
+  hour: '2-digit',
+  minute: '2-digit',
+  second: '2-digit',
+  hour12: true, 
+});
+
+
+
 

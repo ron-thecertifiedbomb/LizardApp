@@ -10,7 +10,8 @@ type RootStackParamList = {
 interface HeaderProps {
   title: string;
 }
-const Header: React.FC<HeaderProps> = ({title}) => {
+const Header: React.FC<HeaderProps> = ({ title }) => {
+
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
   const openDrawer = () => {
@@ -29,17 +30,17 @@ const Header: React.FC<HeaderProps> = ({title}) => {
 const styles = StyleSheet.create({
   headerMainWrapper: {
     padding: 10,
+    backgroundColor: 'white',
   },
   headerIconWrapper: {
     display: 'flex',
     flexDirection: 'row',
     alignContent: 'center',
     alignItems: 'center',
-    gap: 15,
   },
   headerTitle: {
-    fontSize: 14,
-    fontWeight: 'bold',
+    fontSize: 12,
+  
   },
 });
 

@@ -6,6 +6,7 @@ import EmptyList from '../components/cart/EmptyList';
 import {RouteProp, useRoute} from '@react-navigation/native';
 import Header from '../components/Header';
 import {cartListItems} from '../redux/reducers/cartslice/selectors/cartSelector';
+import Container from '../components/container/Container';
 
 type RootStackParamList = {
   CartScreen: {userId: string; cartScreenHeaderTitle: string};
@@ -14,13 +15,12 @@ type RootStackParamList = {
 type StoreScreenRouteProp = RouteProp<RootStackParamList>;
 
 const CartScreen: React.FC = () => {
-  
   const route = useRoute<StoreScreenRouteProp>();
   const {cartScreenHeaderTitle} = route.params;
   const data = useSelector(cartListItems);
 
   return (
-    <View style={styles.container}>
+    <Container style={styles.container}>
       <Header title={cartScreenHeaderTitle} />
       {data && data.length === 0 ? (
         <EmptyList />
@@ -30,13 +30,15 @@ const CartScreen: React.FC = () => {
           <MyCartFooter />
         </>
       )}
-    </View>
+    </Container>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    display: 'flex',
+    justifyContent: 'flex-start',
+  
   },
 });
 

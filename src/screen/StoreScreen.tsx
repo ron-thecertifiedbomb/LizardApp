@@ -1,4 +1,4 @@
-import {View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import AllProductsRender from '../components/AllProductsRender';
 import {useSelector} from 'react-redux';
 import {RouteProp, useRoute} from '@react-navigation/native';
@@ -22,7 +22,7 @@ const StoreScreen: React.FC = () => {
 
 
   return (
-    <Container>
+    <Container style={styles.container}>
       <Header title={storeScreenHeaderTitle} />
       <Carousel
       images={images}
@@ -41,5 +41,15 @@ const StoreScreen: React.FC = () => {
       </Container>
   );
 };
+
+
+
+const styles = StyleSheet.create({
+  container: {
+    display: 'flex',
+    justifyContent: 'flex-start',
+  
+  },
+});
 
 export default StoreScreen;
