@@ -73,7 +73,6 @@ const LogInForm: React.FC = () => {
       <FormTextInput control={control} name="username" label="Username" rules={{ required: 'Username is required' }} errors={errors} />
       <FormTextInput control={control} name="password" label="Password" rules={{ required: 'Password is required' }} errors={errors} />
       <TouchableOpacity onPress={handleNavigateToRegistration}><Text style={styles.title}>Click here to register</Text></TouchableOpacity>
-      <LoadingIndicator visible={isLoading} />
       <Button title={'Log In'} onPress={handleSubmit(onSubmit)} loading={isLoading} />
     </View>
   );

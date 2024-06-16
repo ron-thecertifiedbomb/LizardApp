@@ -8,19 +8,31 @@ type RootStackParamList = {
 };
 
 interface HeaderProps {
-  title: string;
+  title?: string;
+  icon?: React.ReactNode;
 }
-const Header: React.FC<HeaderProps> = ({ title }) => {
 
+const Header: React.FC<HeaderProps> = ({title, icon}) => {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
   const openDrawer = () => {
     navigation.dispatch(DrawerActions.openDrawer());
   };
 
+  const goBack = () => {
+    navigation.goBack();
+  };
+
+
+
   return (
-    <TouchableOpacity onPress={openDrawer} style={styles.headerMainWrapper}>
+    <TouchableOpacity onPress={openDrawer} style={styles.headerContainer}>
       <View style={styles.headerIconWrapper}>
+           {icon && (
+          <TouchableOpacity onPress={goBack}>
+            {icon}
+          </TouchableOpacity>
+        )}
         <Text style={styles.headerTitle}>{title}</Text>
       </View>
     </TouchableOpacity>
@@ -28,7 +40,7 @@ const Header: React.FC<HeaderProps> = ({ title }) => {
 };
 
 const styles = StyleSheet.create({
-  headerMainWrapper: {
+  headerContainer: {
     padding: 10,
     backgroundColor: 'white',
   },
@@ -37,10 +49,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignContent: 'center',
     alignItems: 'center',
+    gap: 20,
   },
   headerTitle: {
     fontSize: 12,
-
   },
 });
 

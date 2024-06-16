@@ -24,7 +24,7 @@ const AppNavigator: React.FC = () => {
           component={DrawerNavigator}
           options={{ headerShown: false }}
         />
-        <Stack.Screen name="ProductPage" component={ProductDetailsScreen} />
+        <Stack.Screen name="ProductPage" component={ProductDetailsScreen} options={{ headerShown: false }}/>
         <Stack.Screen name="RegistrationPage" component={RegistrationScreen} options={{ headerShown: false }} />
         <Stack.Screen name="Login" component={LogInScreen} options={{ headerShown: false }} />
         <Stack.Screen name="Settings" component={SettingsScreen} />
