@@ -1,13 +1,13 @@
-import {StyleSheet, View} from 'react-native';
-import AllProductsRender from '../components/AllProductsRender';
+import {StyleSheet} from 'react-native';
 import {useSelector} from 'react-redux';
 import {RouteProp, useRoute} from '@react-navigation/native';
 import Header from '../components/Header';
 import {allProducts} from '../redux/reducers/productslice/selectors/selector';
-import Hero from '../components/hero/Hero';
 import Carousel from '../components/carousel/Carousel';
 import Container from '../components/container/Container';
 import { images } from '../../_mockData/images';
+import ProductCardsRenderer from '../components/ProductCardsRenderer';
+
 type RootStackParamList = {
   StoreScreen: {userId: string; storeScreenHeaderTitle: string};
 };
@@ -20,14 +20,10 @@ const StoreScreen: React.FC = () => {
   const route = useRoute<StoreScreenRouteProp>();
   const {storeScreenHeaderTitle} = route.params;
 
-
-  console.log('all product', products);
-
-
   return (
     <Container style={styles.container}>
       <Header title={storeScreenHeaderTitle} />
-      {/* <Carousel
+      <Carousel
       images={images}
       height={350}
       horizontal={true}
@@ -38,15 +34,11 @@ const StoreScreen: React.FC = () => {
       activeDashSize={30}
       animations={['scale']}
       dotPosition="bottom"
-    /> */}
-
-      <AllProductsRender item={products ?? null} />
+    />
+      <ProductCardsRenderer item={products ?? null} />
       </Container>
   );
 };
-
-
-
 const styles = StyleSheet.create({
   container: {
     display: 'flex',

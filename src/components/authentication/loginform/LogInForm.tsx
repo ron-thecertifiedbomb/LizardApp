@@ -8,7 +8,7 @@ import { setIsLoggedIn } from '../../../redux/reducers/userslice/reducer/isLogge
 import { setUserId } from '../../../redux/reducers/userIdReducer';
 import FormTextInput from '../../formtextinput/FormTextInput';
 import Button from '../../button/Button';
-import LoadingIndicator from '../../LoadingIndicator';
+import LoadingIndicator from '../../loadingindicator/LoadingIndicator';
 import { StyleSheet } from 'react-native';
 import colors from '../../../constants/color';
 import { timeCreated } from '../../../utilities/helpers/lib';

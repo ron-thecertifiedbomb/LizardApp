@@ -68,6 +68,7 @@ const RegisterForm = () => {
     const timeCreated = currentDate.toLocaleTimeString(); 
 
     const userPayload: User = {
+
       firstname,
       lastname,
       username,
@@ -80,12 +81,14 @@ const RegisterForm = () => {
       timeCreated,
       isLoggedIn: false,
       lastLoggedIn: '',
+
     };
     mutation.mutate(userPayload);
   };
 
   return (
     <View style={styles.container}>
+
       <View style={styles.titleWrapper}>
         <Text style={styles.title}>Registration</Text>
       </View>
@@ -141,7 +144,6 @@ const RegisterForm = () => {
         errors={errors}
       />
       <GenderPicker value={gender} onChange={setGender} />
-
       <View style={styles.dateWrapper}>
         <DatePicker value={dob} onChange={setDob} />
         <DateDisplay value={dob} />

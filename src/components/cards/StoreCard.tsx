@@ -1,15 +1,17 @@
 import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
-import {date, generateCustomOrderId, time} from '../utilities/helpers/lib';
+
 import {
   NavigationProp,
   useNavigation,
 } from '@react-navigation/native';
-import {IProduct} from '../types/products/type';
-import {addedToCart} from '../redux/reducers/cartslice/reducer/cartReducer';
-import {RootStackParamList} from './navigation/types';
-import {selectUserId} from '../redux/reducers/userslice/selectors/selector';
+
+import { generateCustomOrderId } from '../../utilities/helpers/lib';
+import { IProduct } from '../../types/products/type';
+import { addedToCart } from '../../redux/reducers/cartslice/reducer/cartReducer';
+import { selectUserId } from '../../redux/reducers/userslice/selectors/selector';
+import { RootStackParamList } from '../navigation/types';
 
 interface Props {
   item: IProduct;
@@ -23,7 +25,9 @@ const StoreCard: React.FC<Props> = ({item}) => {
   const dispatch = useDispatch();
 
   const handleAddToCart = () => {
-    const payload: IProduct = {
+
+    const cartPayload: IProduct = {
+
       ownerId: userID,
       orderId: generateCustomOrderId(userID, item._id),
       productId: item._id,
@@ -34,9 +38,10 @@ const StoreCard: React.FC<Props> = ({item}) => {
       isSelected: false,
       dateAdded: new Date().toLocaleDateString(),
       timeAdded: new Date().toLocaleTimeString(),
+      
     };
 
-    dispatch(addedToCart(payload));
+    dispatch(addedToCart(cartPayload));
   };
 
   const handleViewProduct = (productId: string) => {

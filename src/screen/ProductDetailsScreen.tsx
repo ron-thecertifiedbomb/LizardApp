@@ -19,11 +19,7 @@ const ProductDetailsScreen: React.FC = () => {
 
   const products = useSelector(allProducts);
 
-  logger('Product ID', productId);
-
   const productDetails = products?.find(product => product._id === productId);
-
-  logger('Product Details', productDetails?.imagelink_portrait);
 
   return (
     <View style={styles.container}>

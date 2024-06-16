@@ -19,12 +19,13 @@ const AppInitializer: React.FC = () => {
     const initializeApp = async () => {
       try {
         const value = await AsyncStorage.getItem('userData');
+
         if (value) {
+
           const userData = JSON.parse(value);
           const { isLoggedIn, userId, expiration } = userData;
 
           if (expiration && Date.now() > expiration) {
-
             await AsyncStorage.removeItem('userData');
             dispatch(setIsLoggedIn(false));
             navigation.navigate('LogInScreen' as never);
@@ -49,7 +50,6 @@ const AppInitializer: React.FC = () => {
   return (
     <View style={styles.container}>
       <Logo />
-      <ActivityIndicator size="large" color="#0000ff" />
     </View>
   );
 };

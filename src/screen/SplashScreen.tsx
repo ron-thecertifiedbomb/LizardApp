@@ -7,7 +7,7 @@ import AppInitializer from '../components/appinializer/AppInitializer';
 const SplashScreen = () => {
   return (
     <View style={styles.container}>
-      <FetchingComponent />
+      {/* <FetchingComponent /> */}
       <AppInitializer/>
     </View>
   );
