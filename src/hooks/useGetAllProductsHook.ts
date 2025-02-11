@@ -1,7 +1,7 @@
 import {useQuery} from 'react-query';
 import {useDispatch} from 'react-redux';
-import {IProduct} from '../types/products/type';
 import {getAllProducts} from '../redux/reducers/productslice/reducer/getAllProductsReducer';
+import { IProduct } from '../types/products/type';
 
 const useGetAllProductsHooks = () => {
 

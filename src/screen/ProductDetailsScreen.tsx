@@ -30,7 +30,7 @@ const ProductDetailsScreen: React.FC = () => {
       <Image
         style={styles.image}
         source={{
-          uri: productDetails?.imagelink_square,
+          uri: productDetails?.imageUrls[0],
         }}
       />
       <View style={styles.subContainer}>

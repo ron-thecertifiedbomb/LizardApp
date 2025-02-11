@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 import { setIsLoggedIn } from '../../redux/reducers/userslice/reducer/isLoggedInReducer';
 import { setUserId } from '../../redux/reducers/userIdReducer';
-import Logo from '../logo/Logo';
+// import Logo from '../logo/Logo';
 import useGetAllProductsHooks from '../../hooks/useGetAllProductsHook';
 
 const AppInitializer: React.FC = () => {
@@ -28,7 +28,7 @@ const AppInitializer: React.FC = () => {
           if (expiration && Date.now() > expiration) {
             await AsyncStorage.removeItem('userData');
             dispatch(setIsLoggedIn(false));
-            navigation.navigate('LogInScreen' as never);
+            navigation.navigate('LoginScreen' as never);
             Alert.alert('Session Expired', 'Your session has expired. Please log in again.');
           } else {
             dispatch(setIsLoggedIn(isLoggedIn));
@@ -36,11 +36,11 @@ const AppInitializer: React.FC = () => {
             navigation.navigate('DrawerNavigator' as never);
           }
         } else {
-          navigation.navigate('LogInScreen' as never);
+          navigation.navigate('LoginScreen' as never);
         }
       } catch (error) {
         console.error('Error retrieving user data from AsyncStorage:', error);
-        navigation.navigate('LogInScreen' as never);
+        navigation.navigate('LoginScreen' as never);
       }
     };
 
@@ -49,7 +49,7 @@ const AppInitializer: React.FC = () => {
 
   return (
     <View style={styles.container}>
-      <Logo />
+
     </View>
   );
 };

@@ -8,7 +8,7 @@
     "start:cleanf": "react-native start && npm cache clean --force",
     "start:clean": "react-native start --reset-cache",
     "ios": "react-native run-ios",
-      "lint": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
     "start": "react-native start",
     "test": "jest",
     "build:android": "cd android && ./gradlew assembleRelease"

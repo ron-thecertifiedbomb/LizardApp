@@ -13,7 +13,7 @@ export type RootStackParamList = {
   Registration: undefined;
   RegistrationPage: undefined;
   CustomModal: undefined;
-  Login: undefined;
+  LoginScreen: undefined;
   Edit: undefined;
   Splash: undefined;
   OrderScreen: {userId: string; orderTitle: string};

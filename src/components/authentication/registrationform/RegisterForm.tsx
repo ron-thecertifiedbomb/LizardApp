@@ -3,7 +3,7 @@ import {useForm, SubmitHandler} from 'react-hook-form';
 import {View, StyleSheet, Alert, Text} from 'react-native';
 import {useMutation} from 'react-query';
 import {useNavigation} from '@react-navigation/native';
-import logger from '../../../utilities/logger/logger';
+
 import FormTextInput from '../../formtextinput/FormTextInput';
 import DatePicker from '../../datepicker/DatePicker';
 import Button from '../../button/Button';

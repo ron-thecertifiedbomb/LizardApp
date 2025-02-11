@@ -26,6 +26,8 @@ const StoreCard: React.FC<Props> = ({item}) => {
 
   const handleAddToCart = () => {
 
+    console.log('imageURLS ', item.imageUrls[0])
+
     const cartPayload: IProduct = {
 
       ownerId: userID,
@@ -53,7 +55,7 @@ const StoreCard: React.FC<Props> = ({item}) => {
         <Image
           style={styles.image}
           source={{
-            uri: item?.imagelink_square,
+            uri: item.imageUrls[0],
           }}
         />
         <View style={styles.cardBody}>

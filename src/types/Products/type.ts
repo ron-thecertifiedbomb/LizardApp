@@ -11,6 +11,7 @@ export interface IProduct {
   timeAdded: string;
   brand:               string;
   category:            string;
+  imageUrls:           string[];
   imagelink_portrait?: string;
   imagelink_square?:   string;
   includedItems:       string[];

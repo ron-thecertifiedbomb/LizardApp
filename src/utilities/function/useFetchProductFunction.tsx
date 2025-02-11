@@ -10,3 +10,9 @@ export const fetchData = async () => {
     }
     return response.json() as Promise<IProduct[]>;
   };
+
+
+
+
+
+  
